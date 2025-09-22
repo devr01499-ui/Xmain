@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Box, Typography, Button, Container, Grid, Card, CardContent, CardMedia, Chip } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import Header from '../components/Header';

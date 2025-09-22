@@ -15,6 +15,7 @@ const Header = () => {
     { text: 'About Us', path: '/about-us' },
     { text: 'Services', path: '/services' },
     { text: 'Careers', path: '/career' },
+    { text: 'Partner With Us', path: '/partner-with-us' },
     { text: 'Contact', path: '/contact' },
   ];
 
