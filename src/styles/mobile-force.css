@@ -80,10 +80,25 @@
     color: #000000 !important;
   }
 
-  /* Mobile hamburger menu */
+  /* Mobile hamburger menu - Ensure visibility */
   .MuiAppBar-root .MuiIconButton-root {
     color: #000000 !important;
     padding: 12px !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    background-color: transparent !important;
+    border: none !important;
+  }
+
+  /* Mobile hamburger icon - Ensure visibility */
+  .MuiAppBar-root .MuiSvgIcon-root {
+    color: #000000 !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 24px !important;
+    height: 24px !important;
   }
 
   /* Mobile logo */
@@ -93,11 +108,36 @@
     font-size: 1.25rem !important;
   }
 
-  /* Touch-friendly sizing */
+  /* Touch-friendly sizing - Force mobile menu visibility */
   .MuiAppBar-root .MuiIconButton-root {
     padding: 12px !important;
     min-width: 48px !important;
     min-height: 48px !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: #000000 !important;
+    background-color: transparent !important;
+    border: none !important;
+    cursor: pointer !important;
+  }
+
+  /* Force mobile menu button to be visible */
+  .mobile-header .MuiIconButton-root {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: #000000 !important;
+  }
+
+  /* Force mobile menu icon to be visible */
+  .mobile-header .MuiSvgIcon-root {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: #000000 !important;
+    width: 24px !important;
+    height: 24px !important;
   }
 
   /* Mobile drawer width */
@@ -127,6 +167,31 @@
   background: rgba(255, 255, 255, 0.95) !important;
   backdrop-filter: blur(20px) !important;
   color: #000000 !important;
+}
+
+/* CRITICAL: Force mobile menu button visibility */
+.mobile-header .MuiIconButton-root,
+.mobile-header .MuiIconButton-root[class*="MuiIconButton-root"] {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: #000000 !important;
+  background-color: transparent !important;
+  border: none !important;
+  cursor: pointer !important;
+  min-width: 48px !important;
+  min-height: 48px !important;
+  padding: 12px !important;
+}
+
+.mobile-header .MuiSvgIcon-root,
+.mobile-header .MuiSvgIcon-root[class*="MuiSvgIcon-root"] {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: #000000 !important;
+  width: 24px !important;
+  height: 24px !important;
 }
 
 /* Ensure proper z-index for mobile drawer */

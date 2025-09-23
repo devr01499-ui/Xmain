@@ -238,9 +238,30 @@ const Header = () => {
                 aria-label="open drawer"
                 edge="start"
                 onClick={handleDrawerToggle}
-                sx={{ color: '#000000' }}
+                sx={{ 
+                  color: '#000000',
+                  display: 'block',
+                  visibility: 'visible',
+                  opacity: 1,
+                  minWidth: '48px',
+                  minHeight: '48px',
+                  padding: '12px',
+                  backgroundColor: 'transparent',
+                  border: 'none',
+                  cursor: 'pointer',
+                  '&:hover': {
+                    backgroundColor: 'rgba(139, 92, 246, 0.1)',
+                  },
+                }}
               >
-                <MenuIcon sx={{ color: '#000000' }} />
+                <MenuIcon sx={{ 
+                  color: '#000000',
+                  display: 'block',
+                  visibility: 'visible',
+                  opacity: 1,
+                  width: '24px',
+                  height: '24px',
+                }} />
               </MobileMenuButton>
             </Toolbar>
           </Container>
