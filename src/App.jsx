@@ -6,6 +6,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // Import theme
 import theme from './theme/theme';
 
+// Import mobile-specific styles
+import './styles/mobile.css';
+
 // Import pages
 import Home from './pages/Home';
 import AboutUs from './pages/AboutUs';
