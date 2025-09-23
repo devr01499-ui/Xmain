@@ -7,7 +7,7 @@ import HeroSection from '../components/HeroSection';
 import WhyChooseUs from '../components/WhyChooseUs';
 import ServicesSection from '../components/ServicesSection';
 import PartnerSection from '../components/PartnerSection';
-import SectionContainer from '../components/SectionContainer';
+import GlassContainer from '../components/GlassContainer';
 
 const HomePage = () => {
   const scrollToContact = () => {
@@ -15,7 +15,7 @@ const HomePage = () => {
   };
 
   return (
-    <Box>
+    <Box sx={{ backgroundColor: 'var(--bg-dark)', minHeight: '100vh' }}>
       <Header />
       
       {/* Hero Section */}
@@ -31,14 +31,14 @@ const HomePage = () => {
       <PartnerSection />
 
       {/* CTA Section */}
-      <Box sx={{ py: { xs: 8, md: 10 }, backgroundColor: '#0a0a0a' }}>
+      <Box sx={{ py: { xs: 8, md: 10 }, backgroundColor: 'var(--bg-dark)' }}>
         <Container maxWidth="lg">
-          <SectionContainer>
-            <Box sx={{ textAlign: 'center', color: '#2D3748' }}>
-              <Typography variant="h2" component="h2" gutterBottom sx={{ fontWeight: 'bold', mb: 3, color: '#1565c0' }}>
+          <GlassContainer>
+            <Box sx={{ textAlign: 'center', color: 'var(--text-light)' }}>
+              <Typography variant="h2" component="h2" gutterBottom sx={{ fontWeight: 'bold', mb: 3, color: 'var(--text-dark-violet)' }}>
                 Ready to Transform Your Business?
               </Typography>
-              <Typography variant="h5" sx={{ mb: 4, color: '#666', lineHeight: 1.6 }}>
+              <Typography variant="h5" sx={{ mb: 4, color: 'var(--text-light)', lineHeight: 1.6, opacity: 0.9 }}>
                 Let's discuss how our BPO solutions can accelerate your growth and efficiency
               </Typography>
               <Button
@@ -46,14 +46,14 @@ const HomePage = () => {
                 size="large"
                 onClick={scrollToContact}
                 sx={{
-                  backgroundColor: '#1565c0',
+                  backgroundColor: 'var(--text-dark-violet)',
                   color: 'white',
                   px: 6,
                   py: 2,
                   fontSize: '1.2rem',
                   fontWeight: 'bold',
                   '&:hover': {
-                    backgroundColor: '#0d47a1',
+                    backgroundColor: '#7C3AED',
                     transform: 'translateY(-2px)',
                   },
                   transition: 'all 0.3s ease',
@@ -62,7 +62,7 @@ const HomePage = () => {
                 Get Started Today
               </Button>
             </Box>
-          </SectionContainer>
+          </GlassContainer>
         </Container>
       </Box>
 

@@ -3,19 +3,18 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
   palette: {
     primary: {
+      main: '#8B5CF6', // Dark Violet
+      light: '#A78BFA', // Light Violet
+      dark: '#7C3AED',
+    },
+    secondary: {
       main: '#1565c0',
       light: '#5e8bff',
       dark: '#0d47a1',
-      100: '#e0e7ff',
-    },
-    secondary: {
-      main: '#000047',
-      light: '#1a1a5c',
-      dark: '#00002e',
     },
     background: {
-      default: '#0a0a0a',
-      paper: '#1a1a2e',
+      default: '#0f0f0f', // Dark background
+      paper: 'rgba(255, 255, 255, 0.1)',
     },
     text: {
       primary: '#ffffff',
@@ -102,6 +101,23 @@ const theme = createTheme({
         root: {
           borderRadius: '12px',
           boxShadow: '0 4px 20px rgba(0, 0, 0, 0.05)',
+        },
+      },
+    },
+    MuiCssBaseline: {
+      styleOverrides: {
+        ':root': {
+          '--glass-bg': 'rgba(255, 255, 255, 0.1)',
+          '--glass-border': 'rgba(255, 255, 255, 0.2)',
+          '--glass-blur': 'blur(15px)',
+          '--text-light': '#ffffff',
+          '--text-dark-violet': '#8B5CF6',
+          '--text-light-violet': '#A78BFA',
+          '--bg-dark': '#0f0f0f',
+        },
+        body: {
+          backgroundColor: '#0f0f0f',
+          color: '#ffffff',
         },
       },
     },

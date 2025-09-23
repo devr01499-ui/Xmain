@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Typography, Container, Grid, Card, CardContent, Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import GlassContainer from './GlassContainer';
 
 const PartnerContainer = styled(Box)(({ theme }) => ({
   backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url(https://images.unsplash.com/photo-1552664688-cf412ec27db2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80)`,
@@ -11,15 +12,16 @@ const PartnerContainer = styled(Box)(({ theme }) => ({
 }));
 
 const GlassCard = styled(Card)(({ theme }) => ({
-  background: 'rgba(255, 255, 255, 0.95)',
-  backdropFilter: 'blur(10px)',
-  border: '1px solid rgba(255, 255, 255, 0.3)',
+  background: 'var(--glass-bg)',
+  backdropFilter: 'var(--glass-blur)',
+  border: '1px solid var(--glass-border)',
+  borderRadius: '12px',
   transition: 'all 0.3s ease',
   height: '100%',
   '&:hover': {
     transform: 'translateY(-5px) scale(1.05)',
-    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.2)',
-    background: 'rgba(255, 255, 255, 0.98)',
+    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.3)',
+    borderColor: 'var(--text-dark-violet)',
   },
 }));
 
@@ -55,10 +57,10 @@ const PartnerSection = () => {
     <PartnerContainer sx={{ py: { xs: 8, md: 10 } }}>
       <Container maxWidth="lg">
         <Box sx={{ textAlign: 'center', mb: 6 }}>
-          <Typography variant="h2" component="h2" gutterBottom sx={{ color: 'white', fontWeight: 'bold' }}>
+          <Typography variant="h2" component="h2" gutterBottom sx={{ color: 'var(--text-light)', fontWeight: 'bold' }}>
             Why Partner With AdmirerX?
           </Typography>
-          <Typography variant="h5" sx={{ color: '#e0e0e0', maxWidth: '600px', mx: 'auto' }}>
+          <Typography variant="h5" sx={{ color: 'var(--text-light)', maxWidth: '600px', mx: 'auto', opacity: 0.9 }}>
             Join 500+ businesses transforming their operations with our smart BPO solutions
           </Typography>
         </Box>
@@ -75,7 +77,7 @@ const PartnerSection = () => {
                     component="h3" 
                     gutterBottom 
                     sx={{ 
-                      color: '#2D3748', 
+                      color: 'var(--text-dark-violet)', 
                       fontWeight: 'bold',
                       fontSize: '1.3rem'
                     }}
@@ -85,7 +87,7 @@ const PartnerSection = () => {
                   <Typography 
                     variant="body1" 
                     sx={{ 
-                      color: '#2D3748',
+                      color: 'var(--text-light-violet)',
                       fontWeight: 500,
                       lineHeight: 1.6
                     }}
@@ -98,10 +100,10 @@ const PartnerSection = () => {
           ))}
         </Grid>
         <Box sx={{ textAlign: 'center', mt: 6 }}>
-          <Typography variant="h4" sx={{ color: 'white', mb: 2, fontWeight: 'bold' }}>
+          <Typography variant="h4" sx={{ color: 'var(--text-light)', mb: 2, fontWeight: 'bold' }}>
             500+ Happy Partners
           </Typography>
-          <Typography variant="h6" sx={{ color: '#e0e0e0', mb: 4 }}>
+          <Typography variant="h6" sx={{ color: 'var(--text-light)', mb: 4, opacity: 0.9 }}>
             Trusted by businesses worldwide for their BPO needs
           </Typography>
           <Button
@@ -109,14 +111,14 @@ const PartnerSection = () => {
             size="large"
             onClick={scrollToContact}
             sx={{
-              backgroundColor: 'white',
-              color: '#1565c0',
+              backgroundColor: 'var(--text-dark-violet)',
+              color: 'white',
               px: 6,
               py: 2,
               fontSize: '1.2rem',
               fontWeight: 'bold',
               '&:hover': {
-                backgroundColor: '#f5f5f5',
+                backgroundColor: '#7C3AED',
                 transform: 'translateY(-2px)',
               },
               transition: 'all 0.3s ease',

@@ -4,7 +4,7 @@ import { useTheme } from '@mui/material/styles';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
-import SectionContainer from './SectionContainer';
+import GlassContainer from './GlassContainer';
 
 const Footer = () => {
   const theme = useTheme();
@@ -16,15 +16,19 @@ const Footer = () => {
   ];
 
   return (
-    <Box sx={{ py: 6, backgroundColor: '#0a0a0a' }}>
+    <Box sx={{ py: 6, backgroundColor: 'var(--bg-dark)' }}>
       <Container maxWidth="lg">
-        <SectionContainer>
+        <GlassContainer sx={{ 
+          background: 'var(--glass-bg)',
+          backdropFilter: 'var(--glass-blur)',
+          border: '1px solid var(--glass-border)',
+        }}>
           <Grid container spacing={4} alignItems="center">
             <Grid item xs={12} md={6}>
-              <Typography variant="h5" sx={{ fontWeight: 700, mb: 2, color: '#1565c0' }}>
+              <Typography variant="h5" sx={{ fontWeight: 700, mb: 2, color: 'var(--text-dark-violet)' }}>
                 AdmirerX
               </Typography>
-              <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.6 }}>
+              <Typography variant="body1" sx={{ mb: 3, color: 'var(--text-light)', lineHeight: 1.6, opacity: 0.9 }}>
                 Empowering businesses with smart BPO solutions and exceptional service delivery. 
                 Transform your operations with our comprehensive business process outsourcing services.
               </Typography>
@@ -37,13 +41,13 @@ const Footer = () => {
                     rel={enabled ? "noopener noreferrer" : undefined}
                     disabled={!enabled}
                     sx={{
-                      color: enabled ? '#1565c0' : '#666666',
+                      color: enabled ? 'var(--text-dark-violet)' : '#666666',
                       opacity: enabled ? 1 : 0.5,
                       cursor: enabled ? 'pointer' : 'not-allowed',
                       '&:hover': enabled ? {
-                        color: '#0d47a1',
+                        color: 'var(--text-light-violet)',
                         transform: 'translateY(-2px)',
-                        backgroundColor: 'rgba(21, 101, 192, 0.1)',
+                        backgroundColor: 'rgba(139, 92, 246, 0.1)',
                       } : {
                         transform: 'none',
                       },
@@ -56,37 +60,37 @@ const Footer = () => {
               </Box>
             </Grid>
             <Grid item xs={12} md={6}>
-              <Typography variant="h6" sx={{ fontWeight: 600, mb: 3, color: '#1565c0' }}>
+              <Typography variant="h6" sx={{ fontWeight: 600, mb: 3, color: 'var(--text-dark-violet)' }}>
                 Quick Links
               </Typography>
               <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
-                <Typography variant="body2" sx={{ color: '#666', cursor: 'pointer', '&:hover': { color: '#1565c0' }, transition: 'color 0.2s ease' }}>
+                <Typography variant="body2" sx={{ color: 'var(--text-light)', cursor: 'pointer', '&:hover': { color: 'var(--text-light-violet)' }, transition: 'color 0.2s ease', opacity: 0.9 }}>
                   Home
                 </Typography>
-                <Typography variant="body2" sx={{ color: '#666', cursor: 'pointer', '&:hover': { color: '#1565c0' }, transition: 'color 0.2s ease' }}>
+                <Typography variant="body2" sx={{ color: 'var(--text-light)', cursor: 'pointer', '&:hover': { color: 'var(--text-light-violet)' }, transition: 'color 0.2s ease', opacity: 0.9 }}>
                   About Us
                 </Typography>
-                <Typography variant="body2" sx={{ color: '#666', cursor: 'pointer', '&:hover': { color: '#1565c0' }, transition: 'color 0.2s ease' }}>
+                <Typography variant="body2" sx={{ color: 'var(--text-light)', cursor: 'pointer', '&:hover': { color: 'var(--text-light-violet)' }, transition: 'color 0.2s ease', opacity: 0.9 }}>
                   Services
                 </Typography>
-                <Typography variant="body2" sx={{ color: '#666', cursor: 'pointer', '&:hover': { color: '#1565c0' }, transition: 'color 0.2s ease' }}>
+                <Typography variant="body2" sx={{ color: 'var(--text-light)', cursor: 'pointer', '&:hover': { color: 'var(--text-light-violet)' }, transition: 'color 0.2s ease', opacity: 0.9 }}>
                   Careers
                 </Typography>
-                <Typography variant="body2" sx={{ color: '#666', cursor: 'pointer', '&:hover': { color: '#1565c0' }, transition: 'color 0.2s ease' }}>
+                <Typography variant="body2" sx={{ color: 'var(--text-light)', cursor: 'pointer', '&:hover': { color: 'var(--text-light-violet)' }, transition: 'color 0.2s ease', opacity: 0.9 }}>
                   Partner With Us
                 </Typography>
-                <Typography variant="body2" sx={{ color: '#666', cursor: 'pointer', '&:hover': { color: '#1565c0' }, transition: 'color 0.2s ease' }}>
+                <Typography variant="body2" sx={{ color: 'var(--text-light)', cursor: 'pointer', '&:hover': { color: 'var(--text-light-violet)' }, transition: 'color 0.2s ease', opacity: 0.9 }}>
                   Contact
                 </Typography>
               </Box>
             </Grid>
           </Grid>
-          <Box sx={{ borderTop: '1px solid rgba(0,0,0,0.1)', mt: 4, pt: 4, textAlign: 'center' }}>
-            <Typography variant="body2" sx={{ color: '#666' }}>
+          <Box sx={{ borderTop: '1px solid rgba(255, 255, 255, 0.1)', mt: 4, pt: 4, textAlign: 'center' }}>
+            <Typography variant="body2" sx={{ color: 'var(--text-light)', opacity: 0.7 }}>
               © 2024 AdmirerX. All rights reserved. | Smart BPO Solutions
             </Typography>
           </Box>
-        </SectionContainer>
+        </GlassContainer>
       </Container>
     </Box>
   );
