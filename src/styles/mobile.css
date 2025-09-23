@@ -36,94 +36,110 @@
   }
 }
 
-/* Mobile Header with Glass Effect + Black Text */
+/* MOBILE SPECIFIC FIXES - Force mobile header styling */
 @media (max-width: 768px) {
-  .mobile-header {
-    background: rgba(255, 255, 255, 0.95) !important; /* Stronger glass for black text */
+  /* Force mobile header glass effect */
+  .MuiAppBar-root {
+    background: rgba(255, 255, 255, 0.95) !important;
     backdrop-filter: blur(20px) !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
+    color: #000000 !important;
   }
-  
-  .mobile-menu {
-    color: #000000 !important; /* Black text */
-    font-weight: 600;
+
+  /* Force black text on ALL mobile header elements */
+  .MuiAppBar-root * {
+    color: #000000 !important;
   }
-  
-  .mobile-nav-links a {
-    color: #000000 !important; /* Black text */
-    font-weight: 500;
+
+  /* Mobile logo */
+  .MuiAppBar-root .MuiTypography-root {
+    color: #000000 !important;
+    font-weight: 700 !important;
   }
-  
-  .mobile-menu-button {
-    color: #000000 !important; /* Black hamburger icon */
+
+  /* Mobile hamburger menu button */
+  .MuiAppBar-root .MuiIconButton-root {
+    color: #000000 !important;
+    padding: 12px !important;
   }
-  
-  /* Ensure glass effect is visible on mobile */
-  .mobile-nav-container {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 10px;
-  }
-  
+
   /* Mobile drawer styling */
   .MuiDrawer-paper {
-    background-color: rgba(255, 255, 255, 0.95) !important;
-    backdrop-filter: blur(20px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    background: rgba(255, 255, 255, 0.98) !important;
+    backdrop-filter: blur(25px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    color: #000000 !important;
+  }
+
+  /* Force black text in mobile drawer */
+  .MuiDrawer-paper * {
+    color: #000000 !important;
   }
 
   /* Mobile navigation items */
-  .mobile-nav-item {
+  .MuiDrawer-paper .MuiListItem-root {
     color: #000000 !important;
-    font-weight: 500;
+    font-weight: 500 !important;
     padding: 12px 16px !important;
     border-radius: 8px !important;
     margin-bottom: 4px !important;
     transition: all 0.3s ease !important;
   }
 
-  .mobile-nav-item:hover {
+  .MuiDrawer-paper .MuiListItem-root:hover {
     background-color: rgba(139, 92, 246, 0.1) !important;
   }
 
   /* Mobile menu title */
-  .mobile-menu-title {
+  .MuiDrawer-paper .mobile-menu-title {
     color: #000000 !important;
     font-weight: 700 !important;
     font-size: 1.25rem !important;
   }
 
   /* Mobile close button */
-  .mobile-menu-close {
+  .MuiDrawer-paper .mobile-menu-close {
     color: #000000 !important;
   }
 
-  /* Ensure proper mobile header background */
-  .MuiAppBar-root {
-    background: rgba(255, 255, 255, 0.95) !important;
-    backdrop-filter: blur(20px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.3) !important;
-  }
-  
-  /* Touch-friendly button sizing */
-  .MuiIconButton-root {
-    padding: 12px !important;
-  }
-
-  /* Better mobile typography */
-  .MuiTypography-h6 {
+  /* Mobile typography overrides */
+  .MuiAppBar-root .MuiTypography-h6 {
+    color: #000000 !important;
     font-size: 1.1rem !important;
   }
 
-  /* Mobile navigation spacing */
-  .MuiListItem-root {
-    padding: 12px 16px !important;
+  /* Force mobile container styling */
+  .MuiContainer-root {
+    color: #000000 !important;
   }
 
-  /* Mobile drawer width adjustment */
+  /* Mobile toolbar styling */
+  .MuiToolbar-root {
+    color: #000000 !important;
+  }
+
+  /* Touch-friendly button sizing */
+  .MuiIconButton-root {
+    padding: 12px !important;
+    color: #000000 !important;
+  }
+
+  /* Mobile drawer width */
   .MuiDrawer-paper {
     width: 280px !important;
+  }
+
+  /* Override any Material-UI default colors */
+  .MuiAppBar-root .MuiSvgIcon-root {
+    color: #000000 !important;
+  }
+
+  /* Force all text elements to be black */
+  .MuiAppBar-root a,
+  .MuiAppBar-root span,
+  .MuiAppBar-root div,
+  .MuiAppBar-root p {
+    color: #000000 !important;
   }
 }
 

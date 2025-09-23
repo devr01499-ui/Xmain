@@ -70,15 +70,17 @@ const MobileDrawer = styled(Drawer)(({ theme }) => ({
   '& .MuiDrawer-paper': { 
     boxSizing: 'border-box', 
     width: 280,
-    backgroundColor: 'rgba(255, 255, 255, 0.95)',
-    backdropFilter: 'blur(20px)',
-    border: '1px solid rgba(255, 255, 255, 0.3)',
+    backgroundColor: 'rgba(255, 255, 255, 0.98)',
+    backdropFilter: 'blur(25px)',
+    border: '1px solid rgba(255, 255, 255, 0.4)',
+    color: '#000000',
   },
 }));
 
 const MobileDrawerContent = styled(Box)(({ theme }) => ({
   width: 280,
   padding: '1rem',
+  color: '#000000',
   '& .mobile-menu-title': {
     color: '#000000',
     fontWeight: 700,
@@ -114,12 +116,24 @@ const Header = () => {
     { text: 'Contact', path: '/contact' },
   ];
 
-  // Mobile detection
+  // Force mobile detection with immediate styling
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
+      const mobile = window.innerWidth <= 768;
+      setIsMobile(mobile);
+      
+      // Force mobile styles immediately
+      if (mobile) {
+        const headerElement = document.querySelector('.MuiAppBar-root');
+        if (headerElement) {
+          headerElement.style.background = 'rgba(255, 255, 255, 0.95)';
+          headerElement.style.backdropFilter = 'blur(20px)';
+          headerElement.style.color = '#000000';
+          headerElement.style.borderBottom = '1px solid rgba(255, 255, 255, 0.3)';
+        }
+      }
     };
-    
+
     checkMobile();
     window.addEventListener('resize', checkMobile);
     
@@ -133,10 +147,10 @@ const Header = () => {
   const drawer = (
     <MobileDrawerContent>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
-        <Typography variant="h6" className="mobile-menu-title">
+        <Typography variant="h6" className="mobile-menu-title" sx={{ color: '#000000' }}>
           AdmirerX
         </Typography>
-        <IconButton onClick={handleDrawerToggle} className="mobile-menu-close">
+        <IconButton onClick={handleDrawerToggle} className="mobile-menu-close" sx={{ color: '#000000' }}>
           <CloseIcon />
         </IconButton>
       </Box>
@@ -154,7 +168,7 @@ const Header = () => {
               backgroundColor: location.pathname === item.path ? 'rgba(139, 92, 246, 0.1)' : 'transparent',
             }}
           >
-            <ListItemText primary={item.text} />
+            <ListItemText primary={item.text} sx={{ color: '#000000' }} />
           </ListItem>
         ))}
       </List>
@@ -164,9 +178,18 @@ const Header = () => {
   return (
     <>
       {isMobile ? (
-        <MobileHeader position="fixed">
+        <MobileHeader 
+          position="fixed"
+          className="mobile-header"
+          sx={{
+            background: 'rgba(255, 255, 255, 0.95)',
+            backdropFilter: 'blur(20px)',
+            color: '#000000',
+            borderBottom: '1px solid rgba(255, 255, 255, 0.3)',
+          }}
+        >
           <Container maxWidth="lg">
-            <Toolbar>
+            <Toolbar sx={{ color: '#000000' }}>
               <Typography 
                 variant="h6" 
                 component={Link}
@@ -188,8 +211,9 @@ const Header = () => {
                 aria-label="open drawer"
                 edge="start"
                 onClick={handleDrawerToggle}
+                sx={{ color: '#000000' }}
               >
-                <MenuIcon />
+                <MenuIcon sx={{ color: '#000000' }} />
               </MobileMenuButton>
             </Toolbar>
           </Container>
@@ -248,6 +272,14 @@ const Header = () => {
         onClose={handleDrawerToggle}
         ModalProps={{
           keepMounted: true,
+        }}
+        sx={{
+          '& .MuiDrawer-paper': {
+            background: 'rgba(255, 255, 255, 0.98)',
+            backdropFilter: 'blur(25px)',
+            border: '1px solid rgba(255, 255, 255, 0.4)',
+            color: '#000000',
+          },
         }}
       >
         {drawer}
