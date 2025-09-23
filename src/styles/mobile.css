@@ -1,30 +1,86 @@
-/* Mobile-specific header styles */
+/* Desktop Header Fix - Restore original alignment */
+@media (min-width: 769px) {
+  .desktop-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background: rgba(255, 255, 255, 0.1) !important; /* Glass effect */
+    backdrop-filter: blur(15px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+  }
+  
+  .desktop-nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+  }
+  
+  .desktop-nav-links a {
+    color: #ffffff !important; /* White text on desktop */
+    text-decoration: none;
+    font-weight: 400;
+    transition: all 0.3s ease;
+  }
+  
+  .desktop-nav-links a:hover {
+    color: #A78BFA !important;
+    transform: translateY(-2px);
+  }
+  
+  /* Ensure desktop header maintains glass effect */
+  .MuiAppBar-root {
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(15px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  }
+}
+
+/* Mobile Header with Glass Effect + Black Text */
 @media (max-width: 768px) {
+  .mobile-header {
+    background: rgba(255, 255, 255, 0.95) !important; /* Stronger glass for black text */
+    backdrop-filter: blur(20px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
+  }
+  
   .mobile-menu {
-    color: #000000 !important; /* Black text for mobile */
-    font-weight: 600; /* Better readability */
+    color: #000000 !important; /* Black text */
+    font-weight: 600;
   }
   
   .mobile-nav-links a {
-    color: #000000 !important;
-    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8); /* Optional: subtle shadow for contrast */
+    color: #000000 !important; /* Black text */
+    font-weight: 500;
   }
   
   .mobile-menu-button {
-    color: #000000 !important;
+    color: #000000 !important; /* Black hamburger icon */
   }
-
+  
+  /* Ensure glass effect is visible on mobile */
+  .mobile-nav-container {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+  }
+  
   /* Mobile drawer styling */
   .MuiDrawer-paper {
     background-color: rgba(255, 255, 255, 0.95) !important;
-    backdrop-filter: blur(15px) !important;
-    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
   }
 
   /* Mobile navigation items */
   .mobile-nav-item {
     color: #000000 !important;
-    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+    padding: 12px 16px !important;
+    border-radius: 8px !important;
+    margin-bottom: 4px !important;
+    transition: all 0.3s ease !important;
   }
 
   .mobile-nav-item:hover {
@@ -35,6 +91,7 @@
   .mobile-menu-title {
     color: #000000 !important;
     font-weight: 700 !important;
+    font-size: 1.25rem !important;
   }
 
   /* Mobile close button */
@@ -42,29 +99,13 @@
     color: #000000 !important;
   }
 
-  /* Ensure proper contrast for mobile header */
+  /* Ensure proper mobile header background */
   .MuiAppBar-root {
-    background-color: rgba(255, 255, 255, 0.95) !important;
-    backdrop-filter: blur(15px) !important;
-    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
   }
-}
-
-/* Ensure desktop remains unchanged */
-@media (min-width: 769px) {
-  .desktop-menu {
-    color: #ffffff !important; /* Maintain white text on desktop */
-  }
-
-  .MuiAppBar-root {
-    background-color: rgba(255, 255, 255, 0.1) !important;
-    backdrop-filter: blur(10px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-  }
-}
-
-/* Additional mobile-specific enhancements */
-@media (max-width: 768px) {
+  
   /* Touch-friendly button sizing */
   .MuiIconButton-root {
     padding: 12px !important;
@@ -84,4 +125,29 @@
   .MuiDrawer-paper {
     width: 280px !important;
   }
+}
+
+/* Additional responsive enhancements */
+@media (max-width: 480px) {
+  .mobile-header .MuiToolbar-root {
+    padding: 0.5rem 1rem !important;
+  }
+  
+  .mobile-menu-title {
+    font-size: 1.1rem !important;
+  }
+  
+  .MuiDrawer-paper {
+    width: 260px !important;
+  }
+}
+
+/* Smooth transitions between mobile and desktop */
+.MuiAppBar-root {
+  transition: all 0.3s ease-in-out !important;
+}
+
+/* Ensure proper z-index for mobile drawer */
+.MuiDrawer-root {
+  z-index: 1200 !important;
 }

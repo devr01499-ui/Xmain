@@ -1,26 +1,67 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AppBar, Toolbar, Typography, Box, Container, useTheme, useMediaQuery, IconButton, Drawer, List, ListItem, ListItemText } from '@mui/material';
 import { Link, useLocation } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 
-// Styled components for mobile-specific styling
-const MobileMenuButton = styled(IconButton)(({ theme }) => ({
+// Styled components for desktop and mobile
+const DesktopHeader = styled(AppBar)(({ theme }) => ({
+  backgroundColor: 'rgba(255, 255, 255, 0.1)',
+  backdropFilter: 'blur(15px)',
+  WebkitBackdropFilter: 'blur(15px)',
   color: '#ffffff',
-  [theme.breakpoints.down('md')]: {
-    color: '#000000 !important',
+  boxShadow: 'none',
+  border: '1px solid rgba(255, 255, 255, 0.2)',
+  borderTop: 'none',
+  borderRadius: '0px 0px 20px 20px',
+  transition: 'all 0.3s ease-in-out',
+  zIndex: 1000,
+  // Desktop-specific styling
+  [theme.breakpoints.up('md')]: {
+    '& .MuiToolbar-root': {
+      justifyContent: 'space-between',
+      padding: '1rem 2rem',
+      alignItems: 'center',
+    },
   },
 }));
 
-const MobileNavLinks = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  gap: 4,
+const MobileHeader = styled(AppBar)(({ theme }) => ({
+  backgroundColor: 'rgba(255, 255, 255, 0.95)',
+  backdropFilter: 'blur(20px)',
+  WebkitBackdropFilter: 'blur(20px)',
+  color: '#000000',
+  boxShadow: 'none',
+  border: '1px solid rgba(255, 255, 255, 0.3)',
+  borderTop: 'none',
+  borderRadius: '0px 0px 20px 20px',
+  transition: 'all 0.3s ease-in-out',
+  zIndex: 1000,
+  // Mobile-specific styling
   [theme.breakpoints.down('md')]: {
-    '& a': {
-      color: '#000000 !important',
-      textShadow: '0 1px 2px rgba(255, 255, 255, 0.8)',
+    '& .MuiToolbar-root': {
+      justifyContent: 'space-between',
+      padding: '0.75rem 1rem',
+      alignItems: 'center',
     },
+  },
+}));
+
+const DesktopNavLinks = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  gap: '2rem',
+  alignItems: 'center',
+  [theme.breakpoints.down('md')]: {
+    display: 'none',
+  },
+}));
+
+const MobileMenuButton = styled(IconButton)(({ theme }) => ({
+  color: '#000000',
+  padding: '12px',
+  [theme.breakpoints.up('md')]: {
+    display: 'none',
   },
 }));
 
@@ -28,25 +69,30 @@ const MobileDrawer = styled(Drawer)(({ theme }) => ({
   display: { xs: 'block', md: 'none' },
   '& .MuiDrawer-paper': { 
     boxSizing: 'border-box', 
-    width: 250,
+    width: 280,
     backgroundColor: 'rgba(255, 255, 255, 0.95)',
-    backdropFilter: 'blur(10px)',
+    backdropFilter: 'blur(20px)',
+    border: '1px solid rgba(255, 255, 255, 0.3)',
   },
 }));
 
 const MobileDrawerContent = styled(Box)(({ theme }) => ({
-  width: 250,
-  pt: 2,
+  width: 280,
+  padding: '1rem',
   '& .mobile-menu-title': {
-    color: '#000000 !important',
+    color: '#000000',
     fontWeight: 700,
+    fontSize: '1.25rem',
   },
   '& .mobile-menu-close': {
-    color: '#000000 !important',
+    color: '#000000',
   },
   '& .mobile-nav-item': {
-    color: '#000000 !important',
-    textShadow: '0 1px 2px rgba(255, 255, 255, 0.8)',
+    color: '#000000',
+    fontWeight: 500,
+    padding: '12px 16px',
+    borderRadius: '8px',
+    marginBottom: '4px',
     '&:hover': {
       backgroundColor: 'rgba(139, 92, 246, 0.1)',
     },
@@ -55,8 +101,8 @@ const MobileDrawerContent = styled(Box)(({ theme }) => ({
 
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const location = useLocation();
   
   const menuItems = [
@@ -68,13 +114,25 @@ const Header = () => {
     { text: 'Contact', path: '/contact' },
   ];
 
+  // Mobile detection
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
   const drawer = (
     <MobileDrawerContent>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', px: 2, mb: 2 }}>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
         <Typography variant="h6" className="mobile-menu-title">
           AdmirerX
         </Typography>
@@ -84,14 +142,19 @@ const Header = () => {
       </Box>
       <List>
         {menuItems.map((item) => (
-          <ListItem key={item.text} component={Link} to={item.path} onClick={handleDrawerToggle} className="mobile-nav-item">
-            <ListItemText 
-              primary={item.text} 
-              sx={{ 
-                color: location.pathname === item.path ? theme.palette.primary.main : '#000000',
-                fontWeight: location.pathname === item.path ? 600 : 400
-              }} 
-            />
+          <ListItem 
+            key={item.text} 
+            component={Link} 
+            to={item.path} 
+            onClick={handleDrawerToggle} 
+            className="mobile-nav-item"
+            sx={{
+              color: location.pathname === item.path ? theme.palette.primary.main : '#000000',
+              fontWeight: location.pathname === item.path ? 600 : 500,
+              backgroundColor: location.pathname === item.path ? 'rgba(139, 92, 246, 0.1)' : 'transparent',
+            }}
+          >
+            <ListItemText primary={item.text} />
           </ListItem>
         ))}
       </List>
@@ -100,53 +163,26 @@ const Header = () => {
 
   return (
     <>
-      <AppBar
-        position="fixed"
-        sx={{
-          backgroundColor: 'rgba(255, 255, 255, 0.1)',
-          backdropFilter: 'blur(10px)',
-          WebkitBackdropFilter: 'blur(10px)',
-          color: '#ffffff',
-          boxShadow: 'none',
-          border: '1px solid rgba(255, 255, 255, 0.2)',
-          borderTop: 'none',
-          borderRadius: '0px 0px 20px 20px',
-          transition: 'all 0.3s ease-in-out',
-          zIndex: 1000,
-          // Mobile-specific background for better contrast
-          [theme.breakpoints.down('md')]: {
-            backgroundColor: 'rgba(255, 255, 255, 0.95)',
-            backdropFilter: 'blur(15px)',
-            border: '1px solid rgba(0, 0, 0, 0.1)',
-          },
-        }}
-      >
-        <Container maxWidth="lg">
-          <Toolbar sx={{ justifyContent: 'space-between', py: 1 }}>
-            <Typography 
-              variant="h6" 
-              component={Link}
-              to="/"
-              sx={{ 
-                color: '#ffffff', 
-                fontWeight: 700,
-                fontSize: '24px',
-                textDecoration: 'none',
-                '&:hover': {
-                  color: theme.palette.primary.light
-                },
-                // Mobile-specific styling
-                [theme.breakpoints.down('md')]: {
-                  color: '#000000 !important',
+      {isMobile ? (
+        <MobileHeader position="fixed">
+          <Container maxWidth="lg">
+            <Toolbar>
+              <Typography 
+                variant="h6" 
+                component={Link}
+                to="/"
+                sx={{ 
+                  color: '#000000',
+                  fontWeight: 700,
+                  fontSize: '1.25rem',
+                  textDecoration: 'none',
                   '&:hover': {
                     color: theme.palette.primary.main,
                   },
-                },
-              }}
-            >
-              AdmirerX
-            </Typography>
-            {isMobile ? (
+                }}
+              >
+                AdmirerX
+              </Typography>
               <MobileMenuButton
                 color="inherit"
                 aria-label="open drawer"
@@ -155,8 +191,30 @@ const Header = () => {
               >
                 <MenuIcon />
               </MobileMenuButton>
-            ) : (
-              <MobileNavLinks>
+            </Toolbar>
+          </Container>
+        </MobileHeader>
+      ) : (
+        <DesktopHeader position="fixed">
+          <Container maxWidth="lg">
+            <Toolbar>
+              <Typography 
+                variant="h6" 
+                component={Link}
+                to="/"
+                sx={{ 
+                  color: '#ffffff',
+                  fontWeight: 700,
+                  fontSize: '1.5rem',
+                  textDecoration: 'none',
+                  '&:hover': {
+                    color: theme.palette.primary.light,
+                  },
+                }}
+              >
+                AdmirerX
+              </Typography>
+              <DesktopNavLinks>
                 {menuItems.map((item) => (
                   <Typography
                     key={item.text}
@@ -166,22 +224,23 @@ const Header = () => {
                       color: location.pathname === item.path ? theme.palette.primary.light : '#ffffff',
                       textDecoration: 'none',
                       fontWeight: location.pathname === item.path ? 600 : 400,
-                      fontSize: '16px',
+                      fontSize: '1rem',
                       transition: 'all 0.3s ease',
                       '&:hover': {
                         color: theme.palette.primary.light,
-                        transform: 'translateY(-2px)'
-                      }
+                        transform: 'translateY(-2px)',
+                      },
                     }}
                   >
                     {item.text}
                   </Typography>
                 ))}
-              </MobileNavLinks>
-            )}
-          </Toolbar>
-        </Container>
-      </AppBar>
+              </DesktopNavLinks>
+            </Toolbar>
+          </Container>
+        </DesktopHeader>
+      )}
+      
       <MobileDrawer
         variant="temporary"
         anchor="right"
