@@ -1,0 +1,141 @@
+/* FORCE MOBILE HEADER FIXES - Maximum specificity and priority */
+
+/* Mobile header force fixes */
+@media (max-width: 768px) {
+  /* Force mobile header with maximum specificity */
+  .MuiAppBar-root,
+  .MuiAppBar-root[class*="MuiAppBar-root"],
+  .MuiAppBar-root[class*="MuiAppBar-root"][class*="MuiAppBar-root"] {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
+    color: #000000 !important;
+  }
+
+  /* Force ALL text elements to be black with maximum specificity */
+  .MuiAppBar-root *,
+  .MuiAppBar-root[class*="MuiAppBar-root"] *,
+  .MuiAppBar-root[class*="MuiAppBar-root"][class*="MuiAppBar-root"] *,
+  .MuiAppBar-root .MuiTypography-root,
+  .MuiAppBar-root .MuiIconButton-root,
+  .MuiAppBar-root .MuiSvgIcon-root,
+  .MuiAppBar-root .MuiToolbar-root,
+  .MuiAppBar-root .MuiContainer-root,
+  .MuiAppBar-root a,
+  .MuiAppBar-root span,
+  .MuiAppBar-root div,
+  .MuiAppBar-root p {
+    color: #000000 !important;
+  }
+
+  /* Mobile drawer force fixes */
+  .MuiDrawer-paper,
+  .MuiDrawer-paper[class*="MuiDrawer-paper"],
+  .MuiDrawer-paper[class*="MuiDrawer-paper"][class*="MuiDrawer-paper"] {
+    background: rgba(255, 255, 255, 0.98) !important;
+    backdrop-filter: blur(25px) !important;
+    -webkit-backdrop-filter: blur(25px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    color: #000000 !important;
+  }
+
+  /* Force ALL drawer text elements to be black */
+  .MuiDrawer-paper *,
+  .MuiDrawer-paper[class*="MuiDrawer-paper"] *,
+  .MuiDrawer-paper[class*="MuiDrawer-paper"][class*="MuiDrawer-paper"] *,
+  .MuiDrawer-paper .MuiTypography-root,
+  .MuiDrawer-paper .MuiListItem-root,
+  .MuiDrawer-paper .MuiIconButton-root,
+  .MuiDrawer-paper .MuiListItemText-root,
+  .MuiDrawer-paper a,
+  .MuiDrawer-paper span,
+  .MuiDrawer-paper div {
+    color: #000000 !important;
+  }
+
+  /* Mobile navigation items */
+  .MuiDrawer-paper .MuiListItem-root {
+    color: #000000 !important;
+    font-weight: 500 !important;
+    padding: 12px 16px !important;
+    border-radius: 8px !important;
+    margin-bottom: 4px !important;
+    transition: all 0.3s ease !important;
+  }
+
+  .MuiDrawer-paper .MuiListItem-root:hover {
+    background-color: rgba(139, 92, 246, 0.1) !important;
+  }
+
+  /* Mobile menu title */
+  .MuiDrawer-paper .mobile-menu-title {
+    color: #000000 !important;
+    font-weight: 700 !important;
+    font-size: 1.25rem !important;
+  }
+
+  /* Mobile close button */
+  .MuiDrawer-paper .mobile-menu-close {
+    color: #000000 !important;
+  }
+
+  /* Mobile hamburger menu */
+  .MuiAppBar-root .MuiIconButton-root {
+    color: #000000 !important;
+    padding: 12px !important;
+  }
+
+  /* Mobile logo */
+  .MuiAppBar-root .MuiTypography-h6 {
+    color: #000000 !important;
+    font-weight: 700 !important;
+    font-size: 1.25rem !important;
+  }
+
+  /* Touch-friendly sizing */
+  .MuiAppBar-root .MuiIconButton-root {
+    padding: 12px !important;
+    min-width: 48px !important;
+    min-height: 48px !important;
+  }
+
+  /* Mobile drawer width */
+  .MuiDrawer-paper {
+    width: 280px !important;
+  }
+}
+
+/* Additional mobile-specific overrides */
+@media (max-width: 480px) {
+  .MuiAppBar-root .MuiToolbar-root {
+    padding: 0.5rem 1rem !important;
+  }
+  
+  .MuiAppBar-root .MuiTypography-h6 {
+    font-size: 1.1rem !important;
+  }
+  
+  .MuiDrawer-paper {
+    width: 260px !important;
+  }
+}
+
+/* Force mobile styles on any element with mobile class */
+.mobile-header,
+.mobile-header * {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(20px) !important;
+  color: #000000 !important;
+}
+
+/* Ensure proper z-index for mobile drawer */
+.MuiDrawer-root {
+  z-index: 1200 !important;
+}
+
+/* Smooth transitions */
+.MuiAppBar-root,
+.MuiDrawer-paper {
+  transition: all 0.3s ease-in-out !important;
+}

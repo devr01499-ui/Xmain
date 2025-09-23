@@ -116,22 +116,46 @@ const Header = () => {
     { text: 'Contact', path: '/contact' },
   ];
 
-  // Force mobile detection with immediate styling
+  // Improved mobile detection with immediate DOM manipulation
   useEffect(() => {
     const checkMobile = () => {
       const mobile = window.innerWidth <= 768;
       setIsMobile(mobile);
       
-      // Force mobile styles immediately
-      if (mobile) {
-        const headerElement = document.querySelector('.MuiAppBar-root');
-        if (headerElement) {
-          headerElement.style.background = 'rgba(255, 255, 255, 0.95)';
-          headerElement.style.backdropFilter = 'blur(20px)';
-          headerElement.style.color = '#000000';
-          headerElement.style.borderBottom = '1px solid rgba(255, 255, 255, 0.3)';
+      // Force mobile styles immediately with timeout to ensure DOM is ready
+      setTimeout(() => {
+        if (mobile) {
+          const headerElements = document.querySelectorAll('.MuiAppBar-root');
+          headerElements.forEach(headerElement => {
+            headerElement.style.setProperty('background', 'rgba(255, 255, 255, 0.95)', 'important');
+            headerElement.style.setProperty('backdrop-filter', 'blur(20px)', 'important');
+            headerElement.style.setProperty('-webkit-backdrop-filter', 'blur(20px)', 'important');
+            headerElement.style.setProperty('color', '#000000', 'important');
+            headerElement.style.setProperty('border-bottom', '1px solid rgba(255, 255, 255, 0.3)', 'important');
+            
+            // Force all child elements to be black
+            const allElements = headerElement.querySelectorAll('*');
+            allElements.forEach(el => {
+              el.style.setProperty('color', '#000000', 'important');
+            });
+          });
+        } else {
+          const headerElements = document.querySelectorAll('.MuiAppBar-root');
+          headerElements.forEach(headerElement => {
+            headerElement.style.setProperty('background', 'rgba(255, 255, 255, 0.1)', 'important');
+            headerElement.style.setProperty('backdrop-filter', 'blur(15px)', 'important');
+            headerElement.style.setProperty('-webkit-backdrop-filter', 'blur(15px)', 'important');
+            headerElement.style.setProperty('color', '#ffffff', 'important');
+            headerElement.style.setProperty('border-bottom', '1px solid rgba(255, 255, 255, 0.2)', 'important');
+            
+            // Force all child elements to be white
+            const allElements = headerElement.querySelectorAll('*');
+            allElements.forEach(el => {
+              el.style.setProperty('color', '#ffffff', 'important');
+            });
+          });
         }
-      }
+      }, 100);
     };
 
     checkMobile();
@@ -186,6 +210,9 @@ const Header = () => {
             backdropFilter: 'blur(20px)',
             color: '#000000',
             borderBottom: '1px solid rgba(255, 255, 255, 0.3)',
+            '& *': {
+              color: '#000000 !important',
+            },
           }}
         >
           <Container maxWidth="lg">
@@ -279,6 +306,9 @@ const Header = () => {
             backdropFilter: 'blur(25px)',
             border: '1px solid rgba(255, 255, 255, 0.4)',
             color: '#000000',
+            '& *': {
+              color: '#000000 !important',
+            },
           },
         }}
       >

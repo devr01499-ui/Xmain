@@ -1,4 +1,123 @@
-/* Desktop Header Fix - Restore original alignment */
+/* MOBILE SPECIFIC FIXES - Force mobile header styling with highest specificity */
+@media (max-width: 768px) {
+  /* Force mobile header glass effect with maximum specificity */
+  .MuiAppBar-root[class*="MuiAppBar-root"] {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
+    color: #000000 !important;
+  }
+
+  /* Force black text on ALL mobile header elements with maximum specificity */
+  .MuiAppBar-root[class*="MuiAppBar-root"] *,
+  .MuiAppBar-root[class*="MuiAppBar-root"] .MuiTypography-root,
+  .MuiAppBar-root[class*="MuiAppBar-root"] .MuiIconButton-root,
+  .MuiAppBar-root[class*="MuiAppBar-root"] .MuiSvgIcon-root,
+  .MuiAppBar-root[class*="MuiAppBar-root"] a,
+  .MuiAppBar-root[class*="MuiAppBar-root"] span,
+  .MuiAppBar-root[class*="MuiAppBar-root"] div {
+    color: #000000 !important;
+  }
+
+  /* Mobile logo with maximum specificity */
+  .MuiAppBar-root[class*="MuiAppBar-root"] .MuiTypography-h6 {
+    color: #000000 !important;
+    font-weight: 700 !important;
+    font-size: 1.25rem !important;
+  }
+
+  /* Mobile hamburger menu button with maximum specificity */
+  .MuiAppBar-root[class*="MuiAppBar-root"] .MuiIconButton-root {
+    color: #000000 !important;
+    padding: 12px !important;
+  }
+
+  /* Mobile drawer styling with maximum specificity */
+  .MuiDrawer-paper[class*="MuiDrawer-paper"] {
+    background: rgba(255, 255, 255, 0.98) !important;
+    backdrop-filter: blur(25px) !important;
+    -webkit-backdrop-filter: blur(25px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    color: #000000 !important;
+  }
+
+  /* Force black text in mobile drawer with maximum specificity */
+  .MuiDrawer-paper[class*="MuiDrawer-paper"] *,
+  .MuiDrawer-paper[class*="MuiDrawer-paper"] .MuiTypography-root,
+  .MuiDrawer-paper[class*="MuiDrawer-paper"] .MuiListItem-root,
+  .MuiDrawer-paper[class*="MuiDrawer-paper"] .MuiIconButton-root {
+    color: #000000 !important;
+  }
+
+  /* Mobile navigation items with maximum specificity */
+  .MuiDrawer-paper[class*="MuiDrawer-paper"] .MuiListItem-root {
+    color: #000000 !important;
+    font-weight: 500 !important;
+    padding: 12px 16px !important;
+    border-radius: 8px !important;
+    margin-bottom: 4px !important;
+    transition: all 0.3s ease !important;
+  }
+
+  .MuiDrawer-paper[class*="MuiDrawer-paper"] .MuiListItem-root:hover {
+    background-color: rgba(139, 92, 246, 0.1) !important;
+  }
+
+  /* Mobile menu title with maximum specificity */
+  .MuiDrawer-paper[class*="MuiDrawer-paper"] .mobile-menu-title {
+    color: #000000 !important;
+    font-weight: 700 !important;
+    font-size: 1.25rem !important;
+  }
+
+  /* Mobile close button with maximum specificity */
+  .MuiDrawer-paper[class*="MuiDrawer-paper"] .mobile-menu-close {
+    color: #000000 !important;
+  }
+
+  /* Mobile typography overrides with maximum specificity */
+  .MuiAppBar-root[class*="MuiAppBar-root"] .MuiTypography-h6 {
+    color: #000000 !important;
+    font-size: 1.1rem !important;
+  }
+
+  /* Force mobile container styling with maximum specificity */
+  .MuiAppBar-root[class*="MuiAppBar-root"] .MuiContainer-root {
+    color: #000000 !important;
+  }
+
+  /* Mobile toolbar styling with maximum specificity */
+  .MuiAppBar-root[class*="MuiAppBar-root"] .MuiToolbar-root {
+    color: #000000 !important;
+  }
+
+  /* Touch-friendly button sizing with maximum specificity */
+  .MuiAppBar-root[class*="MuiAppBar-root"] .MuiIconButton-root {
+    padding: 12px !important;
+    color: #000000 !important;
+  }
+
+  /* Mobile drawer width with maximum specificity */
+  .MuiDrawer-paper[class*="MuiDrawer-paper"] {
+    width: 280px !important;
+  }
+
+  /* Override any Material-UI default colors with maximum specificity */
+  .MuiAppBar-root[class*="MuiAppBar-root"] .MuiSvgIcon-root {
+    color: #000000 !important;
+  }
+
+  /* Force all text elements to be black with maximum specificity */
+  .MuiAppBar-root[class*="MuiAppBar-root"] a,
+  .MuiAppBar-root[class*="MuiAppBar-root"] span,
+  .MuiAppBar-root[class*="MuiAppBar-root"] div,
+  .MuiAppBar-root[class*="MuiAppBar-root"] p {
+    color: #000000 !important;
+  }
+}
+
+/* Desktop Header Fix - Restore original alignment with lower specificity */
 @media (min-width: 769px) {
   .desktop-header {
     display: flex;
@@ -28,118 +147,11 @@
     transform: translateY(-2px);
   }
   
-  /* Ensure desktop header maintains glass effect */
+  /* Ensure desktop header maintains glass effect with lower specificity */
   .MuiAppBar-root {
     background: rgba(255, 255, 255, 0.1) !important;
     backdrop-filter: blur(15px) !important;
     border: 1px solid rgba(255, 255, 255, 0.2) !important;
-  }
-}
-
-/* MOBILE SPECIFIC FIXES - Force mobile header styling */
-@media (max-width: 768px) {
-  /* Force mobile header glass effect */
-  .MuiAppBar-root {
-    background: rgba(255, 255, 255, 0.95) !important;
-    backdrop-filter: blur(20px) !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
-    color: #000000 !important;
-  }
-
-  /* Force black text on ALL mobile header elements */
-  .MuiAppBar-root * {
-    color: #000000 !important;
-  }
-
-  /* Mobile logo */
-  .MuiAppBar-root .MuiTypography-root {
-    color: #000000 !important;
-    font-weight: 700 !important;
-  }
-
-  /* Mobile hamburger menu button */
-  .MuiAppBar-root .MuiIconButton-root {
-    color: #000000 !important;
-    padding: 12px !important;
-  }
-
-  /* Mobile drawer styling */
-  .MuiDrawer-paper {
-    background: rgba(255, 255, 255, 0.98) !important;
-    backdrop-filter: blur(25px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.4) !important;
-    color: #000000 !important;
-  }
-
-  /* Force black text in mobile drawer */
-  .MuiDrawer-paper * {
-    color: #000000 !important;
-  }
-
-  /* Mobile navigation items */
-  .MuiDrawer-paper .MuiListItem-root {
-    color: #000000 !important;
-    font-weight: 500 !important;
-    padding: 12px 16px !important;
-    border-radius: 8px !important;
-    margin-bottom: 4px !important;
-    transition: all 0.3s ease !important;
-  }
-
-  .MuiDrawer-paper .MuiListItem-root:hover {
-    background-color: rgba(139, 92, 246, 0.1) !important;
-  }
-
-  /* Mobile menu title */
-  .MuiDrawer-paper .mobile-menu-title {
-    color: #000000 !important;
-    font-weight: 700 !important;
-    font-size: 1.25rem !important;
-  }
-
-  /* Mobile close button */
-  .MuiDrawer-paper .mobile-menu-close {
-    color: #000000 !important;
-  }
-
-  /* Mobile typography overrides */
-  .MuiAppBar-root .MuiTypography-h6 {
-    color: #000000 !important;
-    font-size: 1.1rem !important;
-  }
-
-  /* Force mobile container styling */
-  .MuiContainer-root {
-    color: #000000 !important;
-  }
-
-  /* Mobile toolbar styling */
-  .MuiToolbar-root {
-    color: #000000 !important;
-  }
-
-  /* Touch-friendly button sizing */
-  .MuiIconButton-root {
-    padding: 12px !important;
-    color: #000000 !important;
-  }
-
-  /* Mobile drawer width */
-  .MuiDrawer-paper {
-    width: 280px !important;
-  }
-
-  /* Override any Material-UI default colors */
-  .MuiAppBar-root .MuiSvgIcon-root {
-    color: #000000 !important;
-  }
-
-  /* Force all text elements to be black */
-  .MuiAppBar-root a,
-  .MuiAppBar-root span,
-  .MuiAppBar-root div,
-  .MuiAppBar-root p {
-    color: #000000 !important;
   }
 }
 

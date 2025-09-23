@@ -8,6 +8,7 @@ import theme from './theme/theme';
 
 // Import mobile-specific styles
 import './styles/mobile.css';
+import './styles/mobile-force.css';
 
 // Import pages
 import Home from './pages/Home';
