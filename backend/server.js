@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Email configuration
-const transporter = nodemailer.createTransporter({
+const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user: 'devr01499@gmail.com',
@@ -94,7 +94,7 @@ app.post('/api/contact', async (req, res) => {
             <p>Best regards,<br>The AdmirerX Team</p>
             <p style="color: #666; font-size: 12px;">
               AdmirerX - Empowering businesses with smart BPO solutions<br>
-              Email: devr01499@gmail.com
+              Email: Management@admirerx.net
             </p>
           </div>
         </div>

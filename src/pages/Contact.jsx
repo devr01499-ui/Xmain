@@ -1,19 +1,52 @@
 import React, { useState } from 'react';
 import { Box, Typography, Container, Grid, Card, CardContent, TextField, Button, Alert, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 const HeroSection = styled(Box)(({ theme }) => ({
-  backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(https://images.unsplash.com/photo-1423666639041-f56000c27a9a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80)`,
+  backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(https://images.unsplash.com/photo-1423666639041-f56000c27a9a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80)`,
   backgroundSize: 'cover',
   backgroundPosition: 'center',
   backgroundRepeat: 'no-repeat',
-  minHeight: '60vh',
+  minHeight: '70vh',
   display: 'flex',
   alignItems: 'center',
   color: '#ffffff',
   position: 'relative',
+}));
+
+const ContactFormCard = styled(Card)(({ theme }) => ({
+  background: 'rgba(255, 255, 255, 0.1)',
+  backdropFilter: 'blur(15px)',
+  border: '1px solid rgba(255, 255, 255, 0.2)',
+  borderRadius: '20px',
+  padding: '40px',
+  marginBottom: '30px',
+  transition: 'all 0.3s ease',
+  '&:hover': {
+    borderColor: 'rgba(255, 255, 255, 0.4)',
+    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.3)',
+  },
+  [theme.breakpoints.down('md')]: {
+    padding: '30px 20px',
+  },
+}));
+
+const ContactInfoCard = styled(Card)(({ theme }) => ({
+  background: 'rgba(255, 255, 255, 0.1)',
+  backdropFilter: 'blur(15px)',
+  border: '1px solid rgba(255, 255, 255, 0.2)',
+  borderRadius: '15px',
+  padding: '30px',
+  marginBottom: '20px',
+  transition: 'all 0.3s ease',
+  '&:hover': {
+    transform: 'translateY(-5px)',
+    borderColor: 'rgba(255, 255, 255, 0.4)',
+    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.3)',
+  },
 }));
 
 const ContactPage = () => {
@@ -66,25 +99,13 @@ const ContactPage = () => {
     {
       title: 'Email Us',
       description: 'Send us an email and we\'ll respond within 24 hours.',
-      value: 'devr01499@gmail.com',
+      value: 'Management@admirerx.net',
       icon: '📧'
-    },
-    {
-      title: 'Call Us',
-      description: 'Speak directly with our team for immediate assistance.',
-      value: '+1 (555) 123-4567',
-      icon: '📞'
-    },
-    {
-      title: 'Visit Us',
-      description: 'Come visit our office for a face-to-face meeting.',
-      value: '123 Business St, City, State 12345',
-      icon: '📍'
     }
   ];
 
   return (
-    <Box>
+    <Box sx={{ backgroundColor: 'var(--bg-dark)', minHeight: '100vh' }}>
       <Header />
       
       {/* Hero Section */}
@@ -98,7 +119,9 @@ const ContactPage = () => {
               sx={{
                 fontWeight: 'bold',
                 fontSize: { xs: '2.5rem', md: '4rem' },
-                textShadow: '0 2px 4px rgba(0, 0, 0, 0.8)'
+                textShadow: '0 2px 4px rgba(0, 0, 0, 0.8)',
+                color: '#ffffff',
+                mb: 2,
               }}
             >
               Contact Us
@@ -109,8 +132,10 @@ const ContactPage = () => {
               sx={{
                 textShadow: '0 1px 2px rgba(0, 0, 0, 0.8)',
                 opacity: 0.9,
-                maxWidth: '600px',
-                mx: 'auto'
+                maxWidth: '700px',
+                mx: 'auto',
+                color: '#ffffff',
+                fontSize: { xs: '1.2rem', md: '1.5rem' },
               }}
             >
               Get in touch with us to discuss your BPO needs
@@ -120,23 +145,50 @@ const ContactPage = () => {
       </HeroSection>
 
       {/* Contact Form Section */}
-      <Box sx={{ py: { xs: 8, md: 10 }, backgroundColor: '#0a0a0a' }}>
+      <Box sx={{ py: { xs: 8, md: 10 } }}>
         <Container maxWidth="lg">
           <Grid container spacing={6}>
             <Grid item xs={12} md={8}>
-              <Card sx={{ p: 4 }} id="contact-form">
-                <Typography variant="h4" component="h2" gutterBottom sx={{ color: '#1565c0', fontWeight: 'bold', mb: 3 }}>
+              <ContactFormCard id="contact-form">
+                <Typography 
+                  variant="h4" 
+                  component="h2" 
+                  gutterBottom 
+                  sx={{ 
+                    color: '#8B5CF6', 
+                    fontWeight: 'bold', 
+                    mb: 4,
+                    textAlign: 'center',
+                    fontSize: { xs: '2rem', md: '2.5rem' }
+                  }}
+                >
                   Send us a Message
                 </Typography>
                 
                 {submitStatus === 'success' && (
-                  <Alert severity="success" sx={{ mb: 3 }}>
+                  <Alert 
+                    severity="success" 
+                    sx={{ 
+                      mb: 3,
+                      backgroundColor: 'rgba(76, 175, 80, 0.1)',
+                      border: '1px solid rgba(76, 175, 80, 0.3)',
+                      color: '#4CAF50'
+                    }}
+                  >
                     Thank you for your message! We'll get back to you soon.
                   </Alert>
                 )}
                 
                 {submitStatus === 'error' && (
-                  <Alert severity="error" sx={{ mb: 3 }}>
+                  <Alert 
+                    severity="error" 
+                    sx={{ 
+                      mb: 3,
+                      backgroundColor: 'rgba(244, 67, 54, 0.1)',
+                      border: '1px solid rgba(244, 67, 54, 0.3)',
+                      color: '#F44336'
+                    }}
+                  >
                     There was an error sending your message. Please try again.
                   </Alert>
                 )}
@@ -152,6 +204,27 @@ const ContactPage = () => {
                         required
                         fullWidth
                         variant="outlined"
+                        sx={{
+                          '& .MuiOutlinedInput-root': {
+                            backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                            color: '#ffffff',
+                            '& fieldset': {
+                              borderColor: 'rgba(255, 255, 255, 0.3)',
+                            },
+                            '&:hover fieldset': {
+                              borderColor: 'rgba(255, 255, 255, 0.5)',
+                            },
+                            '&.Mui-focused fieldset': {
+                              borderColor: '#8B5CF6',
+                            },
+                          },
+                          '& .MuiInputLabel-root': {
+                            color: '#E2E8F0',
+                            '&.Mui-focused': {
+                              color: '#8B5CF6',
+                            },
+                          },
+                        }}
                       />
                     </Grid>
                     <Grid item xs={12} sm={6}>
@@ -162,6 +235,27 @@ const ContactPage = () => {
                         onChange={handleChange}
                         fullWidth
                         variant="outlined"
+                        sx={{
+                          '& .MuiOutlinedInput-root': {
+                            backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                            color: '#ffffff',
+                            '& fieldset': {
+                              borderColor: 'rgba(255, 255, 255, 0.3)',
+                            },
+                            '&:hover fieldset': {
+                              borderColor: 'rgba(255, 255, 255, 0.5)',
+                            },
+                            '&.Mui-focused fieldset': {
+                              borderColor: '#8B5CF6',
+                            },
+                          },
+                          '& .MuiInputLabel-root': {
+                            color: '#E2E8F0',
+                            '&.Mui-focused': {
+                              color: '#8B5CF6',
+                            },
+                          },
+                        }}
                       />
                     </Grid>
                     <Grid item xs={12} sm={6}>
@@ -174,6 +268,27 @@ const ContactPage = () => {
                         required
                         fullWidth
                         variant="outlined"
+                        sx={{
+                          '& .MuiOutlinedInput-root': {
+                            backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                            color: '#ffffff',
+                            '& fieldset': {
+                              borderColor: 'rgba(255, 255, 255, 0.3)',
+                            },
+                            '&:hover fieldset': {
+                              borderColor: 'rgba(255, 255, 255, 0.5)',
+                            },
+                            '&.Mui-focused fieldset': {
+                              borderColor: '#8B5CF6',
+                            },
+                          },
+                          '& .MuiInputLabel-root': {
+                            color: '#E2E8F0',
+                            '&.Mui-focused': {
+                              color: '#8B5CF6',
+                            },
+                          },
+                        }}
                       />
                     </Grid>
                     <Grid item xs={12} sm={6}>
@@ -187,23 +302,71 @@ const ContactPage = () => {
                         fullWidth
                         variant="outlined"
                         placeholder="+1 (555) 123-4567"
+                        sx={{
+                          '& .MuiOutlinedInput-root': {
+                            backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                            color: '#ffffff',
+                            '& fieldset': {
+                              borderColor: 'rgba(255, 255, 255, 0.3)',
+                            },
+                            '&:hover fieldset': {
+                              borderColor: 'rgba(255, 255, 255, 0.5)',
+                            },
+                            '&.Mui-focused fieldset': {
+                              borderColor: '#8B5CF6',
+                            },
+                          },
+                          '& .MuiInputLabel-root': {
+                            color: '#E2E8F0',
+                            '&.Mui-focused': {
+                              color: '#8B5CF6',
+                            },
+                          },
+                        }}
                       />
                     </Grid>
                     <Grid item xs={12}>
                       <FormControl fullWidth>
-                        <InputLabel>Service Interest</InputLabel>
+                        <InputLabel 
+                          sx={{
+                            color: '#E2E8F0',
+                            '&.Mui-focused': {
+                              color: '#8B5CF6',
+                            },
+                          }}
+                        >
+                          Service Interest
+                        </InputLabel>
                         <Select
                           name="service"
                           value={formData.service}
                           onChange={handleChange}
                           label="Service Interest"
+                          sx={{
+                            backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                            color: '#ffffff',
+                            '& .MuiOutlinedInput-notchedOutline': {
+                              borderColor: 'rgba(255, 255, 255, 0.3)',
+                            },
+                            '&:hover .MuiOutlinedInput-notchedOutline': {
+                              borderColor: 'rgba(255, 255, 255, 0.5)',
+                            },
+                            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                              borderColor: '#8B5CF6',
+                            },
+                            '& .MuiSvgIcon-root': {
+                              color: '#E2E8F0',
+                            },
+                          }}
                         >
                           <MenuItem value="customer-support">Customer Support</MenuItem>
-                          <MenuItem value="data-processing">Data Processing</MenuItem>
+                          <MenuItem value="hr-recruitment">HR Recruitment</MenuItem>
                           <MenuItem value="technical-helpdesk">Technical Helpdesk</MenuItem>
-                          <MenuItem value="back-office">Back Office Operations</MenuItem>
-                          <MenuItem value="content-moderation">Content Moderation</MenuItem>
                           <MenuItem value="lead-generation">Lead Generation</MenuItem>
+                          <MenuItem value="data-processing">Data Processing</MenuItem>
+                          <MenuItem value="back-office">Back Office Operations</MenuItem>
+                          <MenuItem value="ai-services">AI Services</MenuItem>
+                          <MenuItem value="partnership">Partnership Opportunities</MenuItem>
                           <MenuItem value="other">Other</MenuItem>
                         </Select>
                       </FormControl>
@@ -220,6 +383,27 @@ const ContactPage = () => {
                         fullWidth
                         variant="outlined"
                         placeholder="Tell us about your requirements..."
+                        sx={{
+                          '& .MuiOutlinedInput-root': {
+                            backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                            color: '#ffffff',
+                            '& fieldset': {
+                              borderColor: 'rgba(255, 255, 255, 0.3)',
+                            },
+                            '&:hover fieldset': {
+                              borderColor: 'rgba(255, 255, 255, 0.5)',
+                            },
+                            '&.Mui-focused fieldset': {
+                              borderColor: '#8B5CF6',
+                            },
+                          },
+                          '& .MuiInputLabel-root': {
+                            color: '#E2E8F0',
+                            '&.Mui-focused': {
+                              color: '#8B5CF6',
+                            },
+                          },
+                        }}
                       />
                     </Grid>
                     <Grid item xs={12}>
@@ -229,13 +413,22 @@ const ContactPage = () => {
                         size="large"
                         disabled={submitStatus === 'loading'}
                         sx={{
-                          backgroundColor: '#1565c0',
+                          backgroundColor: '#8B5CF6',
+                          color: '#ffffff',
                           px: 6,
                           py: 2,
                           fontSize: '1.1rem',
+                          fontWeight: 'bold',
+                          borderRadius: '25px',
                           '&:hover': {
-                            backgroundColor: '#0d47a1',
+                            backgroundColor: '#7C3AED',
+                            transform: 'translateY(-2px)',
+                            boxShadow: '0 8px 20px rgba(139, 92, 246, 0.3)',
                           },
+                          '&:disabled': {
+                            backgroundColor: 'rgba(139, 92, 246, 0.5)',
+                          },
+                          transition: 'all 0.3s ease',
                         }}
                       >
                         {submitStatus === 'loading' ? 'Sending...' : 'Send Message'}
@@ -243,28 +436,51 @@ const ContactPage = () => {
                     </Grid>
                   </Grid>
                 </form>
-              </Card>
+              </ContactFormCard>
             </Grid>
             
             <Grid item xs={12} md={4}>
               <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
                 {contactInfo.map((info, index) => (
-                  <Card key={index} sx={{ p: 3 }}>
-                    <CardContent>
-                      <Typography variant="h3" sx={{ mb: 2 }}>
+                  <ContactInfoCard key={index}>
+                    <CardContent sx={{ textAlign: 'center', p: 0 }}>
+                      <Typography variant="h3" sx={{ mb: 2, fontSize: '3rem' }}>
                         {info.icon}
                       </Typography>
-                      <Typography variant="h6" component="h3" gutterBottom sx={{ color: '#1565c0', fontWeight: 'bold' }}>
+                      <Typography 
+                        variant="h5" 
+                        component="h3" 
+                        gutterBottom 
+                        sx={{ 
+                          color: '#8B5CF6', 
+                          fontWeight: 'bold',
+                          mb: 2
+                        }}
+                      >
                         {info.title}
                       </Typography>
-                      <Typography variant="body1" sx={{ color: '#666', mb: 1 }}>
+                      <Typography 
+                        variant="body1" 
+                        sx={{ 
+                          color: '#E2E8F0', 
+                          mb: 2,
+                          fontSize: '1rem'
+                        }}
+                      >
                         {info.description}
                       </Typography>
-                      <Typography variant="body2" sx={{ color: '#1565c0', fontWeight: 'bold' }}>
+                      <Typography 
+                        variant="h6" 
+                        sx={{ 
+                          color: '#8B5CF6', 
+                          fontWeight: 'bold',
+                          fontSize: '1.1rem'
+                        }}
+                      >
                         {info.value}
                       </Typography>
                     </CardContent>
-                  </Card>
+                  </ContactInfoCard>
                 ))}
               </Box>
             </Grid>
