@@ -9,6 +9,7 @@ import theme from './theme/theme';
 // Import mobile-specific styles
 import './styles/mobile.css';
 import './styles/mobile-force.css';
+import './styles/about-page.css';
 
 // Import pages
 import Home from './pages/Home';

@@ -1,19 +1,76 @@
 import React from 'react';
-import { Box, Typography, Container, Grid, Card, CardContent, CardMedia } from '@mui/material';
+import { Box, Typography, Container, Grid, Card, CardContent } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 const HeroSection = styled(Box)(({ theme }) => ({
-  backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80)`,
+  backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(https://images.unsplash.com/photo-1521737711867-e3b97375f902?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80)`,
   backgroundSize: 'cover',
   backgroundPosition: 'center',
   backgroundRepeat: 'no-repeat',
-  minHeight: '60vh',
+  minHeight: '70vh',
   display: 'flex',
   alignItems: 'center',
   color: '#ffffff',
   position: 'relative',
+}));
+
+const GlassCard = styled(Card)(({ theme }) => ({
+  background: 'rgba(255, 255, 255, 0.1)',
+  backdropFilter: 'blur(15px)',
+  border: '1px solid rgba(255, 255, 255, 0.2)',
+  borderRadius: '15px',
+  padding: '30px',
+  position: 'relative',
+  overflow: 'hidden',
+  height: '100%',
+  '&::before': {
+    content: '""',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    background: 'linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8))',
+    zIndex: 1,
+  },
+  '& > *': {
+    position: 'relative',
+    zIndex: 2,
+    color: '#ffffff',
+  },
+}));
+
+const MissionVisionCard = styled(Box)(({ theme, imageUrl }) => ({
+  backgroundImage: `url(${imageUrl})`,
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  backgroundRepeat: 'no-repeat',
+  borderRadius: '15px',
+  padding: '30px',
+  position: 'relative',
+  overflow: 'hidden',
+  height: '100%',
+  minHeight: '300px',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  '&::before': {
+    content: '""',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    background: 'linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8))',
+    zIndex: 1,
+  },
+  '& > *': {
+    position: 'relative',
+    zIndex: 2,
+    color: '#ffffff',
+  },
 }));
 
 const AboutPage = () => {
@@ -26,7 +83,7 @@ const AboutPage = () => {
     {
       title: 'Innovation',
       description: 'We embrace cutting-edge technology and innovative solutions to drive your business forward.',
-      image: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
+      image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'
     },
     {
       title: 'Integrity',
@@ -41,10 +98,10 @@ const AboutPage = () => {
   ];
 
   return (
-    <Box>
+    <Box sx={{ backgroundColor: 'var(--bg-dark)', minHeight: '100vh' }}>
       <Header />
       
-      {/* Hero Section */}
+      {/* Hero Section - Updated Content */}
       <HeroSection>
         <Container maxWidth="lg">
           <Box sx={{ textAlign: 'center' }}>
@@ -55,53 +112,78 @@ const AboutPage = () => {
               sx={{
                 fontWeight: 'bold',
                 fontSize: { xs: '2.5rem', md: '4rem' },
-                textShadow: '0 2px 4px rgba(0, 0, 0, 0.8)'
+                textShadow: '0 2px 4px rgba(0, 0, 0, 0.8)',
+                color: '#ffffff',
+                mb: 2,
               }}
             >
-              About Us
+              We Admire Your Dreams
             </Typography>
             <Typography
-              variant="h5"
+              variant="h4"
+              component="h2"
+              gutterBottom
+              sx={{
+                textShadow: '0 1px 2px rgba(0, 0, 0, 0.8)',
+                opacity: 0.9,
+                maxWidth: '700px',
+                mx: 'auto',
+                color: '#ffffff',
+                mb: 3,
+                fontSize: { xs: '1.5rem', md: '2rem' },
+              }}
+            >
+              Be empowered. Be supported. Be AdmirerX.
+            </Typography>
+            <Typography
+              variant="h6"
               component="p"
               sx={{
                 textShadow: '0 1px 2px rgba(0, 0, 0, 0.8)',
                 opacity: 0.9,
-                maxWidth: '600px',
-                mx: 'auto'
+                maxWidth: '800px',
+                mx: 'auto',
+                color: '#ffffff',
+                fontSize: { xs: '1rem', md: '1.2rem' },
+                lineHeight: 1.6,
               }}
             >
-              Empowering businesses worldwide with innovative BPO solutions
+              Join Our Team - At AdmirerX, you're more than an employee you're part of our mission to set new standards in outsourcing. We invest in your growth with world-class training, continuous support, and clear career paths that reward your talent and ambition. Join us and turn a job into a career that shapes the future of BPO.
             </Typography>
           </Box>
         </Container>
       </HeroSection>
 
       {/* Company Story Section */}
-      <Box sx={{ py: { xs: 8, md: 10 }, backgroundColor: '#0a0a0a' }}>
+      <Box sx={{ py: { xs: 8, md: 10 } }}>
         <Container maxWidth="lg">
           <Grid container spacing={6} alignItems="center">
             <Grid item xs={12} md={6}>
-              <Typography variant="h3" component="h2" gutterBottom sx={{ color: '#1565c0', fontWeight: 'bold' }}>
+              <Typography variant="h3" component="h2" gutterBottom sx={{ color: 'var(--text-dark-violet)', fontWeight: 'bold' }}>
                 Our Story
               </Typography>
-              <Typography variant="body1" sx={{ mb: 3, fontSize: '1.1rem', lineHeight: 1.8, color: '#666' }}>
+              <Typography variant="body1" sx={{ mb: 3, fontSize: '1.1rem', lineHeight: 1.8, color: 'var(--text-light)' }}>
                 Founded with a vision to revolutionize business process outsourcing, AdmirerX has grown from a 
                 small startup to a trusted partner for businesses worldwide. Our journey began with a simple 
                 mission: to help companies focus on their core competencies while we handle their operational needs.
               </Typography>
-              <Typography variant="body1" sx={{ fontSize: '1.1rem', lineHeight: 1.8, color: '#666' }}>
+              <Typography variant="body1" sx={{ fontSize: '1.1rem', lineHeight: 1.8, color: 'var(--text-light)' }}>
                 Today, we serve clients across various industries, delivering exceptional value through our 
                 comprehensive suite of BPO services, cutting-edge technology, and a team of dedicated professionals 
                 who are passionate about your success.
               </Typography>
             </Grid>
             <Grid item xs={12} md={6}>
-              <CardMedia
+              <Box
                 component="img"
-                height="400"
-                image="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
                 alt="Our Team"
-                sx={{ borderRadius: 2 }}
+                sx={{ 
+                  width: '100%',
+                  height: '400px',
+                  objectFit: 'cover',
+                  borderRadius: '12px',
+                }}
               />
             </Grid>
           </Grid>
@@ -109,69 +191,116 @@ const AboutPage = () => {
       </Box>
 
       {/* Our Values Section */}
-      <Box sx={{ py: { xs: 8, md: 10 }, backgroundColor: '#0a0a0a' }}>
+      <Box sx={{ py: { xs: 8, md: 10 } }}>
         <Container maxWidth="lg">
           <Box sx={{ textAlign: 'center', mb: 6 }}>
-            <Typography variant="h3" component="h2" gutterBottom sx={{ color: '#1565c0', fontWeight: 'bold' }}>
+            <Typography variant="h3" component="h2" gutterBottom sx={{ color: 'var(--text-dark-violet)', fontWeight: 'bold' }}>
               Our Values
             </Typography>
-            <Typography variant="h6" sx={{ color: '#666', maxWidth: '600px', mx: 'auto' }}>
+            <Typography variant="h6" sx={{ color: 'var(--text-light)', maxWidth: '600px', mx: 'auto' }}>
               The principles that guide everything we do and shape our company culture.
             </Typography>
           </Box>
           <Grid container spacing={4}>
             {values.map((value, index) => (
               <Grid item xs={12} sm={6} md={3} key={index}>
-                <Card sx={{ height: '100%', textAlign: 'center' }}>
-                  <CardMedia
+                <GlassCard className="hover-card glass-card">
+                  <Box
                     component="img"
-                    height="200"
-                    image={value.image}
+                    src={value.image}
                     alt={value.title}
-                    sx={{ objectFit: 'cover' }}
+                    sx={{ 
+                      width: '100%',
+                      height: '200px',
+                      objectFit: 'cover',
+                      borderRadius: '8px',
+                      mb: 2,
+                    }}
                   />
-                  <CardContent sx={{ p: 3 }}>
-                    <Typography variant="h5" component="h3" gutterBottom sx={{ color: '#1565c0', fontWeight: 'bold' }}>
-                      {value.title}
-                    </Typography>
-                    <Typography variant="body1" sx={{ color: '#666' }}>
-                      {value.description}
-                    </Typography>
-                  </CardContent>
-                </Card>
+                  <Typography variant="h5" component="h3" gutterBottom sx={{ color: '#ffffff', fontWeight: 'bold' }}>
+                    {value.title}
+                  </Typography>
+                  <Typography variant="body1" sx={{ color: '#f0f0f0' }}>
+                    {value.description}
+                  </Typography>
+                </GlassCard>
               </Grid>
             ))}
           </Grid>
         </Container>
       </Box>
 
-      {/* Mission & Vision Section */}
-      <Box sx={{ py: { xs: 8, md: 10 }, backgroundColor: '#0a0a0a' }}>
+      {/* Mission & Vision Section - Redesigned with Glass Morphism */}
+      <Box sx={{ py: { xs: 8, md: 10 } }}>
         <Container maxWidth="lg">
           <Grid container spacing={6}>
             <Grid item xs={12} md={6}>
-              <Card sx={{ p: 4, height: '100%', backgroundColor: '#f8f9fa' }}>
-                <Typography variant="h4" component="h3" gutterBottom sx={{ color: '#1565c0', fontWeight: 'bold', mb: 3 }}>
+              <MissionVisionCard 
+                imageUrl="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+                className="hover-card glass-card"
+              >
+                <Typography 
+                  variant="h4" 
+                  component="h3" 
+                  gutterBottom 
+                  sx={{ 
+                    color: '#ffffff', 
+                    fontWeight: 'bold', 
+                    mb: 3,
+                    textShadow: '0 2px 4px rgba(0,0,0,0.5)',
+                    fontSize: '1.5rem',
+                  }}
+                >
                   Our Mission
                 </Typography>
-                <Typography variant="body1" sx={{ fontSize: '1.1rem', lineHeight: 1.8, color: '#666' }}>
+                <Typography 
+                  variant="body1" 
+                  sx={{ 
+                    fontSize: '1.1rem', 
+                    lineHeight: 1.8, 
+                    color: '#f0f0f0',
+                    textShadow: '0 1px 2px rgba(0,0,0,0.5)',
+                  }}
+                >
                   To empower businesses worldwide by providing innovative, efficient, and cost-effective BPO solutions 
                   that enable our clients to focus on their core competencies while we handle their operational challenges 
                   with excellence and integrity.
                 </Typography>
-              </Card>
+              </MissionVisionCard>
             </Grid>
             <Grid item xs={12} md={6}>
-              <Card sx={{ p: 4, height: '100%', backgroundColor: '#f8f9fa' }}>
-                <Typography variant="h4" component="h3" gutterBottom sx={{ color: '#1565c0', fontWeight: 'bold', mb: 3 }}>
+              <MissionVisionCard 
+                imageUrl="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2015&q=80"
+                className="hover-card glass-card"
+              >
+                <Typography 
+                  variant="h4" 
+                  component="h3" 
+                  gutterBottom 
+                  sx={{ 
+                    color: '#ffffff', 
+                    fontWeight: 'bold', 
+                    mb: 3,
+                    textShadow: '0 2px 4px rgba(0,0,0,0.5)',
+                    fontSize: '1.5rem',
+                  }}
+                >
                   Our Vision
                 </Typography>
-                <Typography variant="body1" sx={{ fontSize: '1.1rem', lineHeight: 1.8, color: '#666' }}>
+                <Typography 
+                  variant="body1" 
+                  sx={{ 
+                    fontSize: '1.1rem', 
+                    lineHeight: 1.8, 
+                    color: '#f0f0f0',
+                    textShadow: '0 1px 2px rgba(0,0,0,0.5)',
+                  }}
+                >
                   To be the world's leading BPO service provider, recognized for our innovation, reliability, and 
                   commitment to client success. We envision a future where businesses can scale effortlessly with 
                   our comprehensive support and cutting-edge solutions.
                 </Typography>
-              </Card>
+              </MissionVisionCard>
             </Grid>
           </Grid>
         </Container>
