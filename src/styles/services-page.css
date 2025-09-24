@@ -117,7 +117,10 @@
 
 /* CTA Section */
 .services-cta {
-  background: rgba(255, 255, 255, 0.1);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   backdrop-filter: blur(15px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 20px;
@@ -125,6 +128,24 @@
   text-align: center;
   color: #ffffff;
   margin: 60px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.services-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7));
+  z-index: 1;
+}
+
+.services-cta > * {
+  position: relative;
+  z-index: 2;
 }
 
 /* Responsive Design */
