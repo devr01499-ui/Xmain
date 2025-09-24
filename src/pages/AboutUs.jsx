@@ -135,21 +135,6 @@ const AboutPage = () => {
             >
               Be empowered. Be supported. Be AdmirerX.
             </Typography>
-            <Typography
-              variant="h6"
-              component="p"
-              sx={{
-                textShadow: '0 1px 2px rgba(0, 0, 0, 0.8)',
-                opacity: 0.9,
-                maxWidth: '800px',
-                mx: 'auto',
-                color: '#ffffff',
-                fontSize: { xs: '1rem', md: '1.2rem' },
-                lineHeight: 1.6,
-              }}
-            >
-              Join Our Team - At AdmirerX, you're more than an employee you're part of our mission to set new standards in outsourcing. We invest in your growth with world-class training, continuous support, and clear career paths that reward your talent and ambition. Join us and turn a job into a career that shapes the future of BPO.
-            </Typography>
           </Box>
         </Container>
       </HeroSection>
