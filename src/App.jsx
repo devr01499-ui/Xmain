@@ -11,6 +11,7 @@ import './styles/mobile.css';
 import './styles/mobile-force.css';
 import './styles/about-page.css';
 import './styles/services-page.css';
+import './styles/careers-page.css';
 
 // Import pages
 import Home from './pages/Home';
