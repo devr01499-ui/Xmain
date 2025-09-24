@@ -1,0 +1,37 @@
+/* Logo styling to ensure blue color and 3D effect */
+.logo-text {
+  color: #1976d2 !important;
+  font-weight: 700 !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), 0 0 10px rgba(25, 118, 210, 0.5) !important;
+  transform: perspective(1000px) rotateX(5deg) !important;
+  transition: all 0.3s ease !important;
+}
+
+.logo-text:hover {
+  color: #1565c0 !important;
+  transform: perspective(1000px) rotateX(0deg) scale(1.05) !important;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4), 0 0 15px rgba(25, 118, 210, 0.7) !important;
+}
+
+/* Override any conflicting styles */
+.mobile-header .logo-text,
+.MuiAppBar-root .logo-text {
+  color: #1976d2 !important;
+  font-weight: 700 !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), 0 0 10px rgba(25, 118, 210, 0.5) !important;
+  transform: perspective(1000px) rotateX(5deg) !important;
+  transition: all 0.3s ease !important;
+}
+
+.mobile-header .logo-text:hover,
+.MuiAppBar-root .logo-text:hover {
+  color: #1565c0 !important;
+  transform: perspective(1000px) rotateX(0deg) scale(1.05) !important;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4), 0 0 15px rgba(25, 118, 210, 0.7) !important;
+}
+
+/* Ensure logo is visible on all backgrounds */
+.logo-text {
+  z-index: 10 !important;
+  position: relative !important;
+}

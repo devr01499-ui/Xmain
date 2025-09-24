@@ -13,6 +13,7 @@ import './styles/about-page.css';
 import './styles/services-page.css';
 import './styles/careers-page.css';
 import './styles/scroll-behavior.css';
+import './styles/logo.css';
 
 // Import components
 import ScrollToTop from './components/ScrollToTop';
