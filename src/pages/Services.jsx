@@ -1,84 +1,293 @@
 import React from 'react';
-import { Box, Typography, Container, Grid, Card, CardContent, CardMedia, Chip, Button } from '@mui/material';
+import { Box, Typography, Container, Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 const HeroSection = styled(Box)(({ theme }) => ({
-  backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80)`,
+  backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80)`,
   backgroundSize: 'cover',
   backgroundPosition: 'center',
   backgroundRepeat: 'no-repeat',
-  minHeight: '60vh',
+  minHeight: '70vh',
   display: 'flex',
   alignItems: 'center',
   color: '#ffffff',
   position: 'relative',
 }));
 
-const ServiceCard = styled(Card)(({ theme }) => ({
-  height: '100%',
+const ServiceCardContainer = styled(Box)(({ theme, alignment }) => ({
+  margin: '60px 0',
   display: 'flex',
-  flexDirection: 'column',
-  transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out',
+  justifyContent: 'center',
+  [theme.breakpoints.down('md')]: {
+    margin: '40px 0',
+  },
+}));
+
+const ServiceCard = styled(Box)(({ theme, alignment }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  minHeight: '400px',
+  borderRadius: '20px',
+  overflow: 'hidden',
+  background: 'rgba(255, 255, 255, 0.1)',
+  backdropFilter: 'blur(15px)',
+  border: '1px solid rgba(255, 255, 255, 0.2)',
+  maxWidth: '1200px',
+  width: '100%',
+  transition: 'all 0.3s ease',
   '&:hover': {
-    transform: 'translateY(-8px)',
-    boxShadow: '0 12px 40px rgba(0, 0, 0, 0.15)',
+    transform: 'translateY(-5px)',
+    boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3)',
+    borderColor: 'rgba(255, 255, 255, 0.4)',
+  },
+  [theme.breakpoints.down('md')]: {
+    flexDirection: 'column !important',
+    minHeight: 'auto',
+  },
+}));
+
+const CardImageSide = styled(Box)(({ theme, alignment }) => ({
+  flex: 1,
+  position: 'relative',
+  minHeight: '400px',
+  [theme.breakpoints.down('md')]: {
+    minHeight: '250px',
+    width: '100%',
+  },
+}));
+
+const CardContentSide = styled(Box)(({ theme, alignment }) => ({
+  flex: 1,
+  padding: '40px',
+  color: '#ffffff',
+  [theme.breakpoints.down('md')]: {
+    padding: '30px 20px',
+  },
+}));
+
+const ImageOverlay = styled(Box)(({ theme }) => ({
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  right: 0,
+  bottom: 0,
+  background: 'linear-gradient(45deg, rgba(0,0,0,0.7), rgba(0,0,0,0.4))',
+}));
+
+const ServiceBullets = styled('ul')(({ theme }) => ({
+  listStyle: 'none',
+  padding: 0,
+  margin: '20px 0',
+  '& li': {
+    padding: '8px 0',
+    paddingLeft: '25px',
+    position: 'relative',
+    lineHeight: 1.6,
+    fontSize: '1rem',
+    '&:before': {
+      content: '"✓"',
+      position: 'absolute',
+      left: 0,
+      color: '#8B5CF6',
+      fontWeight: 'bold',
+      fontSize: '1.2rem',
+    },
+  },
+}));
+
+const BookAppointmentBtn = styled(Button)(({ theme }) => ({
+  background: '#8B5CF6',
+  color: 'white',
+  padding: '12px 30px',
+  borderRadius: '25px',
+  fontWeight: 600,
+  fontSize: '1rem',
+  textTransform: 'none',
+  marginTop: '20px',
+  transition: 'all 0.3s ease',
+  '&:hover': {
+    background: '#7C3AED',
+    transform: 'translateY(-2px)',
+    boxShadow: '0 8px 20px rgba(139, 92, 246, 0.3)',
+  },
+}));
+
+const CTASection = styled(Box)(({ theme }) => ({
+  background: 'rgba(255, 255, 255, 0.1)',
+  backdropFilter: 'blur(15px)',
+  border: '1px solid rgba(255, 255, 255, 0.2)',
+  borderRadius: '20px',
+  padding: '60px 40px',
+  textAlign: 'center',
+  color: '#ffffff',
+  margin: '60px 0',
+  [theme.breakpoints.down('md')]: {
+    padding: '40px 20px',
+    margin: '40px 0',
   },
 }));
 
 const ServicesPage = () => {
-  const services = [
+  const servicesData = [
     {
-      title: 'Customer Support',
-      description: 'Comprehensive customer support solutions with 24/7 availability, multilingual capabilities, and advanced CRM integration.',
-      image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
-      features: ['24/7 Support', 'Multilingual', 'CRM Integration', 'Live Chat', 'Email Support'],
-      benefits: ['Increased Customer Satisfaction', 'Reduced Response Time', 'Cost Savings']
+      id: 1,
+      title: "Customer Support",
+      alignment: "left",
+      image: "https://images.unsplash.com/photo-1584438784894-089d6a62b8fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+      bullets: [
+        "24/7 multilingual support across all time zones",
+        "AI-powered response systems for instant resolution",
+        "Advanced CRM integration for seamless customer tracking",
+        "Quality assurance with real-time monitoring",
+        "Customized support scripts for brand consistency"
+      ],
+      link: "/contact"
     },
     {
-      title: 'Data Processing',
-      description: 'Accurate and efficient data entry, validation, and management services to keep your information organized and up-to-date.',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
-      features: ['Data Entry', 'Data Validation', 'Data Cleansing', 'Database Management', 'Report Generation'],
-      benefits: ['Improved Data Quality', 'Reduced Errors', 'Better Decision Making']
+      id: 2,
+      title: "HR Recruitment",
+      alignment: "right",
+      image: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+      bullets: [
+        "End-to-end talent acquisition process management",
+        "AI-driven candidate matching and screening",
+        "Cultural fit assessment for long-term retention",
+        "Background verification and onboarding support",
+        "Dedicated recruitment consultants for your industry"
+      ],
+      link: "/contact"
     },
     {
-      title: 'Technical Helpdesk',
-      description: 'Expert technical support and troubleshooting services for your IT infrastructure and software applications.',
-      image: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
-      features: ['IT Support', 'Troubleshooting', 'System Maintenance', 'Software Support', 'Hardware Support'],
-      benefits: ['Reduced Downtime', 'Improved System Performance', 'Expert Technical Knowledge']
+      id: 3,
+      title: "Technical Helpdesk",
+      alignment: "left",
+      image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+      bullets: [
+        "Proactive IT infrastructure monitoring 24/7",
+        "Rapid response SLA guarantees for critical issues",
+        "Multi-level technical support (L1, L2, L3)",
+        "Remote desktop support and troubleshooting",
+        "IT asset management and documentation services"
+      ],
+      link: "/contact"
     },
     {
-      title: 'Back Office Operations',
-      description: 'Comprehensive back-office support including accounting, administration, and operational tasks.',
-      image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
-      features: ['Accounting Services', 'Administrative Support', 'Document Processing', 'Record Keeping', 'Compliance'],
-      benefits: ['Streamlined Operations', 'Cost Reduction', 'Improved Efficiency']
+      id: 4,
+      title: "Lead Generation",
+      alignment: "right",
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2015&q=80",
+      bullets: [
+        "Targeted prospect identification using AI algorithms",
+        "Multi-channel outreach (email, social, phone)",
+        "Lead qualification and scoring system",
+        "CRM integration for seamless sales pipeline management",
+        "Weekly performance reports and analytics dashboard"
+      ],
+      link: "/contact"
     },
     {
-      title: 'Content Moderation',
-      description: 'Professional content moderation services to maintain platform quality, safety, and compliance standards.',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
-      features: ['Content Review', 'Quality Control', 'Safety Monitoring', 'Policy Enforcement', 'User Safety'],
-      benefits: ['Platform Safety', 'Brand Protection', 'User Trust']
+      id: 5,
+      title: "Data Processing",
+      alignment: "left",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+      bullets: [
+        "Accurate data entry with 99.9% quality assurance",
+        "Data validation and cleansing services",
+        "OCR and document digitization solutions",
+        "Database management and migration services",
+        "Custom data analytics and reporting"
+      ],
+      link: "/contact"
     },
     {
-      title: 'Lead Generation',
-      description: 'Targeted lead generation and qualification services to boost your sales pipeline and revenue growth.',
-      image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
-      features: ['Lead Research', 'Qualification', 'Database Building', 'Email Campaigns', 'Follow-up'],
-      benefits: ['Increased Sales', 'Better Lead Quality', 'Higher Conversion Rates']
+      id: 6,
+      title: "Back Office Operations",
+      alignment: "right",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+      bullets: [
+        "Complete administrative task management",
+        "Accounting and bookkeeping services",
+        "Document processing and record management",
+        "Inventory and supply chain coordination",
+        "Process documentation and optimization"
+      ],
+      link: "/contact"
+    },
+    {
+      id: 7,
+      title: "AI Services",
+      alignment: "left",
+      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+      bullets: [
+        "Custom AI chatbot development and integration",
+        "Process automation using machine learning",
+        "Predictive analytics for business intelligence",
+        "Natural Language Processing (NLP) solutions",
+        "AI-powered customer behavior analysis"
+      ],
+      link: "/contact"
     }
   ];
 
-  const scrollToContact = () => {
-    window.location.href = '/contact#contact-form';
+  const ServiceCardComponent = ({ service, index }) => {
+    const isLeft = service.alignment === "left";
+    
+    return (
+      <ServiceCardContainer alignment={service.alignment}>
+        <ServiceCard alignment={service.alignment}>
+          {/* Image Side */}
+          <CardImageSide alignment={service.alignment}>
+            <Box
+              component="img"
+              src={service.image}
+              alt={service.title}
+              sx={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+              }}
+            />
+            <ImageOverlay />
+          </CardImageSide>
+          
+          {/* Content Side */}
+          <CardContentSide alignment={service.alignment}>
+            <Typography
+              variant="h3"
+              component="h3"
+              sx={{
+                color: '#ffffff',
+                fontWeight: 'bold',
+                fontSize: { xs: '1.75rem', md: '2.25rem' },
+                marginBottom: '20px',
+                textShadow: '0 2px 4px rgba(0,0,0,0.5)',
+              }}
+            >
+              {service.title}
+            </Typography>
+            <ServiceBullets>
+              {service.bullets.map((bullet, idx) => (
+                <li key={idx}>{bullet}</li>
+              ))}
+            </ServiceBullets>
+            <BookAppointmentBtn
+              component={Link}
+              to={service.link}
+              variant="contained"
+            >
+              Book Appointment ›
+            </BookAppointmentBtn>
+          </CardContentSide>
+        </ServiceCard>
+      </ServiceCardContainer>
+    );
   };
 
   return (
-    <Box>
+    <Box sx={{ backgroundColor: 'var(--bg-dark)', minHeight: '100vh' }}>
       <Header />
       
       {/* Hero Section */}
@@ -92,10 +301,12 @@ const ServicesPage = () => {
               sx={{
                 fontWeight: 'bold',
                 fontSize: { xs: '2.5rem', md: '4rem' },
-                textShadow: '0 2px 4px rgba(0, 0, 0, 0.8)'
+                textShadow: '0 2px 4px rgba(0, 0, 0, 0.8)',
+                color: '#ffffff',
+                mb: 2,
               }}
             >
-              Our Services
+              Our Premium BPO Services
             </Typography>
             <Typography
               variant="h5"
@@ -103,121 +314,67 @@ const ServicesPage = () => {
               sx={{
                 textShadow: '0 1px 2px rgba(0, 0, 0, 0.8)',
                 opacity: 0.9,
-                maxWidth: '600px',
-                mx: 'auto'
+                maxWidth: '700px',
+                mx: 'auto',
+                color: '#ffffff',
+                fontSize: { xs: '1.2rem', md: '1.5rem' },
               }}
             >
-              Comprehensive BPO solutions tailored to your business needs
+              Comprehensive solutions designed to scale your business efficiently
             </Typography>
           </Box>
         </Container>
       </HeroSection>
 
-      {/* Services Section */}
-      <Box sx={{ py: { xs: 8, md: 10 }, backgroundColor: '#0a0a0a' }}>
-        <Container maxWidth="lg">
-          <Box sx={{ textAlign: 'center', mb: 6 }}>
-            <Typography variant="h3" component="h2" gutterBottom sx={{ color: '#1565c0', fontWeight: 'bold' }}>
-              What We Offer
-            </Typography>
-            <Typography variant="h6" sx={{ color: '#666', maxWidth: '600px', mx: 'auto' }}>
-              From customer support to data processing, we provide end-to-end BPO solutions that drive your business forward.
-            </Typography>
-          </Box>
-          <Grid container spacing={4}>
-            {services.map((service, index) => (
-              <Grid item xs={12} md={6} key={index}>
-                <ServiceCard>
-                  <CardMedia
-                    component="img"
-                    height="250"
-                    image={service.image}
-                    alt={service.title}
-                    sx={{ objectFit: 'cover' }}
-                  />
-                  <CardContent sx={{ p: 4 }}>
-                    <Typography variant="h4" component="h3" gutterBottom sx={{ color: '#1565c0', fontWeight: 'bold' }}>
-                      {service.title}
-                    </Typography>
-                    <Typography variant="body1" sx={{ color: '#666', mb: 3, fontSize: '1.1rem', lineHeight: 1.7 }}>
-                      {service.description}
-                    </Typography>
-                    
-                    <Typography variant="h6" sx={{ color: '#1565c0', fontWeight: 'bold', mb: 2 }}>
-                      Key Features:
-                    </Typography>
-                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mb: 3 }}>
-                      {service.features.map((feature, idx) => (
-                        <Chip
-                          key={idx}
-                          label={feature}
-                          size="small"
-                          sx={{
-                            backgroundColor: '#e3f2fd',
-                            color: '#1565c0',
-                            fontWeight: 500,
-                          }}
-                        />
-                      ))}
-                    </Box>
-                    <Typography variant="h6" sx={{ color: '#1565c0', fontWeight: 'bold', mb: 2 }}>
-                      Benefits:
-                    </Typography>
-                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-                      {service.benefits.map((benefit, idx) => (
-                        <Chip
-                          key={idx}
-                          label={benefit}
-                          size="small"
-                          sx={{
-                            backgroundColor: '#f3e5f5',
-                            color: '#7b1fa2',
-                            fontWeight: 500,
-                          }}
-                        />
-                      ))}
-                    </Box>
-                  </CardContent>
-                </ServiceCard>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-      </Box>
+      {/* Services Container */}
+      <Container maxWidth="lg">
+        {servicesData.map((service, index) => (
+          <ServiceCardComponent key={service.id} service={service} index={index} />
+        ))}
+      </Container>
 
       {/* CTA Section */}
-      <Box sx={{ py: { xs: 8, md: 10 }, backgroundColor: '#0a0a0a' }}>
-        <Container maxWidth="lg">
-          <Box sx={{ textAlign: 'center', color: 'white' }}>
-            <Typography variant="h3" component="h2" gutterBottom sx={{ fontWeight: 'bold', mb: 3 }}>
-              Ready to Get Started?
-            </Typography>
-            <Typography variant="h5" sx={{ mb: 4, opacity: 0.9 }}>
-              Let's discuss how our services can help transform your business operations.
-            </Typography>
-            <Button
-              variant="contained"
-              size="large"
-              onClick={scrollToContact}
-              sx={{
-                backgroundColor: 'white',
-                color: '#1565c0',
-                px: 6,
-                py: 2,
-                fontSize: '1.2rem',
-                fontWeight: 'bold',
-                '&:hover': {
-                  backgroundColor: '#f5f5f5',
-                  transform: 'translateY(-2px)',
-                },
-                transition: 'all 0.3s ease',
-              }}
-            >
-              Contact Us Today
-            </Button>
-          </Box>
-        </Container>
-      </Box>
+      <Container maxWidth="lg">
+        <CTASection>
+          <Typography
+            variant="h3"
+            component="h2"
+            gutterBottom
+            sx={{
+              fontWeight: 'bold',
+              fontSize: { xs: '2rem', md: '2.5rem' },
+              color: '#ffffff',
+              marginBottom: '20px',
+              textShadow: '0 2px 4px rgba(0,0,0,0.5)',
+            }}
+          >
+            Ready to Transform Your Business?
+          </Typography>
+          <Typography
+            variant="h6"
+            sx={{
+              color: '#f0f0f0',
+              marginBottom: '30px',
+              fontSize: { xs: '1.1rem', md: '1.3rem' },
+              textShadow: '0 1px 2px rgba(0,0,0,0.5)',
+            }}
+          >
+            Get a customized solution tailored to your specific needs
+          </Typography>
+          <BookAppointmentBtn
+            component={Link}
+            to="/contact"
+            variant="contained"
+            size="large"
+            sx={{
+              fontSize: '1.2rem',
+              padding: '15px 40px',
+            }}
+          >
+            Get Free Consultation
+          </BookAppointmentBtn>
+        </CTASection>
+      </Container>
 
       <Footer />
     </Box>
