@@ -11,14 +11,16 @@ const PartnerContainer = styled(Box)(({ theme }) => ({
 }));
 
 const PartnerCard = styled(Card)(({ theme }) => ({
-  background: 'rgba(255, 255, 255, 0.95)',
+  background: 'var(--glass-bg)',
+  backdropFilter: 'var(--glass-blur)',
+  border: '1px solid var(--glass-border)',
   borderRadius: '12px',
   transition: 'all 0.3s ease',
   height: '100%',
-  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
   '&:hover': {
-    transform: 'translateY(-5px)',
-    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.2)',
+    transform: 'translateY(-5px) scale(1.05)',
+    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.3)',
+    borderColor: 'rgba(255, 255, 255, 0.4)',
   },
 }));
 
@@ -67,7 +69,7 @@ const PartnerSection = () => {
                     component="h3" 
                     gutterBottom 
                     sx={{ 
-                      color: '#2D3748', 
+                      color: 'var(--text-dark-violet)', 
                       fontWeight: 'bold',
                       fontSize: '1.3rem',
                       mb: 2
@@ -78,10 +80,11 @@ const PartnerSection = () => {
                   <Typography 
                     variant="body1" 
                     sx={{ 
-                      color: '#4A5568',
+                      color: 'var(--text-light)',
                       fontWeight: 500,
                       lineHeight: 1.6,
-                      fontSize: '1rem'
+                      fontSize: '1rem',
+                      opacity: 0.9
                     }}
                   >
                     {benefit.description}
