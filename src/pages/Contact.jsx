@@ -25,6 +25,8 @@ const ContactFormCard = styled(Card)(({ theme }) => ({
   padding: '40px',
   marginBottom: '30px',
   transition: 'all 0.3s ease',
+  position: 'relative',
+  zIndex: 1,
   '&:hover': {
     borderColor: 'rgba(255, 255, 255, 0.4)',
     boxShadow: '0 10px 30px rgba(0, 0, 0, 0.3)',
@@ -342,9 +344,45 @@ const ContactPage = () => {
                           value={formData.service}
                           onChange={handleChange}
                           label="Service Interest"
+                          MenuProps={{
+                            PaperProps: {
+                              sx: {
+                                backgroundColor: 'rgba(0, 0, 0, 0.9)',
+                                backdropFilter: 'blur(15px)',
+                                border: '1px solid rgba(255, 255, 255, 0.2)',
+                                borderRadius: '10px',
+                                marginTop: '8px',
+                                zIndex: 9999,
+                                '& .MuiMenuItem-root': {
+                                  color: '#E2E8F0',
+                                  backgroundColor: 'transparent',
+                                  '&:hover': {
+                                    backgroundColor: 'rgba(139, 92, 246, 0.2)',
+                                    color: '#8B5CF6',
+                                  },
+                                  '&.Mui-selected': {
+                                    backgroundColor: 'rgba(139, 92, 246, 0.3)',
+                                    color: '#8B5CF6',
+                                    '&:hover': {
+                                      backgroundColor: 'rgba(139, 92, 246, 0.4)',
+                                    },
+                                  },
+                                },
+                              },
+                            },
+                            anchorOrigin: {
+                              vertical: 'bottom',
+                              horizontal: 'left',
+                            },
+                            transformOrigin: {
+                              vertical: 'top',
+                              horizontal: 'left',
+                            },
+                          }}
                           sx={{
                             backgroundColor: 'rgba(255, 255, 255, 0.1)',
                             color: '#ffffff',
+                            zIndex: 1000,
                             '& .MuiOutlinedInput-notchedOutline': {
                               borderColor: 'rgba(255, 255, 255, 0.3)',
                             },
