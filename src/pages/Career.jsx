@@ -41,23 +41,6 @@ const BenefitImage = styled(Box)(({ theme, imageUrl }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  '&::before': {
-    content: '""',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    background: 'linear-gradient(45deg, rgba(139, 92, 246, 0.8), rgba(124, 58, 237, 0.6))',
-    zIndex: 1,
-  },
-}));
-
-const BenefitIcon = styled(Box)(({ theme }) => ({
-  fontSize: '3rem',
-  zIndex: 2,
-  position: 'relative',
-  textShadow: '0 2px 10px rgba(0, 0, 0, 0.5)',
 }));
 
 const BenefitContent = styled(CardContent)(({ theme }) => ({
@@ -110,7 +93,6 @@ const CareerPage = () => {
   const benefitsData = [
     {
       id: 1,
-      icon: "💰",
       title: "Competitive Salary",
       image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2111&q=80",
       description: "Industry-leading compensation packages with performance bonuses and annual reviews to reward your hard work and dedication.",
@@ -124,7 +106,6 @@ const CareerPage = () => {
     },
     {
       id: 2,
-      icon: "⚡",
       title: "Work-Life Balance",
       image: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
       description: "Flexible scheduling and wellness programs that prioritize your mental health and personal time alongside professional growth.",
@@ -138,9 +119,8 @@ const CareerPage = () => {
     },
     {
       id: 3,
-      icon: "🏠",
       title: "Remote Work",
-      image: "https://images.unsplash.com/photo-1541746972996-4e0b0f43e9a1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+      image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
       description: "Hybrid and fully remote opportunities with all the tools and support needed to excel from anywhere in the world.",
       bullets: [
         "Hybrid work model flexibility",
@@ -152,7 +132,6 @@ const CareerPage = () => {
     },
     {
       id: 4,
-      icon: "📈",
       title: "Career Growth",
       image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
       description: "Structured career progression paths with mentorship programs and clear promotion criteria to help you reach your professional goals.",
@@ -166,7 +145,6 @@ const CareerPage = () => {
     },
     {
       id: 5,
-      icon: "🎓",
       title: "Learning & Development",
       image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80",
       description: "Comprehensive training programs, certification sponsorships, and skill development workshops to keep you at the forefront of the industry.",
@@ -180,7 +158,6 @@ const CareerPage = () => {
     },
     {
       id: 6,
-      icon: "🎉",
       title: "Team Events",
       image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
       description: "Regular team building activities, celebrations, and cultural events that foster camaraderie and make work enjoyable.",
@@ -289,7 +266,6 @@ const CareerPage = () => {
               <Grid item xs={12} sm={6} md={4} key={benefit.id}>
                 <BenefitCard className="hover-card glass-card">
                   <BenefitImage imageUrl={benefit.image}>
-                    <BenefitIcon>{benefit.icon}</BenefitIcon>
                   </BenefitImage>
                   <BenefitContent>
                     <Typography
