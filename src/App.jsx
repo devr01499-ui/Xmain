@@ -12,6 +12,10 @@ import './styles/mobile-force.css';
 import './styles/about-page.css';
 import './styles/services-page.css';
 import './styles/careers-page.css';
+import './styles/scroll-behavior.css';
+
+// Import components
+import ScrollToTop from './components/ScrollToTop';
 
 // Import pages
 import Home from './pages/Home';
@@ -26,6 +30,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Router>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about-us" element={<AboutUs />} />

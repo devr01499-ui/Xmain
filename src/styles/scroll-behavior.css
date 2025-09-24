@@ -1,0 +1,19 @@
+/* Global scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Ensure body starts at top */
+body {
+  scroll-behavior: smooth;
+}
+
+/* Reset scroll position on page load */
+html, body {
+  scroll-behavior: smooth;
+}
+
+/* Additional scroll-to-top utility */
+.scroll-to-top {
+  scroll-behavior: smooth;
+}
