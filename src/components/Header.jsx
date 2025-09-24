@@ -171,7 +171,22 @@ const Header = () => {
   const drawer = (
     <MobileDrawerContent>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
-        <Typography variant="h6" className="mobile-menu-title" sx={{ color: '#000000' }}>
+        <Typography 
+          variant="h6" 
+          className="mobile-menu-title" 
+          sx={{ 
+            color: '#1976d2',
+            fontWeight: 700,
+            textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3), 0 0 10px rgba(25, 118, 210, 0.5)',
+            transform: 'perspective(1000px) rotateX(5deg)',
+            transition: 'all 0.3s ease',
+            '&:hover': {
+              color: '#1565c0',
+              transform: 'perspective(1000px) rotateX(0deg) scale(1.05)',
+              textShadow: '3px 3px 6px rgba(0, 0, 0, 0.4), 0 0 15px rgba(25, 118, 210, 0.7)',
+            },
+          }}
+        >
           AdmirerX
         </Typography>
         <IconButton onClick={handleDrawerToggle} className="mobile-menu-close" sx={{ color: '#000000' }}>
@@ -222,12 +237,17 @@ const Header = () => {
                 component={Link}
                 to="/"
                 sx={{ 
-                  color: '#000000',
+                  color: '#1976d2',
                   fontWeight: 700,
-                  fontSize: '1.25rem',
+                  fontSize: '1.5rem',
                   textDecoration: 'none',
+                  textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3), 0 0 10px rgba(25, 118, 210, 0.5)',
+                  transform: 'perspective(1000px) rotateX(5deg)',
+                  transition: 'all 0.3s ease',
                   '&:hover': {
-                    color: theme.palette.primary.main,
+                    color: '#1565c0',
+                    transform: 'perspective(1000px) rotateX(0deg) scale(1.05)',
+                    textShadow: '3px 3px 6px rgba(0, 0, 0, 0.4), 0 0 15px rgba(25, 118, 210, 0.7)',
                   },
                 }}
               >
@@ -275,12 +295,17 @@ const Header = () => {
                 component={Link}
                 to="/"
                 sx={{ 
-                  color: '#ffffff',
+                  color: '#1976d2',
                   fontWeight: 700,
-                  fontSize: '1.5rem',
+                  fontSize: '1.8rem',
                   textDecoration: 'none',
+                  textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3), 0 0 10px rgba(25, 118, 210, 0.5)',
+                  transform: 'perspective(1000px) rotateX(5deg)',
+                  transition: 'all 0.3s ease',
                   '&:hover': {
-                    color: theme.palette.primary.light,
+                    color: '#1565c0',
+                    transform: 'perspective(1000px) rotateX(0deg) scale(1.05)',
+                    textShadow: '3px 3px 6px rgba(0, 0, 0, 0.4), 0 0 15px rgba(25, 118, 210, 0.7)',
                   },
                 }}
               >
