@@ -13,18 +13,18 @@
     color: #000000 !important;
   }
 
-  /* Force ALL text elements to be black with maximum specificity */
-  .MuiAppBar-root *,
-  .MuiAppBar-root[class*="MuiAppBar-root"] *,
-  .MuiAppBar-root[class*="MuiAppBar-root"][class*="MuiAppBar-root"] *,
-  .MuiAppBar-root .MuiTypography-root,
+  /* Force ALL text elements to be black with maximum specificity - EXCEPT LOGO */
+  .MuiAppBar-root *:not(.logo-text),
+  .MuiAppBar-root[class*="MuiAppBar-root"] *:not(.logo-text),
+  .MuiAppBar-root[class*="MuiAppBar-root"][class*="MuiAppBar-root"] *:not(.logo-text),
+  .MuiAppBar-root .MuiTypography-root:not(.logo-text),
   .MuiAppBar-root .MuiIconButton-root,
   .MuiAppBar-root .MuiSvgIcon-root,
   .MuiAppBar-root .MuiToolbar-root,
   .MuiAppBar-root .MuiContainer-root,
-  .MuiAppBar-root a,
-  .MuiAppBar-root span,
-  .MuiAppBar-root div,
+  .MuiAppBar-root a:not(.logo-text),
+  .MuiAppBar-root span:not(.logo-text),
+  .MuiAppBar-root div:not(.logo-text),
   .MuiAppBar-root p {
     color: #000000 !important;
   }
@@ -40,17 +40,17 @@
     color: #000000 !important;
   }
 
-  /* Force ALL drawer text elements to be black */
-  .MuiDrawer-paper *,
-  .MuiDrawer-paper[class*="MuiDrawer-paper"] *,
-  .MuiDrawer-paper[class*="MuiDrawer-paper"][class*="MuiDrawer-paper"] *,
-  .MuiDrawer-paper .MuiTypography-root,
+  /* Force ALL drawer text elements to be black - EXCEPT LOGO */
+  .MuiDrawer-paper *:not(.logo-text),
+  .MuiDrawer-paper[class*="MuiDrawer-paper"] *:not(.logo-text),
+  .MuiDrawer-paper[class*="MuiDrawer-paper"][class*="MuiDrawer-paper"] *:not(.logo-text),
+  .MuiDrawer-paper .MuiTypography-root:not(.logo-text),
   .MuiDrawer-paper .MuiListItem-root,
   .MuiDrawer-paper .MuiIconButton-root,
   .MuiDrawer-paper .MuiListItemText-root,
-  .MuiDrawer-paper a,
-  .MuiDrawer-paper span,
-  .MuiDrawer-paper div {
+  .MuiDrawer-paper a:not(.logo-text),
+  .MuiDrawer-paper span:not(.logo-text),
+  .MuiDrawer-paper div:not(.logo-text) {
     color: #000000 !important;
   }
 
@@ -68,8 +68,8 @@
     background-color: rgba(139, 92, 246, 0.1) !important;
   }
 
-  /* Mobile menu title */
-  .MuiDrawer-paper .mobile-menu-title {
+  /* Mobile menu title - EXCEPT when it has logo-text class */
+  .MuiDrawer-paper .mobile-menu-title:not(.logo-text) {
     color: #000000 !important;
     font-weight: 700 !important;
     font-size: 1.25rem !important;
@@ -101,8 +101,8 @@
     height: 24px !important;
   }
 
-  /* Mobile logo */
-  .MuiAppBar-root .MuiTypography-h6 {
+  /* Mobile logo - EXCEPT when it has logo-text class */
+  .MuiAppBar-root .MuiTypography-h6:not(.logo-text) {
     color: #000000 !important;
     font-weight: 700 !important;
     font-size: 1.25rem !important;
@@ -161,9 +161,9 @@
   }
 }
 
-/* Force mobile styles on any element with mobile class */
+/* Force mobile styles on any element with mobile class - EXCEPT LOGO */
 .mobile-header,
-.mobile-header * {
+.mobile-header *:not(.logo-text) {
   background: rgba(255, 255, 255, 0.95) !important;
   backdrop-filter: blur(20px) !important;
   color: #000000 !important;
@@ -203,4 +203,44 @@
 .MuiAppBar-root,
 .MuiDrawer-paper {
   transition: all 0.3s ease-in-out !important;
+}
+
+/* CRITICAL: Force logo to be blue on mobile - Maximum specificity */
+.mobile-header .logo-text,
+.MuiAppBar-root .logo-text,
+.mobile-header .MuiTypography-h6.logo-text,
+.MuiAppBar-root .MuiTypography-h6.logo-text {
+  color: #1976d2 !important;
+  font-weight: 700 !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), 0 0 10px rgba(25, 118, 210, 0.5) !important;
+  transform: perspective(1000px) rotateX(5deg) !important;
+  transition: all 0.3s ease !important;
+}
+
+.mobile-header .logo-text:hover,
+.MuiAppBar-root .logo-text:hover,
+.mobile-header .MuiTypography-h6.logo-text:hover,
+.MuiAppBar-root .MuiTypography-h6.logo-text:hover {
+  color: #1565c0 !important;
+  transform: perspective(1000px) rotateX(0deg) scale(1.05) !important;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4), 0 0 15px rgba(25, 118, 210, 0.7) !important;
+}
+
+/* CRITICAL: Force drawer logo to be blue - Maximum specificity */
+.MuiDrawer-paper .logo-text,
+.MuiDrawer-paper .mobile-menu-title.logo-text,
+.MuiDrawer-paper .MuiTypography-h6.logo-text {
+  color: #1976d2 !important;
+  font-weight: 700 !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), 0 0 10px rgba(25, 118, 210, 0.5) !important;
+  transform: perspective(1000px) rotateX(5deg) !important;
+  transition: all 0.3s ease !important;
+}
+
+.MuiDrawer-paper .logo-text:hover,
+.MuiDrawer-paper .mobile-menu-title.logo-text:hover,
+.MuiDrawer-paper .MuiTypography-h6.logo-text:hover {
+  color: #1565c0 !important;
+  transform: perspective(1000px) rotateX(0deg) scale(1.05) !important;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4), 0 0 15px rgba(25, 118, 210, 0.7) !important;
 }
