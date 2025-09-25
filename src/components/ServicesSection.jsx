@@ -19,6 +19,13 @@ const ServiceCard = styled(Card)(({ theme }) => ({
     boxShadow: '0 10px 30px rgba(0, 0, 0, 0.3)',
     borderColor: 'var(--text-dark-violet)',
   },
+  '& .MuiCardMedia-root': {
+    height: '200px !important',
+    minHeight: '200px !important',
+    maxHeight: '200px !important',
+    width: '100% !important',
+    objectFit: 'cover !important',
+  },
 }));
 
 const ServicesSection = () => {
@@ -30,43 +37,43 @@ const ServicesSection = () => {
     {
       title: "Customer Support",
       description: "24/7 multilingual customer support with advanced CRM integration.",
-      image: "https://images.unsplash.com/photo-1584438784894-089d6a62b8fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+      image: "https://images.unsplash.com/photo-1584438784894-089d6a62b8fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=200&q=80",
       link: "/contact"
     },
     {
       title: "HR Recruitment",
       description: "End-to-end talent acquisition with AI-driven candidate matching.",
-      image: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+      image: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=200&q=80",
       link: "/contact"
     },
     {
       title: "Technical Helpdesk", 
       description: "Expert IT support with proactive monitoring and rapid resolution.",
-      image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+      image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=200&q=80",
       link: "/contact"
     },
     {
       title: "Lead Generation",
       description: "Targeted lead generation with qualified prospect identification.",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2015&q=80",
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=200&q=80",
       link: "/contact"
     },
     {
       title: "Data Processing",
       description: "Accurate data entry, validation, and analysis with quality assurance.",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=200&q=80",
       link: "/contact"
     },
     {
       title: "Back Office Operations",
       description: "Comprehensive administrative support and process documentation.",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=200&q=80",
       link: "/contact"
     },
     {
       title: "AI Services",
       description: "Custom AI solutions including chatbots and predictive analytics.",
-      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=200&q=80",
       link: "/contact"
     }
   ];
@@ -92,7 +99,13 @@ const ServicesSection = () => {
                     height="200"
                     image={service.image}
                     alt={service.title}
-                    sx={{ objectFit: 'cover' }}
+                    sx={{ 
+                      objectFit: 'cover',
+                      width: '100%',
+                      height: '200px',
+                      minHeight: '200px',
+                      maxHeight: '200px'
+                    }}
                   />
                   <CardContent sx={{ 
                     flexGrow: 1, 
