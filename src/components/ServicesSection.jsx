@@ -5,6 +5,7 @@ import GlassContainer from './GlassContainer';
 
 const ServiceCard = styled(Card)(({ theme }) => ({
   height: '100%',
+  minHeight: '400px', // Fixed minimum height for uniformity
   display: 'flex',
   flexDirection: 'column',
   background: 'var(--glass-bg)',
@@ -82,10 +83,10 @@ const ServicesSection = () => {
               Comprehensive BPO solutions designed to accelerate your business growth
             </Typography>
           </Box>
-          <Grid container spacing={4}>
+          <Grid container spacing={4} sx={{ alignItems: 'stretch' }}>
             {services.map((service, index) => (
-              <Grid item xs={12} sm={6} md={4} key={index}>
-                <ServiceCard>
+              <Grid item xs={12} sm={6} md={4} key={index} sx={{ display: 'flex' }}>
+                <ServiceCard sx={{ width: '100%' }}>
                   <CardMedia
                     component="img"
                     height="200"
@@ -93,13 +94,42 @@ const ServicesSection = () => {
                     alt={service.title}
                     sx={{ objectFit: 'cover' }}
                   />
-                  <CardContent sx={{ flexGrow: 1, p: 3 }}>
-                    <Typography variant="h5" component="h3" sx={{ color: 'var(--text-dark-violet)', fontWeight: 'bold', mb: 2 }}>
-                      {service.title}
-                    </Typography>
-                    <Typography variant="body1" sx={{ color: 'var(--text-light)', mb: 3, opacity: 0.9 }}>
-                      {service.description}
-                    </Typography>
+                  <CardContent sx={{ 
+                    flexGrow: 1, 
+                    p: 3, 
+                    display: 'flex', 
+                    flexDirection: 'column',
+                    justifyContent: 'space-between'
+                  }}>
+                    <Box>
+                      <Typography 
+                        variant="h5" 
+                        component="h3" 
+                        sx={{ 
+                          color: 'var(--text-dark-violet)', 
+                          fontWeight: 'bold', 
+                          mb: 2,
+                          minHeight: '60px', // Fixed height for titles
+                          display: 'flex',
+                          alignItems: 'center'
+                        }}
+                      >
+                        {service.title}
+                      </Typography>
+                      <Typography 
+                        variant="body1" 
+                        sx={{ 
+                          color: 'var(--text-light)', 
+                          mb: 3, 
+                          opacity: 0.9,
+                          minHeight: '60px', // Fixed height for descriptions
+                          display: 'flex',
+                          alignItems: 'flex-start'
+                        }}
+                      >
+                        {service.description}
+                      </Typography>
+                    </Box>
                     <Button
                       variant="contained"
                       fullWidth
@@ -107,6 +137,7 @@ const ServicesSection = () => {
                       sx={{
                         backgroundColor: 'var(--text-dark-violet)',
                         color: 'white',
+                        mt: 'auto', // Push button to bottom
                         '&:hover': {
                           backgroundColor: '#7C3AED',
                           transform: 'translateY(-2px)',
