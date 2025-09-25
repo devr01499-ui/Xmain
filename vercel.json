@@ -8,7 +8,10 @@
     {
       "src": "package.json",
       "use": "@vercel/static-build",
-      "config": { "distDir": "build" }
+      "config": { 
+        "distDir": "build",
+        "buildCommand": "npm run build"
+      }
     }
   ],
   "routes": [
@@ -23,5 +26,7 @@
   ],
   "env": {
     "NODE_ENV": "production"
-  }
+  },
+  "buildCommand": "npm run build",
+  "outputDirectory": "build"
 }
