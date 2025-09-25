@@ -248,6 +248,36 @@ const ServicesPage = () => {
         "AI-powered customer behavior analysis"
       ],
       link: "/contact"
+    },
+    {
+      id: 8,
+      title: "Custom Website",
+      alignment: "right",
+      image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+      bullets: [
+        "Professional website design and development",
+        "Responsive design for all devices and screen sizes",
+        "SEO optimization for better search engine visibility",
+        "Content management system (CMS) integration",
+        "E-commerce solutions and online payment integration",
+        "Website maintenance and security updates"
+      ],
+      link: "/contact"
+    },
+    {
+      id: 9,
+      title: "Custom BPO Solution",
+      alignment: "left",
+      image: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+      bullets: [
+        "Tailored business process outsourcing strategies",
+        "Custom workflow design for your specific industry",
+        "Dedicated team allocation based on your requirements",
+        "Scalable solutions that grow with your business",
+        "Integration with your existing systems and tools",
+        "24/7 monitoring and performance optimization"
+      ],
+      link: "/contact"
     }
   ];
 

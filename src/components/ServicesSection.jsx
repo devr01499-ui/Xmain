@@ -75,6 +75,18 @@ const ServicesSection = () => {
       description: "Custom AI solutions including chatbots and predictive analytics.",
       image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=200&q=80",
       link: "/contact"
+    },
+    {
+      title: "Custom Website",
+      description: "Professional website development with modern design and seamless functionality.",
+      image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=200&q=80",
+      link: "/contact"
+    },
+    {
+      title: "Custom BPO Solution",
+      description: "Tailored business process outsourcing solutions designed for your specific needs.",
+      image: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=200&q=80",
+      link: "/contact"
     }
   ];
 
