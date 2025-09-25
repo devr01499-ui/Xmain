@@ -13,7 +13,28 @@ html, body {
   scroll-behavior: smooth;
 }
 
+/* Force scroll to top on page navigation */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 0;
+}
+
+body {
+  scroll-behavior: smooth;
+  scroll-padding-top: 0;
+}
+
 /* Additional scroll-to-top utility */
 .scroll-to-top {
   scroll-behavior: smooth;
+}
+
+/* Ensure all pages start at top */
+#root {
+  scroll-behavior: smooth;
+}
+
+/* Force immediate scroll to top */
+.scroll-to-top-immediate {
+  scroll-behavior: auto;
 }

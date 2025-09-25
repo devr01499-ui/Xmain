@@ -116,6 +116,19 @@ const Header = () => {
     { text: 'Contact', path: '/contact' },
   ];
 
+  // Function to scroll to top when navigating
+  const scrollToTop = () => {
+    window.scrollTo(0, 0);
+    // Additional scroll to top with smooth behavior
+    setTimeout(() => {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+      });
+    }, 50);
+  };
+
   // Improved mobile detection with immediate DOM manipulation
   useEffect(() => {
     const checkMobile = () => {
@@ -199,7 +212,10 @@ const Header = () => {
             key={item.text} 
             component={Link} 
             to={item.path} 
-            onClick={handleDrawerToggle} 
+            onClick={() => {
+              handleDrawerToggle();
+              scrollToTop();
+            }} 
             className="mobile-nav-item"
             sx={{
               color: location.pathname === item.path ? theme.palette.primary.main : '#000000',
@@ -236,6 +252,7 @@ const Header = () => {
                 variant="h6" 
                 component={Link}
                 to="/"
+                onClick={scrollToTop}
                 className="logo-text"
                 sx={{ 
                   color: '#1976d2 !important',
@@ -295,6 +312,7 @@ const Header = () => {
                 variant="h6" 
                 component={Link}
                 to="/"
+                onClick={scrollToTop}
                 className="logo-text"
                 sx={{ 
                   color: '#1976d2 !important',
@@ -319,6 +337,7 @@ const Header = () => {
                     key={item.text}
                     component={Link}
                     to={item.path}
+                    onClick={scrollToTop}
                     sx={{
                       color: location.pathname === item.path ? theme.palette.primary.light : '#ffffff',
                       textDecoration: 'none',

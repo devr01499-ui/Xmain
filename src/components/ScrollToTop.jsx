@@ -5,7 +5,10 @@ const ScrollToTop = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    // Scroll to top when pathname changes
+    // Force immediate scroll to top when pathname changes
+    window.scrollTo(0, 0);
+    
+    // Additional scroll to top with smooth behavior
     const scrollToTop = () => {
       window.scrollTo({
         top: 0,
@@ -14,11 +17,20 @@ const ScrollToTop = () => {
       });
     };
 
-    // Immediate scroll to top
-    window.scrollTo(0, 0);
+    // Multiple attempts to ensure scroll to top works
+    setTimeout(scrollToTop, 50);
+    setTimeout(scrollToTop, 150);
+    setTimeout(scrollToTop, 300);
     
-    // Smooth scroll as backup
-    setTimeout(scrollToTop, 100);
+    // Force scroll to top on any remaining scroll
+    const forceScroll = () => {
+      if (window.pageYOffset > 0) {
+        window.scrollTo(0, 0);
+      }
+    };
+    
+    setTimeout(forceScroll, 100);
+    setTimeout(forceScroll, 200);
   }, [pathname]);
 
   return null;
