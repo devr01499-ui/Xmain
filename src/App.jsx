@@ -14,9 +14,11 @@ import './styles/services-page.css';
 import './styles/careers-page.css';
 import './styles/scroll-behavior.css';
 import './styles/logo.css';
+import './styles/performance.css';
 
 // Import components
 import ScrollToTop from './components/ScrollToTop';
+import PerformanceMonitor from './components/PerformanceMonitor';
 
 // Import pages
 import Home from './pages/Home';
@@ -30,6 +32,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+      <PerformanceMonitor />
       <Router>
         <ScrollToTop />
         <Routes>

@@ -69,7 +69,7 @@ const PartnerSection = () => {
                     component="h3" 
                     gutterBottom 
                     sx={{ 
-                      color: 'var(--text-dark-violet)', 
+                      color: '#000000', 
                       fontWeight: 'bold',
                       fontSize: '1.3rem',
                       mb: 2
