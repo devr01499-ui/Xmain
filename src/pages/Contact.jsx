@@ -74,7 +74,12 @@ const ContactPage = () => {
     setSubmitStatus('loading');
     
     try {
-      const response = await fetch('http://localhost:5000/api/contact', {
+      // Use production backend URL for Vercel deployment
+      const backendUrl = process.env.NODE_ENV === 'production' 
+        ? 'https://admirerx-backend.vercel.app/api/contact'
+        : 'http://localhost:5000/api/contact';
+        
+      const response = await fetch(backendUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -82,16 +87,20 @@ const ContactPage = () => {
         body: JSON.stringify(formData),
       });
 
+      const result = await response.json();
+
       if (response.ok) {
         setSubmitStatus('success');
         setFormData({ name: '', company: '', email: '', phone: '', service: '', message: '' });
         setTimeout(() => setSubmitStatus(null), 5000);
+        console.log('✅ Form submitted successfully:', result);
       } else {
         setSubmitStatus('error');
         setTimeout(() => setSubmitStatus(null), 5000);
+        console.error('❌ Form submission failed:', result);
       }
     } catch (error) {
-      console.error('Error submitting form:', error);
+      console.error('❌ Network error:', error);
       setSubmitStatus('error');
       setTimeout(() => setSubmitStatus(null), 5000);
     }

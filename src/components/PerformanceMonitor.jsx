@@ -2,6 +2,11 @@ import { useEffect } from 'react';
 
 const PerformanceMonitor = () => {
   useEffect(() => {
+    // Only run performance monitoring in development
+    if (process.env.NODE_ENV !== 'development') {
+      return;
+    }
+
     // Monitor Core Web Vitals
     const observer = new PerformanceObserver((list) => {
       for (const entry of list.getEntries()) {
