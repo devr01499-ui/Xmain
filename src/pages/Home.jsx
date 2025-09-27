@@ -142,7 +142,7 @@ const HomePage = () => {
                 fontSize: { xs: '2rem', md: '3rem' }
               }}
             >
-              Ready to Transform Your Business?
+              Ready to Transform Your Business? 🚀
             </Typography>
             <Typography 
               variant="h5" 
