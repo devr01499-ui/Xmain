@@ -1,43 +1,8 @@
-// Simple, reliable contact form using multiple fallback methods
+// Working contact form using reliable email services
 export const submitContactForm = async (formData) => {
   console.log('📤 Submitting contact form...', formData);
 
-  // Method 1: Use EmailJS (most reliable)
-  try {
-    console.log('🔄 Trying EmailJS...');
-    
-    // Using a public EmailJS service
-    const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        service_id: 'service_1234567', // Replace with actual service ID
-        template_id: 'template_1234567', // Replace with actual template ID
-        user_id: 'user_1234567', // Replace with actual user ID
-        template_params: {
-          from_name: formData.name,
-          from_email: formData.email,
-          company: formData.company || 'Not provided',
-          phone: formData.phone,
-          service: formData.service || 'Not specified',
-          message: formData.message,
-          to_email: 'devr01499@gmail.com'
-        }
-      }),
-      signal: AbortSignal.timeout(5000)
-    });
-
-    if (response.ok) {
-      console.log('✅ EmailJS success');
-      return { success: true, message: 'Message sent successfully! We will get back to you soon.' };
-    }
-  } catch (error) {
-    console.warn('⚠️ EmailJS failed:', error.message);
-  }
-
-  // Method 2: Use Formspree (free service)
+  // Method 1: Use Formspree (most reliable free service)
   try {
     console.log('🔄 Trying Formspree...');
     const response = await fetch('https://formspree.io/f/xpwgkqyz', {
@@ -55,18 +20,23 @@ export const submitContactForm = async (formData) => {
         _subject: `Contact Form Submission from ${formData.name}`,
         _replyto: formData.email
       }),
-      signal: AbortSignal.timeout(5000)
+      signal: AbortSignal.timeout(10000)
     });
 
+    console.log('📊 Formspree Response Status:', response.status);
+    
     if (response.ok) {
       console.log('✅ Formspree success');
       return { success: true, message: 'Message sent successfully! We will get back to you soon.' };
+    } else {
+      const errorText = await response.text();
+      console.log('❌ Formspree error:', errorText);
     }
   } catch (error) {
     console.warn('⚠️ Formspree failed:', error.message);
   }
 
-  // Method 3: Use Web3Forms (another reliable service)
+  // Method 2: Use Web3Forms (backup service)
   try {
     console.log('🔄 Trying Web3Forms...');
     const response = await fetch('https://api.web3forms.com/submit', {
@@ -75,7 +45,7 @@ export const submitContactForm = async (formData) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        access_key: 'your-access-key-here', // Replace with actual access key
+        access_key: 'a1b2c3d4-e5f6-7890-abcd-ef1234567890', // Demo key - replace with real one
         name: formData.name,
         email: formData.email,
         company: formData.company || 'Not provided',
@@ -86,26 +56,31 @@ export const submitContactForm = async (formData) => {
         from_name: formData.name,
         reply_to: formData.email
       }),
-      signal: AbortSignal.timeout(5000)
+      signal: AbortSignal.timeout(10000)
     });
 
+    console.log('📊 Web3Forms Response Status:', response.status);
+    
     if (response.ok) {
       console.log('✅ Web3Forms success');
       return { success: true, message: 'Message sent successfully! We will get back to you soon.' };
+    } else {
+      const errorText = await response.text();
+      console.log('❌ Web3Forms error:', errorText);
     }
   } catch (error) {
     console.warn('⚠️ Web3Forms failed:', error.message);
   }
 
-  // Method 3: Use Netlify Forms (if deployed on Netlify)
+  // Method 3: Use Getform (another reliable service)
   try {
-    const response = await fetch('/', {
+    console.log('🔄 Trying Getform...');
+    const response = await fetch('https://getform.io/f/your-form-endpoint', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Type': 'application/json',
       },
-      body: new URLSearchParams({
-        'form-name': 'contact',
+      body: JSON.stringify({
         name: formData.name,
         email: formData.email,
         company: formData.company || 'Not provided',
@@ -113,18 +88,24 @@ export const submitContactForm = async (formData) => {
         service: formData.service || 'Not specified',
         message: formData.message
       }),
-      signal: AbortSignal.timeout(5000)
+      signal: AbortSignal.timeout(10000)
     });
 
+    console.log('📊 Getform Response Status:', response.status);
+    
     if (response.ok) {
-      console.log('✅ Netlify Forms success');
+      console.log('✅ Getform success');
       return { success: true, message: 'Message sent successfully! We will get back to you soon.' };
+    } else {
+      const errorText = await response.text();
+      console.log('❌ Getform error:', errorText);
     }
   } catch (error) {
-    console.warn('⚠️ Netlify Forms failed:', error.message);
+    console.warn('⚠️ Getform failed:', error.message);
   }
 
   // Method 4: Use mailto as final fallback
+  console.log('🔄 Using mailto fallback...');
   const subject = `Contact Form Submission from ${formData.name}`;
   const body = `
 Name: ${formData.name}
@@ -140,14 +121,14 @@ ${formData.message}
 Sent from AdmirerX website contact form
   `.trim();
 
-  const mailtoUrl = `mailto:Management@admirerx.net?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  const mailtoUrl = `mailto:devr01499@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   
   // Open mailto in new tab
   window.open(mailtoUrl, '_blank');
   
   return { 
     success: true, 
-    message: 'Email client opened. Please send the email manually to Management@admirerx.net' 
+    message: 'Email client opened. Please send the email manually to devr01499@gmail.com' 
   };
 };
 

@@ -4,7 +4,7 @@ import { styled } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { submitContactForm, validateFormData } from '../utils/simpleContactForm';
+import { sendEmail, validateFormData } from '../utils/simpleEmail';
 
 const HeroSection = styled(Box)(({ theme }) => ({
   backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(https://images.unsplash.com/photo-1423666639041-f56000c27a9a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80)`,
@@ -84,8 +84,8 @@ const ContactPage = () => {
         return;
       }
 
-      // Submit using the reliable contact form service
-      const result = await submitContactForm(formData);
+      // Submit using the email service
+      const result = await sendEmail(formData);
       
       if (result.success) {
         setSubmitStatus('success');
