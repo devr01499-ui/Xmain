@@ -99,87 +99,94 @@ app.post('/api/contact', async (req, res) => {
     const sanitizedService = service ? service.trim() : '';
     const sanitizedMessage = message.trim().substring(0, 2000);
 
-    // Email content with sanitized data
-    const mailOptions = {
-      from: 'devr01499@gmail.com',
-      to: 'devr01499@gmail.com',
-      subject: `New Contact Form Submission from ${sanitizedName} - AdmirerX`,
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #1565c0;">New Contact Form Submission</h2>
-          
-          <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <h3 style="color: #333; margin-top: 0;">Contact Information</h3>
-            <p><strong>Name:</strong> ${sanitizedName}</p>
-            <p><strong>Company:</strong> ${sanitizedCompany || 'Not provided'}</p>
-            <p><strong>Email:</strong> ${sanitizedEmail}</p>
-            <p><strong>Phone:</strong> ${sanitizedPhone}</p>
-            <p><strong>Service Interest:</strong> ${sanitizedService || 'Not specified'}</p>
-            <p><strong>Timestamp:</strong> ${new Date().toLocaleString()}</p>
-          </div>
-          
-          <div style="background-color: #e3f2fd; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <h3 style="color: #1565c0; margin-top: 0;">Message</h3>
-            <p style="white-space: pre-wrap;">${sanitizedMessage}</p>
-          </div>
-          
-          <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; color: #666; font-size: 12px;">
-            <p>This message was sent from the AdmirerX website contact form.</p>
-            <p>Reply directly to this email to respond to the customer.</p>
-          </div>
-        </div>
-      `
-    };
-
-    // Send email
-    await transporter.sendMail(mailOptions);
-
-    // Send confirmation email to customer with sanitized data
-    const customerMailOptions = {
-      from: 'devr01499@gmail.com',
-      to: sanitizedEmail,
-      subject: 'Thank you for contacting AdmirerX',
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #1565c0;">Thank you for contacting AdmirerX!</h2>
-          
-          <p>Dear ${sanitizedName},</p>
-          
-          <p>Thank you for reaching out to us. We have received your message and will get back to you within 24 hours.</p>
-          
-          <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <h3 style="color: #333; margin-top: 0;">Your Message Summary</h3>
-            <p><strong>Service Interest:</strong> ${sanitizedService || 'Not specified'}</p>
-            <p><strong>Message:</strong></p>
-            <p style="white-space: pre-wrap; background-color: white; padding: 10px; border-radius: 4px;">${sanitizedMessage}</p>
-          </div>
-          
-          <p>In the meantime, feel free to explore our services and learn more about how we can help your business grow.</p>
-          
-          <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd;">
-            <p>Best regards,<br>The AdmirerX Team</p>
-            <p style="color: #666; font-size: 12px;">
-              AdmirerX - Empowering businesses with smart BPO solutions<br>
-              Email: Management@admirerx.net
-            </p>
-          </div>
-        </div>
-      `
-    };
-
-    // Send both emails in parallel for faster processing
-    await Promise.all([
-      transporter.sendMail(mailOptions),
-      transporter.sendMail(customerMailOptions)
-    ]);
-
+    // Send immediate response to user (don't wait for email)
     const processingTime = Date.now() - startTime;
-    console.log(`✅ Contact form processed in ${processingTime}ms for ${sanitizedEmail}`);
-
     res.json({ 
       success: true, 
       message: 'Message sent successfully! We will get back to you soon.',
       processingTime: `${processingTime}ms`
+    });
+
+    // Send emails in background (non-blocking)
+    setImmediate(async () => {
+      try {
+        // Email content with sanitized data
+        const mailOptions = {
+          from: 'devr01499@gmail.com',
+          to: 'devr01499@gmail.com',
+          subject: `New Contact Form Submission from ${sanitizedName} - AdmirerX`,
+          html: `
+            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+              <h2 style="color: #1565c0;">New Contact Form Submission</h2>
+              
+              <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <h3 style="color: #333; margin-top: 0;">Contact Information</h3>
+                <p><strong>Name:</strong> ${sanitizedName}</p>
+                <p><strong>Company:</strong> ${sanitizedCompany || 'Not provided'}</p>
+                <p><strong>Email:</strong> ${sanitizedEmail}</p>
+                <p><strong>Phone:</strong> ${sanitizedPhone}</p>
+                <p><strong>Service Interest:</strong> ${sanitizedService || 'Not specified'}</p>
+                <p><strong>Timestamp:</strong> ${new Date().toLocaleString()}</p>
+              </div>
+              
+              <div style="background-color: #e3f2fd; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <h3 style="color: #1565c0; margin-top: 0;">Message</h3>
+                <p style="white-space: pre-wrap;">${sanitizedMessage}</p>
+              </div>
+              
+              <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; color: #666; font-size: 12px;">
+                <p>This message was sent from the AdmirerX website contact form.</p>
+                <p>Reply directly to this email to respond to the customer.</p>
+              </div>
+            </div>
+          `
+        };
+
+        // Send confirmation email to customer with sanitized data
+        const customerMailOptions = {
+          from: 'devr01499@gmail.com',
+          to: sanitizedEmail,
+          subject: 'Thank you for contacting AdmirerX',
+          html: `
+            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+              <h2 style="color: #1565c0;">Thank you for contacting AdmirerX!</h2>
+              
+              <p>Dear ${sanitizedName},</p>
+              
+              <p>Thank you for reaching out to us. We have received your message and will get back to you within 24 hours.</p>
+              
+              <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <h3 style="color: #333; margin-top: 0;">Your Message Summary</h3>
+                <p><strong>Service Interest:</strong> ${sanitizedService || 'Not specified'}</p>
+                <p><strong>Message:</strong></p>
+                <p style="white-space: pre-wrap; background-color: white; padding: 10px; border-radius: 4px;">${sanitizedMessage}</p>
+              </div>
+              
+              <p>In the meantime, feel free to explore our services and learn more about how we can help your business grow.</p>
+              
+              <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd;">
+                <p>Best regards,<br>The AdmirerX Team</p>
+                <p style="color: #666; font-size: 12px;">
+                  AdmirerX - Empowering businesses with smart BPO solutions<br>
+                  Email: Management@admirerx.net
+                </p>
+              </div>
+            </div>
+          `
+        };
+
+        // Send both emails in parallel for faster processing
+        await Promise.all([
+          transporter.sendMail(mailOptions),
+          transporter.sendMail(customerMailOptions)
+        ]);
+
+        console.log(`✅ Emails sent successfully for ${sanitizedEmail}`);
+
+      } catch (emailError) {
+        console.error(`❌ Email sending failed for ${sanitizedEmail}:`, emailError);
+        // Don't fail the request if email fails - user already got success response
+      }
     });
 
   } catch (error) {

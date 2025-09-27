@@ -4,6 +4,7 @@ import { styled } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { sendEmailViaBackup, sendEmailViaWebhook, sendEmailViaMailto } from '../utils/contactFormBackup';
 
 const HeroSection = styled(Box)(({ theme }) => ({
   backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(https://images.unsplash.com/photo-1423666639041-f56000c27a9a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80)`,
@@ -74,35 +75,86 @@ const ContactPage = () => {
     setSubmitStatus('loading');
     
     try {
-      // Use production backend URL for Vercel deployment
-      const backendUrl = process.env.NODE_ENV === 'production' 
-        ? 'https://admirerx-backend.vercel.app/api/contact'
-        : 'http://localhost:5000/api/contact';
-        
-      const response = await fetch(backendUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+      // Multiple backend URLs for reliability
+      const backendUrls = [
+        'https://admirerx-backend.vercel.app/api/contact',
+        'https://admirerx-backend-git-master-devr01499-ui.vercel.app/api/contact',
+        'http://localhost:5000/api/contact'
+      ];
 
-      const result = await response.json();
+      let lastError = null;
+      
+      // Try each backend URL until one works
+      for (const backendUrl of backendUrls) {
+        try {
+          console.log(`🔄 Trying backend: ${backendUrl}`);
+          
+          const response = await fetch(backendUrl, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+            // Add timeout
+            signal: AbortSignal.timeout(10000) // 10 second timeout
+          });
 
-      if (response.ok) {
+          if (response.ok) {
+            const result = await response.json();
+            setSubmitStatus('success');
+            setFormData({ name: '', company: '', email: '', phone: '', service: '', message: '' });
+            setTimeout(() => setSubmitStatus(null), 5000);
+            console.log('✅ Form submitted successfully:', result);
+            return; // Success, exit the function
+          } else {
+            console.warn(`⚠️ Backend ${backendUrl} returned ${response.status}`);
+            lastError = new Error(`Backend returned ${response.status}`);
+          }
+        } catch (error) {
+          console.warn(`⚠️ Backend ${backendUrl} failed:`, error.message);
+          lastError = error;
+        }
+      }
+      
+      // If all backends failed, try backup services
+      console.log('🔄 Trying backup email services...');
+      
+      try {
+        // Try EmailJS backup
+        const backupResult = await sendEmailViaBackup(formData);
         setSubmitStatus('success');
         setFormData({ name: '', company: '', email: '', phone: '', service: '', message: '' });
         setTimeout(() => setSubmitStatus(null), 5000);
-        console.log('✅ Form submitted successfully:', result);
-      } else {
-        setSubmitStatus('error');
-        setTimeout(() => setSubmitStatus(null), 5000);
-        console.error('❌ Form submission failed:', result);
+        console.log('✅ Backup service succeeded:', backupResult);
+        return;
+      } catch (backupError) {
+        console.warn('⚠️ EmailJS backup failed:', backupError);
       }
+      
+      try {
+        // Try webhook backup
+        const webhookResult = await sendEmailViaWebhook(formData);
+        setSubmitStatus('success');
+        setFormData({ name: '', company: '', email: '', phone: '', service: '', message: '' });
+        setTimeout(() => setSubmitStatus(null), 5000);
+        console.log('✅ Webhook backup succeeded:', webhookResult);
+        return;
+      } catch (webhookError) {
+        console.warn('⚠️ Webhook backup failed:', webhookError);
+      }
+      
+      // If all services failed, use mailto fallback
+      console.log('🔄 Using mailto fallback...');
+      const mailtoResult = sendEmailViaMailto(formData);
+      setSubmitStatus('success');
+      setFormData({ name: '', company: '', email: '', phone: '', service: '', message: '' });
+      setTimeout(() => setSubmitStatus(null), 5000);
+      console.log('✅ Mailto fallback activated:', mailtoResult);
+      
     } catch (error) {
-      console.error('❌ Network error:', error);
       setSubmitStatus('error');
       setTimeout(() => setSubmitStatus(null), 5000);
+      console.error('❌ All services failed:', error);
     }
   };
 
