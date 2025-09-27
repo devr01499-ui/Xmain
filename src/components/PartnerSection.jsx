@@ -3,10 +3,7 @@ import { Box, Typography, Container, Grid, Card, CardContent, Button } from '@mu
 import { styled } from '@mui/material/styles';
 
 const PartnerContainer = styled(Box)(({ theme }) => ({
-  backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url(https://images.unsplash.com/photo-1552664688-cf412ec27db2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80)`,
-  backgroundSize: 'cover',
-  backgroundPosition: 'center',
-  backgroundRepeat: 'no-repeat',
+  backgroundColor: 'var(--bg-dark)',
   position: 'relative',
 }));
 
@@ -32,19 +29,23 @@ const PartnerSection = () => {
   const partnerBenefits = [
     {
       title: 'Dedicated Account Management',
-      description: 'Personalized relationship manager ensuring seamless communication and service delivery'
+      description: 'Personalized relationship manager ensuring seamless communication and service delivery',
+      image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=200&q=80'
     },
     {
       title: 'Customized Solutions',
-      description: 'Tailored BPO strategies designed specifically for your industry and business objectives'
+      description: 'Tailored BPO strategies designed specifically for your industry and business objectives',
+      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=200&q=80'
     },
     {
       title: 'Advanced Technology',
-      description: 'Access to cutting-edge tools, AI platforms, and analytics dashboards'
+      description: 'Access to cutting-edge tools, AI platforms, and analytics dashboards',
+      image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=200&q=80'
     },
     {
       title: 'Continuous Improvement',
-      description: 'Regular performance reviews and optimization strategies for ongoing success'
+      description: 'Regular performance reviews and optimization strategies for ongoing success',
+      image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=200&q=80'
     }
   ];
 
@@ -62,8 +63,28 @@ const PartnerSection = () => {
         <Grid container spacing={4}>
           {partnerBenefits.map((benefit, index) => (
             <Grid item xs={12} sm={6} md={3} key={index}>
-              <PartnerCard sx={{ p: 3, textAlign: 'center' }}>
-                <CardContent>
+              <PartnerCard sx={{ textAlign: 'center', overflow: 'hidden' }}>
+                <Box
+                  sx={{
+                    height: '200px',
+                    backgroundImage: `url(${benefit.image})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
+                    position: 'relative',
+                    '&::before': {
+                      content: '""',
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      bottom: 0,
+                      background: 'linear-gradient(45deg, rgba(139, 92, 246, 0.8), rgba(124, 58, 237, 0.6))',
+                      zIndex: 1,
+                    }
+                  }}
+                />
+                <CardContent sx={{ p: 3 }}>
                   <Typography 
                     variant="h5" 
                     component="h3" 

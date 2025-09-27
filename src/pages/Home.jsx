@@ -39,8 +39,95 @@ const HomePage = () => {
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
           position: 'relative',
+          overflow: 'hidden',
         }}
       >
+        {/* Animated Background Elements */}
+        <Box
+          sx={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            zIndex: 1,
+            '&::before': {
+              content: '""',
+              position: 'absolute',
+              top: '10%',
+              left: '10%',
+              width: '100px',
+              height: '100px',
+              background: 'linear-gradient(45deg, rgba(139, 92, 246, 0.3), rgba(124, 58, 237, 0.2))',
+              borderRadius: '50%',
+              animation: 'float 6s ease-in-out infinite',
+            },
+            '&::after': {
+              content: '""',
+              position: 'absolute',
+              top: '20%',
+              right: '15%',
+              width: '80px',
+              height: '80px',
+              background: 'linear-gradient(45deg, rgba(124, 58, 237, 0.3), rgba(139, 92, 246, 0.2))',
+              borderRadius: '50%',
+              animation: 'float 8s ease-in-out infinite reverse',
+            },
+          }}
+        />
+        <Box
+          sx={{
+            position: 'absolute',
+            top: '60%',
+            left: '20%',
+            width: '60px',
+            height: '60px',
+            background: 'linear-gradient(45deg, rgba(139, 92, 246, 0.4), rgba(124, 58, 237, 0.3))',
+            borderRadius: '50%',
+            animation: 'float 7s ease-in-out infinite',
+            zIndex: 1,
+          }}
+        />
+        <Box
+          sx={{
+            position: 'absolute',
+            top: '30%',
+            right: '25%',
+            width: '40px',
+            height: '40px',
+            background: 'linear-gradient(45deg, rgba(124, 58, 237, 0.4), rgba(139, 92, 246, 0.3))',
+            borderRadius: '50%',
+            animation: 'float 9s ease-in-out infinite reverse',
+            zIndex: 1,
+          }}
+        />
+        <Box
+          sx={{
+            position: 'absolute',
+            bottom: '20%',
+            left: '30%',
+            width: '70px',
+            height: '70px',
+            background: 'linear-gradient(45deg, rgba(139, 92, 246, 0.3), rgba(124, 58, 237, 0.2))',
+            borderRadius: '50%',
+            animation: 'float 10s ease-in-out infinite',
+            zIndex: 1,
+          }}
+        />
+        <Box
+          sx={{
+            position: 'absolute',
+            bottom: '30%',
+            right: '10%',
+            width: '50px',
+            height: '50px',
+            background: 'linear-gradient(45deg, rgba(124, 58, 237, 0.3), rgba(139, 92, 246, 0.2))',
+            borderRadius: '50%',
+            animation: 'float 11s ease-in-out infinite reverse',
+            zIndex: 1,
+          }}
+        />
+        
         <Container maxWidth="lg">
           <Box sx={{ textAlign: 'center', color: 'var(--text-light)', position: 'relative', zIndex: 2 }}>
             <Typography 

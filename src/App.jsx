@@ -15,6 +15,7 @@ import './styles/careers-page.css';
 import './styles/scroll-behavior.css';
 import './styles/logo.css';
 import './styles/performance.css';
+import './styles/animations.css';
 
 // Import components
 import ScrollToTop from './components/ScrollToTop';

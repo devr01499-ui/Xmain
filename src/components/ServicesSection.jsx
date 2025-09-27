@@ -77,14 +77,14 @@ const ServicesSection = () => {
       link: "/contact"
     },
     {
-      title: "Custom Website",
-      description: "Professional website development with modern design and seamless functionality.",
+      title: "Custom Website Development",
+      description: "Professional custom website design and development services with responsive design, SEO optimization, and modern functionality. Get a unique website that converts visitors into customers.",
       image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=200&q=80",
       link: "/contact"
     },
     {
-      title: "Custom BPO Solution",
-      description: "Tailored business process outsourcing solutions designed for your specific needs.",
+      title: "Custom BPO Solutions",
+      description: "Tailored business process outsourcing solutions designed specifically for your industry needs. Scalable, efficient, and cost-effective BPO services that grow with your business.",
       image: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=200&q=80",
       link: "/contact"
     }
