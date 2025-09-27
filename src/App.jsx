@@ -18,6 +18,7 @@ import './styles/performance.css';
 
 // Import components
 import ScrollToTop from './components/ScrollToTop';
+import GlobalScrollToTop from './components/GlobalScrollToTop';
 import PerformanceMonitor from './components/PerformanceMonitor';
 
 // Import pages
@@ -35,6 +36,7 @@ function App() {
       <PerformanceMonitor />
       <Router>
         <ScrollToTop />
+        <GlobalScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about-us" element={<AboutUs />} />

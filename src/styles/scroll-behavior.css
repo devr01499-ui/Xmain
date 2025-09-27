@@ -1,27 +1,35 @@
-/* Global scroll behavior */
+/* Global scroll behavior - AGGRESSIVE SCROLL TO TOP */
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 0;
+  scroll-margin-top: 0;
 }
 
 /* Ensure body starts at top */
 body {
   scroll-behavior: smooth;
+  scroll-padding-top: 0;
+  scroll-margin-top: 0;
 }
 
 /* Reset scroll position on page load */
 html, body {
   scroll-behavior: smooth;
+  scroll-padding-top: 0;
+  scroll-margin-top: 0;
 }
 
 /* Force scroll to top on page navigation */
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 0;
+  scroll-margin-top: 0;
 }
 
 body {
   scroll-behavior: smooth;
   scroll-padding-top: 0;
+  scroll-margin-top: 0;
 }
 
 /* Additional scroll-to-top utility */
@@ -32,9 +40,46 @@ body {
 /* Ensure all pages start at top */
 #root {
   scroll-behavior: smooth;
+  scroll-padding-top: 0;
+  scroll-margin-top: 0;
 }
 
 /* Force immediate scroll to top */
 .scroll-to-top-immediate {
   scroll-behavior: auto;
+}
+
+/* Aggressive scroll to top for all elements */
+* {
+  scroll-padding-top: 0;
+  scroll-margin-top: 0;
+}
+
+/* Force scroll to top on page navigation */
+html, body, #root {
+  scroll-behavior: smooth;
+  scroll-padding-top: 0;
+  scroll-margin-top: 0;
+}
+
+/* Additional CSS to ensure scroll to top works */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 0;
+  scroll-margin-top: 0;
+  overflow-x: hidden;
+}
+
+body {
+  scroll-behavior: smooth;
+  scroll-padding-top: 0;
+  scroll-margin-top: 0;
+  overflow-x: hidden;
+}
+
+#root {
+  scroll-behavior: smooth;
+  scroll-padding-top: 0;
+  scroll-margin-top: 0;
+  overflow-x: hidden;
 }

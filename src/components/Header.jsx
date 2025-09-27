@@ -116,9 +116,13 @@ const Header = () => {
     { text: 'Contact', path: '/contact' },
   ];
 
-  // Function to scroll to top when navigating
+  // Function to scroll to top when navigating - AGGRESSIVE
   const scrollToTop = () => {
+    // Immediate scroll to top
     window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    
     // Additional scroll to top with smooth behavior
     setTimeout(() => {
       window.scrollTo({
@@ -127,6 +131,28 @@ const Header = () => {
         behavior: 'smooth'
       });
     }, 50);
+    
+    // Multiple attempts to ensure scroll to top
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    }, 100);
+    
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    }, 200);
+    
+    // Final check
+    setTimeout(() => {
+      if (window.pageYOffset > 0) {
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+      }
+    }, 500);
   };
 
   // Improved mobile detection with immediate DOM manipulation
