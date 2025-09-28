@@ -3,7 +3,7 @@ import { Box, Typography, Container, Grid, Card, CardContent, TextField, Button,
 import { styled } from '@mui/material/styles';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { sendToTelegram, validateFormData } from '../utils/telegramService';
+import { validateFormData } from '../utils/telegramService';
 
 const HeroSection = styled(Box)(({ theme }) => ({
   backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(https://images.unsplash.com/photo-1423666639041-f56000c27a9a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80)`,
@@ -71,89 +71,57 @@ const ContactPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('🚀 Form submission started...', formData);
+    console.log('🚀 [FRONTEND] Form submission started');
+    console.log('🚀 [FRONTEND] Form data payload:', JSON.stringify(formData, null, 2));
     setSubmitStatus('loading');
     
     try {
       // Validate form data first
-      console.log('🔍 Validating form data...');
+      console.log('🔍 [FRONTEND] Validating form data...');
       const validationErrors = validateFormData(formData);
       if (validationErrors.length > 0) {
-        console.error('❌ Validation errors:', validationErrors);
+        console.error('❌ [FRONTEND] Validation errors:', validationErrors);
         setSubmitStatus('error');
         setTimeout(() => setSubmitStatus(null), 5000);
         return;
       }
-      console.log('✅ Form validation passed');
+      console.log('✅ [FRONTEND] Form validation passed');
 
-      // Submit using the Telegram service
-      console.log('📱 Sending to Telegram...');
-      const result = await sendToTelegram(formData);
-      console.log('📊 Telegram result:', result);
+      // Submit to API route
+      console.log('📡 [FRONTEND] Sending to API route...');
+      const apiUrl = '/api/contact';
+      console.log('📡 [FRONTEND] API URL:', apiUrl);
       
-      if (result.success) {
-        console.log('✅ Form submitted successfully!');
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
+
+      console.log('📊 [FRONTEND] API response status:', response.status);
+      console.log('📊 [FRONTEND] API response headers:', Object.fromEntries(response.headers.entries()));
+
+      const result = await response.json();
+      console.log('📊 [FRONTEND] API response data:', result);
+      
+      if (response.ok && result.success) {
+        console.log('✅ [FRONTEND] Form submitted successfully!');
         setSubmitStatus('success');
         setFormData({ name: '', company: '', email: '', phone: '', service: '', message: '' });
         setTimeout(() => setSubmitStatus(null), 5000);
       } else {
-        console.error('❌ Telegram submission failed, trying fallback...');
-        
-        // Fallback: Create mailto link as backup
-        const subject = `Contact Form Submission from ${formData.name}`;
-        const body = `
-Name: ${formData.name}
-Company: ${formData.company || 'Not provided'}
-Email: ${formData.email}
-Phone: ${formData.phone}
-Service Interest: ${formData.service || 'Not specified'}
-
-Message:
-${formData.message}
-
----
-Submitted: ${new Date().toLocaleString()}
-Source: AdmirerX Website
-        `.trim();
-        
-        const mailtoLink = `mailto:Management@admirerx.net?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        
-        // Open mailto as fallback
-        window.open(mailtoLink, '_blank');
-        
-        setSubmitStatus('success');
-        setFormData({ name: '', company: '', email: '', phone: '', service: '', message: '' });
+        console.error('❌ [FRONTEND] API submission failed:', result);
+        setSubmitStatus('error');
         setTimeout(() => setSubmitStatus(null), 5000);
-        console.log('✅ Fallback mailto opened');
       }
       
     } catch (error) {
-      console.error('❌ Form submission error:', error);
-      
-      // Fallback: Create mailto link
-      const subject = `Contact Form Submission from ${formData.name}`;
-      const body = `
-Name: ${formData.name}
-Company: ${formData.company || 'Not provided'}
-Email: ${formData.email}
-Phone: ${formData.phone}
-Service Interest: ${formData.service || 'Not specified'}
-
-Message:
-${formData.message}
-
----
-Submitted: ${new Date().toLocaleString()}
-Source: AdmirerX Website
-      `.trim();
-      
-      const mailtoLink = `mailto:Management@admirerx.net?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      window.open(mailtoLink, '_blank');
-      
-      setSubmitStatus('success');
-      setFormData({ name: '', company: '', email: '', phone: '', service: '', message: '' });
+      console.error('❌ [FRONTEND] Form submission error:', error);
+      console.error('❌ [FRONTEND] Error stack:', error.stack);
+      setSubmitStatus('error');
       setTimeout(() => setSubmitStatus(null), 5000);
-      console.log('✅ Fallback mailto opened due to error');
     }
   };
 
@@ -237,7 +205,7 @@ Source: AdmirerX Website
                       color: '#4CAF50'
                     }}
                   >
-                    Thank you for your message! We'll get back to you soon.
+                    ✅ Your message has been sent successfully.
                   </Alert>
                 )}
                 
@@ -251,7 +219,7 @@ Source: AdmirerX Website
                       color: '#F44336'
                     }}
                   >
-                    There was an error sending your message. Please try again.
+                    ❌ Something went wrong. Please try again.
                   </Alert>
                 )}
                 
