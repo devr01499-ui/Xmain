@@ -5,6 +5,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import GlassContainer from './GlassContainer';
+import '../styles/footer-animations.css';
 
 const Footer = () => {
   // Scroll to top function for navigation
@@ -19,16 +20,35 @@ const Footer = () => {
   ];
 
   return (
-    <Box sx={{ py: 6, backgroundColor: 'var(--bg-dark)' }}>
-      <Container maxWidth="lg">
+    <Box sx={{ py: 6, backgroundColor: 'var(--bg-dark)', position: 'relative', overflow: 'hidden' }} className="footer-gradient-bg">
+      {/* Floating Background Elements */}
+      <Box className="footer-floating-bg">
+        {/* Floating Particles */}
+        <Box className="footer-particle"></Box>
+        <Box className="footer-particle"></Box>
+        <Box className="footer-particle"></Box>
+        <Box className="footer-particle"></Box>
+        <Box className="footer-particle"></Box>
+        <Box className="footer-particle"></Box>
+        <Box className="footer-particle"></Box>
+        <Box className="footer-particle"></Box>
+        <Box className="footer-particle"></Box>
+        
+        {/* Geometric Shapes */}
+        <Box className="footer-geometric-shape"></Box>
+        <Box className="footer-geometric-shape"></Box>
+        <Box className="footer-geometric-shape"></Box>
+      </Box>
+
+      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 2 }}>
         <GlassContainer sx={{ 
           background: 'var(--glass-bg)',
           backdropFilter: 'var(--glass-blur)',
           border: '1px solid var(--glass-border)',
-        }}>
+        }} className="footer-glow-container">
           <Grid container spacing={4} alignItems="center">
             <Grid item xs={12} md={6}>
-              <Typography variant="h5" sx={{ fontWeight: 700, mb: 2, color: 'var(--text-dark-violet)' }}>
+              <Typography variant="h5" sx={{ fontWeight: 700, mb: 2, color: 'var(--text-dark-violet)' }} className="footer-shimmer-text">
                 AdmirerX
               </Typography>
               <Typography variant="body1" sx={{ mb: 3, color: 'var(--text-light)', lineHeight: 1.6, opacity: 0.9 }}>
@@ -43,13 +63,13 @@ const Footer = () => {
                     target={enabled ? "_blank" : undefined}
                     rel={enabled ? "noopener noreferrer" : undefined}
                     disabled={!enabled}
+                    className="footer-social-icon"
                     sx={{
                       color: enabled ? 'var(--text-dark-violet)' : '#666666',
                       opacity: enabled ? 1 : 0.5,
                       cursor: enabled ? 'pointer' : 'not-allowed',
                       '&:hover': enabled ? {
                         color: 'var(--text-light-violet)',
-                        transform: 'translateY(-2px)',
                         backgroundColor: 'rgba(139, 92, 246, 0.1)',
                       } : {
                         transform: 'none',
@@ -67,33 +87,33 @@ const Footer = () => {
                 Quick Links
               </Typography>
               <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
-                <Link to="/" onClick={scrollToTop} style={{ textDecoration: 'none' }}>
-                  <Typography variant="body2" sx={{ color: 'var(--text-light)', cursor: 'pointer', '&:hover': { color: 'var(--text-light-violet)' }, transition: 'color 0.2s ease', opacity: 0.9 }}>
+                <Link to="/" onClick={scrollToTop} style={{ textDecoration: 'none' }} className="footer-link">
+                  <Typography variant="body2" sx={{ color: 'var(--text-light)', cursor: 'pointer', transition: 'color 0.2s ease', opacity: 0.9 }}>
                     Home
                   </Typography>
                 </Link>
-                <Link to="/about" onClick={scrollToTop} style={{ textDecoration: 'none' }}>
-                  <Typography variant="body2" sx={{ color: 'var(--text-light)', cursor: 'pointer', '&:hover': { color: 'var(--text-light-violet)' }, transition: 'color 0.2s ease', opacity: 0.9 }}>
+                <Link to="/about" onClick={scrollToTop} style={{ textDecoration: 'none' }} className="footer-link">
+                  <Typography variant="body2" sx={{ color: 'var(--text-light)', cursor: 'pointer', transition: 'color 0.2s ease', opacity: 0.9 }}>
                     About Us
                   </Typography>
                 </Link>
-                <Link to="/services" onClick={scrollToTop} style={{ textDecoration: 'none' }}>
-                  <Typography variant="body2" sx={{ color: 'var(--text-light)', cursor: 'pointer', '&:hover': { color: 'var(--text-light-violet)' }, transition: 'color 0.2s ease', opacity: 0.9 }}>
+                <Link to="/services" onClick={scrollToTop} style={{ textDecoration: 'none' }} className="footer-link">
+                  <Typography variant="body2" sx={{ color: 'var(--text-light)', cursor: 'pointer', transition: 'color 0.2s ease', opacity: 0.9 }}>
                     Services
                   </Typography>
                 </Link>
-                <Link to="/careers" onClick={scrollToTop} style={{ textDecoration: 'none' }}>
-                  <Typography variant="body2" sx={{ color: 'var(--text-light)', cursor: 'pointer', '&:hover': { color: 'var(--text-light-violet)' }, transition: 'color 0.2s ease', opacity: 0.9 }}>
+                <Link to="/careers" onClick={scrollToTop} style={{ textDecoration: 'none' }} className="footer-link">
+                  <Typography variant="body2" sx={{ color: 'var(--text-light)', cursor: 'pointer', transition: 'color 0.2s ease', opacity: 0.9 }}>
                     Careers
                   </Typography>
                 </Link>
-                <Link to="/partner" onClick={scrollToTop} style={{ textDecoration: 'none' }}>
-                  <Typography variant="body2" sx={{ color: 'var(--text-light)', cursor: 'pointer', '&:hover': { color: 'var(--text-light-violet)' }, transition: 'color 0.2s ease', opacity: 0.9 }}>
+                <Link to="/partner" onClick={scrollToTop} style={{ textDecoration: 'none' }} className="footer-link">
+                  <Typography variant="body2" sx={{ color: 'var(--text-light)', cursor: 'pointer', transition: 'color 0.2s ease', opacity: 0.9 }}>
                     Partner With Us
                   </Typography>
                 </Link>
-                <Link to="/contact" onClick={scrollToTop} style={{ textDecoration: 'none' }}>
-                  <Typography variant="body2" sx={{ color: 'var(--text-light)', cursor: 'pointer', '&:hover': { color: 'var(--text-light-violet)' }, transition: 'color 0.2s ease', opacity: 0.9 }}>
+                <Link to="/contact" onClick={scrollToTop} style={{ textDecoration: 'none' }} className="footer-link">
+                  <Typography variant="body2" sx={{ color: 'var(--text-light)', cursor: 'pointer', transition: 'color 0.2s ease', opacity: 0.9 }}>
                     Contact
                   </Typography>
                 </Link>
