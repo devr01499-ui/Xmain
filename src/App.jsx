@@ -40,10 +40,10 @@ function App() {
         <GlobalScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/about" element={<AboutUs />} />
           <Route path="/services" element={<Services />} />
-          <Route path="/career" element={<Career />} />
-          <Route path="/partner-with-us" element={<PartnerWithUs />} />
+          <Route path="/careers" element={<Career />} />
+          <Route path="/partner" element={<PartnerWithUs />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </Router>

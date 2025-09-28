@@ -109,10 +109,10 @@ const Header = () => {
   
   const menuItems = [
     { text: 'Home', path: '/' },
-    { text: 'About Us', path: '/about-us' },
+    { text: 'About Us', path: '/about' },
     { text: 'Services', path: '/services' },
-    { text: 'Careers', path: '/career' },
-    { text: 'Partner With Us', path: '/partner-with-us' },
+    { text: 'Careers', path: '/careers' },
+    { text: 'Partner With Us', path: '/partner' },
     { text: 'Contact', path: '/contact' },
   ];
 
