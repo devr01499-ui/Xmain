@@ -106,10 +106,10 @@ const ContactPage = () => {
 
   const contactInfo = [
     {
-      title: 'Telegram Us',
-      description: 'Send us a message on Telegram and we\'ll respond instantly.',
-      value: '@myadmirerxbot',
-      icon: '📱'
+      title: 'Email Us',
+      description: 'Send us an email and we\'ll respond within 24 hours.',
+      value: 'Management@admirerx.net',
+      icon: '📧'
     }
   ];
 
