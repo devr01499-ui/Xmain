@@ -74,7 +74,10 @@ const BenefitBullets = styled('ul')(({ theme }) => ({
 }));
 
 const CTASection = styled(Box)(({ theme }) => ({
-  background: 'rgba(255, 255, 255, 0.1)',
+  backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80)`,
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  backgroundRepeat: 'no-repeat',
   backdropFilter: 'blur(15px)',
   border: '1px solid rgba(255, 255, 255, 0.2)',
   borderRadius: '20px',
@@ -82,6 +85,22 @@ const CTASection = styled(Box)(({ theme }) => ({
   textAlign: 'center',
   color: '#ffffff',
   margin: '60px 0',
+  position: 'relative',
+  overflow: 'hidden',
+  '&::before': {
+    content: '""',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    background: 'linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6))',
+    zIndex: 1,
+  },
+  '& > *': {
+    position: 'relative',
+    zIndex: 2,
+  },
   [theme.breakpoints.down('md')]: {
     padding: '40px 20px',
     margin: '40px 0',
