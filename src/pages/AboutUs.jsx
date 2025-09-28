@@ -3,6 +3,7 @@ import { Box, Typography, Container, Grid, Card } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import GlassContainer from '../components/GlassContainer';
 
 const HeroSection = styled(Box)(({ theme }) => ({
   backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(https://images.unsplash.com/photo-1521737711867-e3b97375f902?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80)`,
@@ -178,40 +179,42 @@ const AboutPage = () => {
       {/* Our Values Section */}
       <Box sx={{ py: { xs: 8, md: 10 } }}>
         <Container maxWidth="lg">
-          <Box sx={{ textAlign: 'center', mb: 6 }}>
-            <Typography variant="h3" component="h2" gutterBottom sx={{ color: 'var(--text-dark-violet)', fontWeight: 'bold' }}>
-              Our Values
-            </Typography>
-            <Typography variant="h6" sx={{ color: 'var(--text-light)', maxWidth: '600px', mx: 'auto' }}>
-              The principles that guide everything we do and shape our company culture.
-            </Typography>
-          </Box>
-          <Grid container spacing={4}>
-            {values.map((value, index) => (
-              <Grid item xs={12} sm={6} md={3} key={index}>
-                <GlassCard className="hover-card glass-card">
-                  <Box
-                    component="img"
-                    src={value.image}
-                    alt={value.title}
-                    sx={{ 
-                      width: '100%',
-                      height: '200px',
-                      objectFit: 'cover',
-                      borderRadius: '8px',
-                      mb: 2,
-                    }}
-                  />
-                  <Typography variant="h5" component="h3" gutterBottom sx={{ color: '#ffffff', fontWeight: 'bold' }}>
-                    {value.title}
-                  </Typography>
-                  <Typography variant="body1" sx={{ color: '#f0f0f0' }}>
-                    {value.description}
-                  </Typography>
-                </GlassCard>
-              </Grid>
-            ))}
-          </Grid>
+          <GlassContainer>
+            <Box sx={{ textAlign: 'center', mb: 6 }}>
+              <Typography variant="h3" component="h2" gutterBottom sx={{ color: 'var(--text-dark-violet)', fontWeight: 'bold' }}>
+                Our Values
+              </Typography>
+              <Typography variant="h6" sx={{ color: 'var(--text-light)', maxWidth: '600px', mx: 'auto' }}>
+                The principles that guide everything we do and shape our company culture.
+              </Typography>
+            </Box>
+            <Grid container spacing={4}>
+              {values.map((value, index) => (
+                <Grid item xs={12} sm={6} md={3} key={index}>
+                  <GlassCard className="hover-card glass-card">
+                    <Box
+                      component="img"
+                      src={value.image}
+                      alt={value.title}
+                      sx={{ 
+                        width: '100%',
+                        height: '200px',
+                        objectFit: 'cover',
+                        borderRadius: '8px',
+                        mb: 2,
+                      }}
+                    />
+                    <Typography variant="h5" component="h3" gutterBottom sx={{ color: '#ffffff', fontWeight: 'bold' }}>
+                      {value.title}
+                    </Typography>
+                    <Typography variant="body1" sx={{ color: '#f0f0f0' }}>
+                      {value.description}
+                    </Typography>
+                  </GlassCard>
+                </Grid>
+              ))}
+            </Grid>
+          </GlassContainer>
         </Container>
       </Box>
 
