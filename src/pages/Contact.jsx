@@ -412,8 +412,8 @@ const ContactPage = () => {
                           <MenuItem value="data-processing">Data Processing</MenuItem>
                           <MenuItem value="back-office">Back Office Operations</MenuItem>
                           <MenuItem value="ai-services">AI Services</MenuItem>
-                          <MenuItem value="custom-website">Custom Website</MenuItem>
-                          <MenuItem value="custom-bpo">Custom BPO Solution</MenuItem>
+                          <MenuItem value="custom-website">Custom Website Development</MenuItem>
+                          <MenuItem value="custom-bpo">Custom BPO Solutions</MenuItem>
                           <MenuItem value="partnership">Partnership Opportunities</MenuItem>
                           <MenuItem value="other">Other</MenuItem>
                         </Select>

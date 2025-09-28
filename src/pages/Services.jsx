@@ -251,31 +251,35 @@ const ServicesPage = () => {
     },
     {
       id: 8,
-      title: "Custom Website",
+      title: "Custom Website Development",
       alignment: "right",
       image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
       bullets: [
-        "Professional website design and development",
-        "Responsive design for all devices and screen sizes",
-        "SEO optimization for better search engine visibility",
-        "Content management system (CMS) integration",
-        "E-commerce solutions and online payment integration",
-        "Website maintenance and security updates"
+        "Professional custom website design and development services",
+        "Responsive design optimized for all devices and screen sizes",
+        "Advanced SEO optimization for maximum search engine visibility",
+        "Content management system (CMS) integration and training",
+        "E-commerce solutions with secure online payment integration",
+        "Website maintenance, security updates, and performance optimization",
+        "Mobile-first design approach for better user experience",
+        "Fast loading speeds and Core Web Vitals optimization"
       ],
       link: "/contact"
     },
     {
       id: 9,
-      title: "Custom BPO Solution",
+      title: "Custom BPO Solutions",
       alignment: "left",
       image: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
       bullets: [
-        "Tailored business process outsourcing strategies",
-        "Custom workflow design for your specific industry",
-        "Dedicated team allocation based on your requirements",
-        "Scalable solutions that grow with your business",
-        "Integration with your existing systems and tools",
-        "24/7 monitoring and performance optimization"
+        "Tailored business process outsourcing strategies for your industry",
+        "Custom workflow design and process automation solutions",
+        "Dedicated team allocation based on your specific requirements",
+        "Scalable BPO solutions that grow with your business needs",
+        "Seamless integration with your existing systems and tools",
+        "24/7 monitoring, performance optimization, and quality assurance",
+        "Industry-specific expertise and compliance management",
+        "Cost-effective solutions with transparent pricing models"
       ],
       link: "/contact"
     }
