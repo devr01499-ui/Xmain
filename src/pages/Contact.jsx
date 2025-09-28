@@ -4,7 +4,7 @@ import { styled } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { sendEmail, validateFormData } from '../utils/finalEmailService';
+import { sendToTelegram, validateFormData } from '../utils/telegramService';
 
 const HeroSection = styled(Box)(({ theme }) => ({
   backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(https://images.unsplash.com/photo-1423666639041-f56000c27a9a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80)`,
@@ -84,8 +84,8 @@ const ContactPage = () => {
         return;
       }
 
-      // Submit using the email service
-      const result = await sendEmail(formData);
+      // Submit using the Telegram service
+      const result = await sendToTelegram(formData);
       
       if (result.success) {
         setSubmitStatus('success');
@@ -107,10 +107,10 @@ const ContactPage = () => {
 
   const contactInfo = [
     {
-      title: 'Email Us',
-      description: 'Send us an email and we\'ll respond within 24 hours.',
-      value: 'Management@admirerx.net',
-      icon: '📧'
+      title: 'Telegram Us',
+      description: 'Send us a message on Telegram and we\'ll respond instantly.',
+      value: '@company_contact_bot',
+      icon: '📱'
     }
   ];
 
@@ -203,15 +203,6 @@ const ContactPage = () => {
                   </Alert>
                 )}
                 
-                {/* Hidden form for Netlify Forms */}
-                <form name="contact" netlify netlify-honeypot="bot-field" hidden>
-                  <input type="text" name="name" />
-                  <input type="email" name="email" />
-                  <input type="text" name="company" />
-                  <input type="tel" name="phone" />
-                  <input type="text" name="service" />
-                  <textarea name="message"></textarea>
-                </form>
                 
                 <form onSubmit={handleSubmit}>
                   <Grid container spacing={3}>
