@@ -28,12 +28,12 @@ const DesktopHeader = styled(AppBar)(({ theme }) => ({
 }));
 
 const MobileHeader = styled(AppBar)(({ theme }) => ({
-  backgroundColor: 'rgba(255, 255, 255, 0.95)',
-  backdropFilter: 'blur(20px)',
-  WebkitBackdropFilter: 'blur(20px)',
-  color: '#000000',
+  backgroundColor: 'rgba(255, 255, 255, 0.1)',
+  backdropFilter: 'blur(15px)',
+  WebkitBackdropFilter: 'blur(15px)',
+  color: '#ffffff',
   boxShadow: 'none',
-  border: '1px solid rgba(255, 255, 255, 0.3)',
+  border: '1px solid rgba(255, 255, 255, 0.2)',
   borderTop: 'none',
   borderRadius: '0px 0px 20px 20px',
   transition: 'all 0.3s ease-in-out',

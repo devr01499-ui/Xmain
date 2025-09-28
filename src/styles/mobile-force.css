@@ -6,14 +6,14 @@
   .MuiAppBar-root,
   .MuiAppBar-root[class*="MuiAppBar-root"],
   .MuiAppBar-root[class*="MuiAppBar-root"][class*="MuiAppBar-root"] {
-    background: rgba(255, 255, 255, 0.95) !important;
-    backdrop-filter: blur(20px) !important;
-    -webkit-backdrop-filter: blur(20px) !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
-    color: #000000 !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: #ffffff !important;
   }
 
-  /* Force ALL text elements to be black with maximum specificity - EXCEPT LOGO */
+  /* Force ALL text elements to be white with maximum specificity - EXCEPT LOGO */
   .MuiAppBar-root *:not(.logo-text),
   .MuiAppBar-root[class*="MuiAppBar-root"] *:not(.logo-text),
   .MuiAppBar-root[class*="MuiAppBar-root"][class*="MuiAppBar-root"] *:not(.logo-text),
@@ -26,7 +26,7 @@
   .MuiAppBar-root span:not(.logo-text),
   .MuiAppBar-root div:not(.logo-text),
   .MuiAppBar-root p {
-    color: #000000 !important;
+    color: #ffffff !important;
   }
 
   /* Mobile drawer force fixes */
@@ -82,7 +82,7 @@
 
   /* Mobile hamburger menu - Ensure visibility */
   .MuiAppBar-root .MuiIconButton-root {
-    color: #000000 !important;
+    color: #ffffff !important;
     padding: 12px !important;
     display: block !important;
     visibility: visible !important;
@@ -93,7 +93,7 @@
 
   /* Mobile hamburger icon - Ensure visibility */
   .MuiAppBar-root .MuiSvgIcon-root {
-    color: #000000 !important;
+    color: #ffffff !important;
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
@@ -116,7 +116,7 @@
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
-    color: #000000 !important;
+    color: #ffffff !important;
     background-color: transparent !important;
     border: none !important;
     cursor: pointer !important;
@@ -127,7 +127,7 @@
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
-    color: #000000 !important;
+    color: #ffffff !important;
   }
 
   /* Force mobile menu icon to be visible */
@@ -135,7 +135,7 @@
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
-    color: #000000 !important;
+    color: #ffffff !important;
     width: 24px !important;
     height: 24px !important;
   }
@@ -164,9 +164,9 @@
 /* Force mobile styles on any element with mobile class - EXCEPT LOGO */
 .mobile-header,
 .mobile-header *:not(.logo-text) {
-  background: rgba(255, 255, 255, 0.95) !important;
-  backdrop-filter: blur(20px) !important;
-  color: #000000 !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(15px) !important;
+  color: #ffffff !important;
 }
 
 /* CRITICAL: Force mobile menu button visibility */
@@ -175,7 +175,7 @@
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
-  color: #000000 !important;
+  color: #ffffff !important;
   background-color: transparent !important;
   border: none !important;
   cursor: pointer !important;
@@ -189,7 +189,7 @@
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
-  color: #000000 !important;
+  color: #ffffff !important;
   width: 24px !important;
   height: 24px !important;
 }
