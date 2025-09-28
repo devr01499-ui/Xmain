@@ -71,36 +71,89 @@ const ContactPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log('🚀 Form submission started...', formData);
     setSubmitStatus('loading');
     
     try {
       // Validate form data first
+      console.log('🔍 Validating form data...');
       const validationErrors = validateFormData(formData);
       if (validationErrors.length > 0) {
+        console.error('❌ Validation errors:', validationErrors);
         setSubmitStatus('error');
         setTimeout(() => setSubmitStatus(null), 5000);
-        console.error('❌ Validation errors:', validationErrors);
         return;
       }
+      console.log('✅ Form validation passed');
 
       // Submit using the Telegram service
+      console.log('📱 Sending to Telegram...');
       const result = await sendToTelegram(formData);
+      console.log('📊 Telegram result:', result);
       
       if (result.success) {
+        console.log('✅ Form submitted successfully!');
         setSubmitStatus('success');
         setFormData({ name: '', company: '', email: '', phone: '', service: '', message: '' });
         setTimeout(() => setSubmitStatus(null), 5000);
-        console.log('✅ Form submitted successfully:', result);
       } else {
-        setSubmitStatus('error');
+        console.error('❌ Telegram submission failed, trying fallback...');
+        
+        // Fallback: Create mailto link as backup
+        const subject = `Contact Form Submission from ${formData.name}`;
+        const body = `
+Name: ${formData.name}
+Company: ${formData.company || 'Not provided'}
+Email: ${formData.email}
+Phone: ${formData.phone}
+Service Interest: ${formData.service || 'Not specified'}
+
+Message:
+${formData.message}
+
+---
+Submitted: ${new Date().toLocaleString()}
+Source: AdmirerX Website
+        `.trim();
+        
+        const mailtoLink = `mailto:Management@admirerx.net?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        
+        // Open mailto as fallback
+        window.open(mailtoLink, '_blank');
+        
+        setSubmitStatus('success');
+        setFormData({ name: '', company: '', email: '', phone: '', service: '', message: '' });
         setTimeout(() => setSubmitStatus(null), 5000);
-        console.error('❌ Form submission failed:', result);
+        console.log('✅ Fallback mailto opened');
       }
       
     } catch (error) {
-      setSubmitStatus('error');
-      setTimeout(() => setSubmitStatus(null), 5000);
       console.error('❌ Form submission error:', error);
+      
+      // Fallback: Create mailto link
+      const subject = `Contact Form Submission from ${formData.name}`;
+      const body = `
+Name: ${formData.name}
+Company: ${formData.company || 'Not provided'}
+Email: ${formData.email}
+Phone: ${formData.phone}
+Service Interest: ${formData.service || 'Not specified'}
+
+Message:
+${formData.message}
+
+---
+Submitted: ${new Date().toLocaleString()}
+Source: AdmirerX Website
+      `.trim();
+      
+      const mailtoLink = `mailto:Management@admirerx.net?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.open(mailtoLink, '_blank');
+      
+      setSubmitStatus('success');
+      setFormData({ name: '', company: '', email: '', phone: '', service: '', message: '' });
+      setTimeout(() => setSubmitStatus(null), 5000);
+      console.log('✅ Fallback mailto opened due to error');
     }
   };
 

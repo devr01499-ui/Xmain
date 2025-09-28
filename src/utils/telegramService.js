@@ -7,25 +7,28 @@ export const sendToTelegram = async (formData) => {
   console.log('📱 Sending message to Telegram...', formData);
 
   try {
-    // Format the message
-    const message = `
-🚀 *New Contact Form Submission*
+    // Format the message with better error handling
+    const message = `🚀 *New Contact Form Submission*
 
-👤 *Name:* ${formData.name}
+👤 *Name:* ${formData.name || 'Not provided'}
 🏢 *Company:* ${formData.company || 'Not provided'}
-📧 *Email:* ${formData.email}
-📞 *Phone:* ${formData.phone}
+📧 *Email:* ${formData.email || 'Not provided'}
+📞 *Phone:* ${formData.phone || 'Not provided'}
 🔧 *Service Interest:* ${formData.service || 'Not specified'}
 
 💬 *Message:*
-${formData.message}
+${formData.message || 'No message provided'}
 
 ---
 📅 *Submitted:* ${new Date().toLocaleString()}
-🌐 *Source:* AdmirerX Website
-    `.trim();
+🌐 *Source:* AdmirerX Website`.trim();
 
-    // Send to Telegram
+    console.log('📝 Formatted message:', message);
+
+    // Send to Telegram with timeout
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+
     const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
       method: 'POST',
       headers: {
@@ -36,9 +39,11 @@ ${formData.message}
         text: message,
         parse_mode: 'Markdown',
         disable_web_page_preview: true
-      })
+      }),
+      signal: controller.signal
     });
 
+    clearTimeout(timeoutId);
     console.log('📊 Telegram Response Status:', response.status);
     
     if (response.ok) {
@@ -51,12 +56,24 @@ ${formData.message}
     } else {
       const errorData = await response.json();
       console.error('❌ Telegram API error:', errorData);
-      throw new Error(`Telegram API error: ${errorData.description || 'Unknown error'}`);
+      return {
+        success: false,
+        message: `Telegram API error: ${errorData.description || 'Unknown error'}`
+      };
     }
     
   } catch (error) {
     console.error('❌ Telegram send error:', error);
-    throw new Error(`Failed to send message: ${error.message}`);
+    if (error.name === 'AbortError') {
+      return {
+        success: false,
+        message: 'Request timed out. Please try again.'
+      };
+    }
+    return {
+      success: false,
+      message: `Failed to send message: ${error.message}`
+    };
   }
 };
 
