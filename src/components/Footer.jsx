@@ -85,7 +85,7 @@ const Footer = () => {
           </Grid>
           <Box sx={{ borderTop: '1px solid rgba(255, 255, 255, 0.1)', mt: 4, pt: 4, textAlign: 'center' }}>
             <Typography variant="body2" sx={{ color: 'var(--text-light)', opacity: 0.7 }}>
-              © 2024 AdmirerX. All rights reserved. | Smart BPO Solutions
+              © 2025 AdmirerX. All rights reserved. | Smart BPO Solutions
             </Typography>
           </Box>
         </GlassContainer>
