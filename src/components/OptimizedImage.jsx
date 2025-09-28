@@ -5,33 +5,45 @@ const OptimizedImage = ({
   src, 
   alt, 
   sx = {}, 
-  loading = 'lazy',
-  quality = 80,
-  width = 'auto',
+  className = '',
+  width = '100%',
   height = 'auto',
+  quality = 80,
+  format = 'webp',
+  lazy = true,
   ...props 
 }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
 
-  // Optimize Unsplash URLs with better parameters
-  const getOptimizedSrc = (originalSrc) => {
-    if (originalSrc.includes('unsplash.com')) {
-      // Add optimization parameters to Unsplash URLs
-      const url = new URL(originalSrc);
-      url.searchParams.set('auto', 'format'); // Auto format (WebP when supported)
-      url.searchParams.set('q', quality.toString()); // Quality
-      url.searchParams.set('fit', 'crop'); // Crop to fit
-      url.searchParams.set('w', width === 'auto' ? '800' : width.toString()); // Width
-      if (height !== 'auto') {
-        url.searchParams.set('h', height.toString()); // Height
-      }
-      return url.toString();
-    }
-    return originalSrc;
+  // Optimize Unsplash URLs
+  const optimizeUnsplashUrl = (url) => {
+    if (!url || !url.includes('unsplash.com')) return url;
+    
+    // Parse existing parameters
+    const urlObj = new URL(url);
+    const params = new URLSearchParams(urlObj.search);
+    
+    // Set optimized parameters
+    params.set('auto', 'format'); // Auto format selection
+    params.set('q', quality.toString()); // Quality
+    params.set('w', width === '100%' ? '800' : width.toString()); // Width
+    params.set('h', height === 'auto' ? '600' : height.toString()); // Height
+    params.set('fit', 'crop'); // Crop to fit
+    params.set('crop', 'faces,entropy'); // Smart cropping
+    
+    return `${urlObj.origin}${urlObj.pathname}?${params.toString()}`;
   };
 
-  const optimizedSrc = getOptimizedSrc(src);
+  const optimizedSrc = optimizeUnsplashUrl(src);
+
+  const handleLoad = () => {
+    setImageLoaded(true);
+  };
+
+  const handleError = () => {
+    setImageError(true);
+  };
 
   return (
     <Box
@@ -40,57 +52,59 @@ const OptimizedImage = ({
         overflow: 'hidden',
         ...sx
       }}
+      className={className}
       {...props}
     >
+      {!imageError ? (
+        <img
+          src={optimizedSrc}
+          alt={alt}
+          loading={lazy ? 'lazy' : 'eager'}
+          onLoad={handleLoad}
+          onError={handleError}
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            transition: 'opacity 0.3s ease-in-out',
+            opacity: imageLoaded ? 1 : 0,
+            ...sx
+          }}
+        />
+      ) : (
+        <Box
+          sx={{
+            width: '100%',
+            height: '100%',
+            backgroundColor: '#f5f5f5',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: '#999',
+            fontSize: '14px'
+          }}
+        >
+          Image not available
+        </Box>
+      )}
+      
       {!imageLoaded && !imageError && (
         <Box
           sx={{
             position: 'absolute',
             top: 0,
             left: 0,
-            right: 0,
-            bottom: 0,
-            background: 'linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%)',
-            backgroundSize: '200% 100%',
-            animation: 'shimmer 1.5s infinite',
-            '@keyframes shimmer': {
-              '0%': { backgroundPosition: '-200% 0' },
-              '100%': { backgroundPosition: '200% 0' }
-            }
-          }}
-        />
-      )}
-      <img
-        src={optimizedSrc}
-        alt={alt}
-        loading={loading}
-        onLoad={() => setImageLoaded(true)}
-        onError={() => setImageError(true)}
-        style={{
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-          opacity: imageLoaded ? 1 : 0,
-          transition: 'opacity 0.3s ease-in-out'
-        }}
-      />
-      {imageError && (
-        <Box
-          sx={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
+            width: '100%',
+            height: '100%',
+            backgroundColor: '#f0f0f0',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            backgroundColor: '#f5f5f5',
-            color: '#666',
-            fontSize: '0.875rem'
+            color: '#999',
+            fontSize: '14px'
           }}
         >
-          Image failed to load
+          Loading...
         </Box>
       )}
     </Box>

@@ -1,85 +1,99 @@
-/* Global scroll behavior - AGGRESSIVE SCROLL TO TOP */
+/* Global scroll behavior - Optimized for smooth scrolling */
+
+/* Base scroll settings */
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 0;
   scroll-margin-top: 0;
-}
-
-/* Ensure body starts at top */
-body {
-  scroll-behavior: smooth;
-  scroll-padding-top: 0;
-  scroll-margin-top: 0;
-}
-
-/* Reset scroll position on page load */
-html, body {
-  scroll-behavior: smooth;
-  scroll-padding-top: 0;
-  scroll-margin-top: 0;
-}
-
-/* Force scroll to top on page navigation */
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 0;
-  scroll-margin-top: 0;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 body {
   scroll-behavior: smooth;
   scroll-padding-top: 0;
   scroll-margin-top: 0;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  margin: 0;
+  padding: 0;
 }
 
-/* Additional scroll-to-top utility */
+#root {
+  scroll-behavior: smooth;
+  scroll-padding-top: 0;
+  scroll-margin-top: 0;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Universal scroll padding and margin reset */
+* {
+  scroll-padding-top: 0;
+  scroll-margin-top: 0;
+  box-sizing: border-box;
+}
+
+/* Smooth scrolling for all elements */
+* {
+  scroll-behavior: smooth;
+}
+
+/* Optimize scroll performance */
+.scroll-container {
+  contain: layout style paint;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* Smooth transitions for all interactive elements */
+a, button, [role="button"] {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Smooth hover effects */
+.hover-smooth {
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, opacity 0.2s ease-out;
+}
+
+.hover-smooth:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Smooth page transitions */
+.page-transition {
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+/* Scroll to top utilities */
 .scroll-to-top {
   scroll-behavior: smooth;
 }
 
-/* Ensure all pages start at top */
-#root {
-  scroll-behavior: smooth;
-  scroll-padding-top: 0;
-  scroll-margin-top: 0;
-}
-
-/* Force immediate scroll to top */
 .scroll-to-top-immediate {
   scroll-behavior: auto;
 }
 
-/* Aggressive scroll to top for all elements */
-* {
-  scroll-padding-top: 0;
-  scroll-margin-top: 0;
+/* Optimize scroll performance for mobile */
+@media (max-width: 768px) {
+  html, body, #root {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+  
+  /* Reduce motion on mobile for better performance */
+  * {
+    transition-duration: 0.2s !important;
+  }
 }
 
-/* Force scroll to top on page navigation */
-html, body, #root {
-  scroll-behavior: smooth;
-  scroll-padding-top: 0;
-  scroll-margin-top: 0;
-}
-
-/* Additional CSS to ensure scroll to top works */
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 0;
-  scroll-margin-top: 0;
-  overflow-x: hidden;
-}
-
-body {
-  scroll-behavior: smooth;
-  scroll-padding-top: 0;
-  scroll-margin-top: 0;
-  overflow-x: hidden;
-}
-
-#root {
-  scroll-behavior: smooth;
-  scroll-padding-top: 0;
-  scroll-margin-top: 0;
-  overflow-x: hidden;
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }

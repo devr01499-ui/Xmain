@@ -1,5 +1,37 @@
 /* Footer Animations */
 
+/* Main footer container with gradient background */
+.footer-gradient-bg {
+  background: linear-gradient(-45deg, #1a1a2e, #16213e, #0f3460, #533483);
+  background-size: 400% 400%;
+  animation: gradientWave 8s ease infinite;
+}
+
+/* Floating background container */
+.footer-floating-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+  top: 0;
+  left: 0;
+}
+
+/* Gradient wave animation */
+@keyframes gradientWave {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 /* Floating particles animation */
 @keyframes floatParticles {
   0% {
@@ -16,17 +48,61 @@
   }
 }
 
-/* Gradient wave animation */
-@keyframes gradientWave {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+/* Floating particles */
+.footer-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: linear-gradient(45deg, #8b5cf6, #3b82f6);
+  border-radius: 50%;
+  animation: floatParticles 6s ease-in-out infinite;
+  opacity: 0.6;
+}
+
+.footer-particle:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; }
+.footer-particle:nth-child(2) { left: 20%; top: 40%; animation-delay: 1s; animation-duration: 8s; }
+.footer-particle:nth-child(3) { left: 30%; top: 60%; animation-delay: 2s; animation-duration: 7s; }
+.footer-particle:nth-child(4) { left: 40%; top: 30%; animation-delay: 3s; animation-duration: 9s; }
+.footer-particle:nth-child(5) { left: 50%; top: 50%; animation-delay: 4s; animation-duration: 5s; }
+.footer-particle:nth-child(6) { left: 60%; top: 25%; animation-delay: 5s; animation-duration: 8s; }
+.footer-particle:nth-child(7) { left: 70%; top: 45%; animation-delay: 6s; animation-duration: 6s; }
+.footer-particle:nth-child(8) { left: 80%; top: 35%; animation-delay: 7s; animation-duration: 7s; }
+.footer-particle:nth-child(9) { left: 90%; top: 55%; animation-delay: 8s; animation-duration: 9s; }
+
+/* Geometric shapes */
+.footer-geometric-shape {
+  position: absolute;
+  opacity: 0.1;
+  animation: floatParticles 10s linear infinite;
+}
+
+.footer-geometric-shape:nth-child(10) {
+  width: 20px;
+  height: 20px;
+  background: #8b5cf6;
+  transform: rotate(45deg);
+  top: 20%;
+  left: 5%;
+}
+
+.footer-geometric-shape:nth-child(11) {
+  width: 15px;
+  height: 15px;
+  background: #3b82f6;
+  border-radius: 50%;
+  top: 60%;
+  right: 10%;
+  animation-delay: 2s;
+}
+
+.footer-geometric-shape:nth-child(12) {
+  width: 25px;
+  height: 25px;
+  background: linear-gradient(45deg, #8b5cf6, #3b82f6);
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  top: 40%;
+  right: 5%;
+  animation-delay: 4s;
 }
 
 /* Glowing pulse animation */
@@ -42,17 +118,30 @@
   }
 }
 
-/* Gradient wave animation */
-@keyframes gradientWave {
+/* Glowing container */
+.footer-glow-container {
+  animation: glowPulse 3s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Text shimmer effect */
+@keyframes shimmer {
   0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
+    background-position: -200% center;
   }
   100% {
-    background-position: 0% 50%;
+    background-position: 200% center;
   }
+}
+
+.footer-shimmer-text {
+  background: linear-gradient(90deg, #ffffff 0%, #8b5cf6 50%, #3b82f6 100%);
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
 }
 
 /* Social icon hover animation */
@@ -68,105 +157,6 @@
   }
 }
 
-/* Text shimmer effect */
-@keyframes shimmer {
-  0% {
-    background-position: -200% center;
-  }
-  100% {
-    background-position: 200% center;
-  }
-}
-
-/* Floating background elements */
-.footer-floating-bg {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.footer-particle {
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  background: linear-gradient(45deg, #8b5cf6, #3b82f6);
-  border-radius: 50%;
-  animation: floatParticles 6s ease-in-out infinite;
-  opacity: 0.6;
-}
-
-.footer-particle:nth-child(1) {
-  left: 10%;
-  animation-delay: 0s;
-  animation-duration: 8s;
-}
-
-.footer-particle:nth-child(2) {
-  left: 20%;
-  animation-delay: 1s;
-  animation-duration: 6s;
-}
-
-.footer-particle:nth-child(3) {
-  left: 30%;
-  animation-delay: 2s;
-  animation-duration: 7s;
-}
-
-.footer-particle:nth-child(4) {
-  left: 40%;
-  animation-delay: 3s;
-  animation-duration: 9s;
-}
-
-.footer-particle:nth-child(5) {
-  left: 50%;
-  animation-delay: 4s;
-  animation-duration: 5s;
-}
-
-.footer-particle:nth-child(6) {
-  left: 60%;
-  animation-delay: 5s;
-  animation-duration: 8s;
-}
-
-.footer-particle:nth-child(7) {
-  left: 70%;
-  animation-delay: 6s;
-  animation-duration: 6s;
-}
-
-.footer-particle:nth-child(8) {
-  left: 80%;
-  animation-delay: 7s;
-  animation-duration: 7s;
-}
-
-.footer-particle:nth-child(9) {
-  left: 90%;
-  animation-delay: 8s;
-  animation-duration: 9s;
-}
-
-/* Animated gradient background */
-.footer-gradient-bg {
-  background: linear-gradient(-45deg, #1a1a2e, #16213e, #0f3460, #533483);
-  background-size: 400% 400%;
-  animation: gradientWave 8s ease infinite;
-}
-
-/* Glowing container */
-.footer-glow-container {
-  animation: glowPulse 3s ease-in-out infinite;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Social icons animation */
 .footer-social-icon {
   transition: all 0.3s ease;
 }
@@ -174,21 +164,6 @@
 .footer-social-icon:hover {
   animation: socialBounce 0.6s ease;
   transform: translateY(-5px) scale(1.1);
-}
-
-/* Shimmer text effect */
-.footer-shimmer-text {
-  background: linear-gradient(
-    90deg,
-    #ffffff 0%,
-    #8b5cf6 50%,
-    #3b82f6 100%
-  );
-  background-size: 200% auto;
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shimmer 3s linear infinite;
 }
 
 /* Quick links hover effect */
@@ -216,43 +191,6 @@
 .footer-link:hover {
   color: #8b5cf6 !important;
   transform: translateX(5px);
-}
-
-/* Floating geometric shapes */
-.footer-geometric-shape {
-  position: absolute;
-  opacity: 0.1;
-  animation: floatParticles 10s linear infinite;
-}
-
-.footer-geometric-shape:nth-child(1) {
-  width: 20px;
-  height: 20px;
-  background: #8b5cf6;
-  transform: rotate(45deg);
-  top: 20%;
-  left: 5%;
-  animation-delay: 0s;
-}
-
-.footer-geometric-shape:nth-child(2) {
-  width: 15px;
-  height: 15px;
-  background: #3b82f6;
-  border-radius: 50%;
-  top: 60%;
-  right: 10%;
-  animation-delay: 2s;
-}
-
-.footer-geometric-shape:nth-child(3) {
-  width: 25px;
-  height: 25px;
-  background: linear-gradient(45deg, #8b5cf6, #3b82f6);
-  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-  top: 40%;
-  right: 5%;
-  animation-delay: 4s;
 }
 
 /* Responsive adjustments */

@@ -20,191 +20,31 @@ const Footer = () => {
   ];
 
   return (
-    <Box sx={{ 
-      py: 6, 
-      backgroundColor: 'var(--bg-dark)', 
-      position: 'relative', 
-      overflow: 'hidden',
-      background: 'linear-gradient(-45deg, #1a1a2e, #16213e, #0f3460, #533483)',
-      backgroundSize: '400% 400%',
-      animation: 'gradientWave 8s ease infinite'
-    }} className="footer-gradient-bg">
+    <Box sx={{ py: 6, position: 'relative', overflow: 'hidden' }} className="footer-gradient-bg">
       {/* Floating Background Elements */}
-      <Box className="footer-floating-bg" sx={{
-        position: 'absolute',
-        width: '100%',
-        height: '100%',
-        overflow: 'hidden',
-        pointerEvents: 'none',
-        zIndex: 1
-      }}>
+      <Box className="footer-floating-bg">
         {/* Floating Particles */}
-        <Box className="footer-particle" sx={{
-          position: 'absolute',
-          width: '4px',
-          height: '4px',
-          background: 'linear-gradient(45deg, #8b5cf6, #3b82f6)',
-          borderRadius: '50%',
-          animation: 'floatParticles 6s ease-in-out infinite',
-          opacity: 0.6,
-          left: '10%',
-          top: '20%'
-        }}></Box>
-        <Box className="footer-particle" sx={{
-          position: 'absolute',
-          width: '4px',
-          height: '4px',
-          background: 'linear-gradient(45deg, #8b5cf6, #3b82f6)',
-          borderRadius: '50%',
-          animation: 'floatParticles 8s ease-in-out infinite',
-          opacity: 0.6,
-          left: '20%',
-          top: '40%',
-          animationDelay: '1s'
-        }}></Box>
-        <Box className="footer-particle" sx={{
-          position: 'absolute',
-          width: '4px',
-          height: '4px',
-          background: 'linear-gradient(45deg, #8b5cf6, #3b82f6)',
-          borderRadius: '50%',
-          animation: 'floatParticles 7s ease-in-out infinite',
-          opacity: 0.6,
-          left: '30%',
-          top: '60%',
-          animationDelay: '2s'
-        }}></Box>
-        <Box className="footer-particle" sx={{
-          position: 'absolute',
-          width: '4px',
-          height: '4px',
-          background: 'linear-gradient(45deg, #8b5cf6, #3b82f6)',
-          borderRadius: '50%',
-          animation: 'floatParticles 9s ease-in-out infinite',
-          opacity: 0.6,
-          left: '40%',
-          top: '30%',
-          animationDelay: '3s'
-        }}></Box>
-        <Box className="footer-particle" sx={{
-          position: 'absolute',
-          width: '4px',
-          height: '4px',
-          background: 'linear-gradient(45deg, #8b5cf6, #3b82f6)',
-          borderRadius: '50%',
-          animation: 'floatParticles 5s ease-in-out infinite',
-          opacity: 0.6,
-          left: '50%',
-          top: '50%',
-          animationDelay: '4s'
-        }}></Box>
-        <Box className="footer-particle" sx={{
-          position: 'absolute',
-          width: '4px',
-          height: '4px',
-          background: 'linear-gradient(45deg, #8b5cf6, #3b82f6)',
-          borderRadius: '50%',
-          animation: 'floatParticles 8s ease-in-out infinite',
-          opacity: 0.6,
-          left: '60%',
-          top: '25%',
-          animationDelay: '5s'
-        }}></Box>
-        <Box className="footer-particle" sx={{
-          position: 'absolute',
-          width: '4px',
-          height: '4px',
-          background: 'linear-gradient(45deg, #8b5cf6, #3b82f6)',
-          borderRadius: '50%',
-          animation: 'floatParticles 6s ease-in-out infinite',
-          opacity: 0.6,
-          left: '70%',
-          top: '45%',
-          animationDelay: '6s'
-        }}></Box>
-        <Box className="footer-particle" sx={{
-          position: 'absolute',
-          width: '4px',
-          height: '4px',
-          background: 'linear-gradient(45deg, #8b5cf6, #3b82f6)',
-          borderRadius: '50%',
-          animation: 'floatParticles 7s ease-in-out infinite',
-          opacity: 0.6,
-          left: '80%',
-          top: '35%',
-          animationDelay: '7s'
-        }}></Box>
-        <Box className="footer-particle" sx={{
-          position: 'absolute',
-          width: '4px',
-          height: '4px',
-          background: 'linear-gradient(45deg, #8b5cf6, #3b82f6)',
-          borderRadius: '50%',
-          animation: 'floatParticles 9s ease-in-out infinite',
-          opacity: 0.6,
-          left: '90%',
-          top: '55%',
-          animationDelay: '8s'
-        }}></Box>
+        <Box className="footer-particle"></Box>
+        <Box className="footer-particle"></Box>
+        <Box className="footer-particle"></Box>
+        <Box className="footer-particle"></Box>
+        <Box className="footer-particle"></Box>
+        <Box className="footer-particle"></Box>
+        <Box className="footer-particle"></Box>
+        <Box className="footer-particle"></Box>
+        <Box className="footer-particle"></Box>
         
         {/* Geometric Shapes */}
-        <Box className="footer-geometric-shape" sx={{
-          position: 'absolute',
-          width: '20px',
-          height: '20px',
-          background: '#8b5cf6',
-          transform: 'rotate(45deg)',
-          top: '20%',
-          left: '5%',
-          opacity: 0.1,
-          animation: 'floatParticles 10s linear infinite'
-        }}></Box>
-        <Box className="footer-geometric-shape" sx={{
-          position: 'absolute',
-          width: '15px',
-          height: '15px',
-          background: '#3b82f6',
-          borderRadius: '50%',
-          top: '60%',
-          right: '10%',
-          opacity: 0.1,
-          animation: 'floatParticles 10s linear infinite',
-          animationDelay: '2s'
-        }}></Box>
-        <Box className="footer-geometric-shape" sx={{
-          position: 'absolute',
-          width: '25px',
-          height: '25px',
-          background: 'linear-gradient(45deg, #8b5cf6, #3b82f6)',
-          clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
-          top: '40%',
-          right: '5%',
-          opacity: 0.1,
-          animation: 'floatParticles 10s linear infinite',
-          animationDelay: '4s'
-        }}></Box>
+        <Box className="footer-geometric-shape"></Box>
+        <Box className="footer-geometric-shape"></Box>
+        <Box className="footer-geometric-shape"></Box>
       </Box>
 
       <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 2 }}>
-        <GlassContainer sx={{ 
-          background: 'var(--glass-bg)',
-          backdropFilter: 'var(--glass-blur)',
-          border: '1px solid var(--glass-border)',
-          animation: 'glowPulse 3s ease-in-out infinite',
-          boxShadow: '0 0 5px rgba(139, 92, 246, 0.3)'
-        }} className="footer-glow-container">
+        <GlassContainer className="footer-glow-container">
           <Grid container spacing={4} alignItems="center">
             <Grid item xs={12} md={6}>
-              <Typography variant="h5" sx={{ 
-                fontWeight: 700, 
-                mb: 2, 
-                background: 'linear-gradient(90deg, #ffffff 0%, #8b5cf6 50%, #3b82f6 100%)',
-                backgroundSize: '200% auto',
-                backgroundClip: 'text',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                animation: 'shimmer 3s linear infinite'
-              }} className="footer-shimmer-text">
+              <Typography variant="h5" sx={{ fontWeight: 700, mb: 2 }} className="footer-shimmer-text">
                 AdmirerX
               </Typography>
               <Typography variant="body1" sx={{ mb: 3, color: 'var(--text-light)', lineHeight: 1.6, opacity: 0.9 }}>
