@@ -3,7 +3,7 @@ import { Box, Typography, Container, Grid, Card, CardContent, TextField, Button,
 import { styled } from '@mui/material/styles';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { validateFormData } from '../utils/telegramService';
+import { sendToTelegram, validateFormData } from '../utils/telegramService';
 
 const HeroSection = styled(Box)(({ theme }) => ({
   backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(https://images.unsplash.com/photo-1423666639041-f56000c27a9a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80)`,
@@ -87,32 +87,90 @@ const ContactPage = () => {
       }
       console.log('✅ [FRONTEND] Form validation passed');
 
-      // Submit to API route
-      console.log('📡 [FRONTEND] Sending to API route...');
-      const apiUrl = '/api/contact';
-      console.log('📡 [FRONTEND] API URL:', apiUrl);
-      
-      const response = await fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData)
-      });
+      // Try multiple submission methods
+      let success = false;
 
-      console.log('📊 [FRONTEND] API response status:', response.status);
-      console.log('📊 [FRONTEND] API response headers:', Object.fromEntries(response.headers.entries()));
+      // Method 1: Try direct Telegram API
+      console.log('📱 [FRONTEND] Trying direct Telegram API...');
+      try {
+        const telegramResult = await sendToTelegram(formData);
+        console.log('📊 [FRONTEND] Telegram result:', telegramResult);
+        
+        if (telegramResult.success) {
+          success = true;
+          console.log('✅ [FRONTEND] Telegram submission successful!');
+        } else {
+          console.log('❌ [FRONTEND] Telegram failed:', telegramResult.message);
+        }
+      } catch (telegramError) {
+        console.error('❌ [FRONTEND] Telegram error:', telegramError);
+      }
 
-      const result = await response.json();
-      console.log('📊 [FRONTEND] API response data:', result);
-      
-      if (response.ok && result.success) {
+      // Method 2: Try Formspree as fallback
+      if (!success) {
+        console.log('📧 [FRONTEND] Trying Formspree fallback...');
+        try {
+          const formspreeResponse = await fetch('https://formspree.io/f/xpwgkqkp', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              name: formData.name,
+              email: formData.email,
+              phone: formData.phone,
+              company: formData.company,
+              service: formData.service,
+              message: formData.message,
+              _subject: `Contact Form Submission from ${formData.name}`
+            })
+          });
+
+          console.log('📊 [FRONTEND] Formspree response status:', formspreeResponse.status);
+          
+          if (formspreeResponse.ok) {
+            success = true;
+            console.log('✅ [FRONTEND] Formspree submission successful!');
+          } else {
+            console.log('❌ [FRONTEND] Formspree failed:', formspreeResponse.status);
+          }
+        } catch (formspreeError) {
+          console.error('❌ [FRONTEND] Formspree error:', formspreeError);
+        }
+      }
+
+      // Method 3: Final fallback - mailto
+      if (!success) {
+        console.log('📧 [FRONTEND] Using mailto fallback...');
+        const subject = `Contact Form Submission from ${formData.name}`;
+        const body = `
+Name: ${formData.name}
+Company: ${formData.company || 'Not provided'}
+Email: ${formData.email}
+Phone: ${formData.phone}
+Service Interest: ${formData.service || 'Not specified'}
+
+Message:
+${formData.message}
+
+---
+Submitted: ${new Date().toLocaleString()}
+Source: AdmirerX Website
+        `.trim();
+        
+        const mailtoLink = `mailto:Management@admirerx.net?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.open(mailtoLink, '_blank');
+        success = true; // Consider mailto as success
+        console.log('✅ [FRONTEND] Mailto fallback opened');
+      }
+
+      if (success) {
         console.log('✅ [FRONTEND] Form submitted successfully!');
         setSubmitStatus('success');
         setFormData({ name: '', company: '', email: '', phone: '', service: '', message: '' });
         setTimeout(() => setSubmitStatus(null), 5000);
       } else {
-        console.error('❌ [FRONTEND] API submission failed:', result);
+        console.error('❌ [FRONTEND] All submission methods failed');
         setSubmitStatus('error');
         setTimeout(() => setSubmitStatus(null), 5000);
       }
