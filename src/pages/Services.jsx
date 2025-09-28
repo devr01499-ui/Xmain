@@ -28,8 +28,8 @@ const ServiceCardContainer = styled(Box)(({ theme, alignment }) => ({
 
 const ServiceCard = styled(Box)(({ theme, alignment }) => ({
   display: 'flex',
-  alignItems: 'center',
-  minHeight: '400px',
+  alignItems: 'stretch',
+  minHeight: '500px',
   borderRadius: '20px',
   overflow: 'hidden',
   background: 'rgba(255, 255, 255, 0.1)',
@@ -52,7 +52,7 @@ const ServiceCard = styled(Box)(({ theme, alignment }) => ({
 const CardImageSide = styled(Box)(({ theme, alignment }) => ({
   flex: 1,
   position: 'relative',
-  minHeight: '400px',
+  minHeight: '500px',
   [theme.breakpoints.down('md')]: {
     minHeight: '250px',
     width: '100%',
@@ -63,6 +63,9 @@ const CardContentSide = styled(Box)(({ theme, alignment }) => ({
   flex: 1,
   padding: '40px',
   color: '#ffffff',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
   [theme.breakpoints.down('md')]: {
     padding: '30px 20px',
   },
@@ -175,7 +178,10 @@ const ServicesPage = () => {
         "AI-driven candidate matching and screening",
         "Cultural fit assessment for long-term retention",
         "Background verification and onboarding support",
-        "Dedicated recruitment consultants for your industry"
+        "Dedicated recruitment consultants for your industry",
+        "Comprehensive job posting and advertising strategies",
+        "Interview scheduling and coordination services",
+        "Employee retention and engagement programs"
       ],
       link: "/contact"
     },
@@ -231,7 +237,10 @@ const ServicesPage = () => {
         "Accounting and bookkeeping services",
         "Document processing and record management",
         "Inventory and supply chain coordination",
-        "Process documentation and optimization"
+        "Process documentation and optimization",
+        "Financial reporting and analysis services",
+        "Compliance monitoring and regulatory support",
+        "Workflow automation and efficiency improvements"
       ],
       link: "/contact"
     },
