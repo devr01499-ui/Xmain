@@ -1,11 +1,16 @@
 import React from 'react';
 import { Box, Container, Typography, IconButton, Grid } from '@mui/material';
+import { Link } from 'react-router-dom';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import GlassContainer from './GlassContainer';
 
 const Footer = () => {
+  // Scroll to top function for navigation
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
   
   const socialIcons = [
     { icon: LinkedInIcon, url: 'https://www.linkedin.com/company/admirerx/', enabled: true },
@@ -62,24 +67,36 @@ const Footer = () => {
                 Quick Links
               </Typography>
               <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
-                <Typography variant="body2" sx={{ color: 'var(--text-light)', cursor: 'pointer', '&:hover': { color: 'var(--text-light-violet)' }, transition: 'color 0.2s ease', opacity: 0.9 }}>
-                  Home
-                </Typography>
-                <Typography variant="body2" sx={{ color: 'var(--text-light)', cursor: 'pointer', '&:hover': { color: 'var(--text-light-violet)' }, transition: 'color 0.2s ease', opacity: 0.9 }}>
-                  About Us
-                </Typography>
-                <Typography variant="body2" sx={{ color: 'var(--text-light)', cursor: 'pointer', '&:hover': { color: 'var(--text-light-violet)' }, transition: 'color 0.2s ease', opacity: 0.9 }}>
-                  Services
-                </Typography>
-                <Typography variant="body2" sx={{ color: 'var(--text-light)', cursor: 'pointer', '&:hover': { color: 'var(--text-light-violet)' }, transition: 'color 0.2s ease', opacity: 0.9 }}>
-                  Careers
-                </Typography>
-                <Typography variant="body2" sx={{ color: 'var(--text-light)', cursor: 'pointer', '&:hover': { color: 'var(--text-light-violet)' }, transition: 'color 0.2s ease', opacity: 0.9 }}>
-                  Partner With Us
-                </Typography>
-                <Typography variant="body2" sx={{ color: 'var(--text-light)', cursor: 'pointer', '&:hover': { color: 'var(--text-light-violet)' }, transition: 'color 0.2s ease', opacity: 0.9 }}>
-                  Contact
-                </Typography>
+                <Link to="/" onClick={scrollToTop} style={{ textDecoration: 'none' }}>
+                  <Typography variant="body2" sx={{ color: 'var(--text-light)', cursor: 'pointer', '&:hover': { color: 'var(--text-light-violet)' }, transition: 'color 0.2s ease', opacity: 0.9 }}>
+                    Home
+                  </Typography>
+                </Link>
+                <Link to="/about" onClick={scrollToTop} style={{ textDecoration: 'none' }}>
+                  <Typography variant="body2" sx={{ color: 'var(--text-light)', cursor: 'pointer', '&:hover': { color: 'var(--text-light-violet)' }, transition: 'color 0.2s ease', opacity: 0.9 }}>
+                    About Us
+                  </Typography>
+                </Link>
+                <Link to="/services" onClick={scrollToTop} style={{ textDecoration: 'none' }}>
+                  <Typography variant="body2" sx={{ color: 'var(--text-light)', cursor: 'pointer', '&:hover': { color: 'var(--text-light-violet)' }, transition: 'color 0.2s ease', opacity: 0.9 }}>
+                    Services
+                  </Typography>
+                </Link>
+                <Link to="/careers" onClick={scrollToTop} style={{ textDecoration: 'none' }}>
+                  <Typography variant="body2" sx={{ color: 'var(--text-light)', cursor: 'pointer', '&:hover': { color: 'var(--text-light-violet)' }, transition: 'color 0.2s ease', opacity: 0.9 }}>
+                    Careers
+                  </Typography>
+                </Link>
+                <Link to="/partner" onClick={scrollToTop} style={{ textDecoration: 'none' }}>
+                  <Typography variant="body2" sx={{ color: 'var(--text-light)', cursor: 'pointer', '&:hover': { color: 'var(--text-light-violet)' }, transition: 'color 0.2s ease', opacity: 0.9 }}>
+                    Partner With Us
+                  </Typography>
+                </Link>
+                <Link to="/contact" onClick={scrollToTop} style={{ textDecoration: 'none' }}>
+                  <Typography variant="body2" sx={{ color: 'var(--text-light)', cursor: 'pointer', '&:hover': { color: 'var(--text-light-violet)' }, transition: 'color 0.2s ease', opacity: 0.9 }}>
+                    Contact
+                  </Typography>
+                </Link>
               </Box>
             </Grid>
           </Grid>
