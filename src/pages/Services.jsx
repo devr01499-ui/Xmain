@@ -282,7 +282,6 @@ const ServicesPage = () => {
   ];
 
   const ServiceCardComponent = ({ service, index }) => {
-    const isLeft = service.alignment === "left";
     
     return (
       <ServiceCardContainer alignment={service.alignment}>

@@ -1,13 +1,11 @@
 import React from 'react';
 import { Box, Typography, Button, Container } from '@mui/material';
-import { styled } from '@mui/material/styles';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import HeroSection from '../components/HeroSection';
 import WhyChooseUs from '../components/WhyChooseUs';
 import ServicesSection from '../components/ServicesSection';
 import PartnerSection from '../components/PartnerSection';
-import GlassContainer from '../components/GlassContainer';
 
 const HomePage = () => {
   const scrollToContact = () => {

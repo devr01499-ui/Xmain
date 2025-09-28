@@ -1,7 +1,6 @@
 import React from 'react';
 import { Box, Typography, Container, Grid, Card, CardContent, CardMedia, Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 

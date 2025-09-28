@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { AppBar, Toolbar, Typography, Box, Container, useTheme, useMediaQuery, IconButton, Drawer, List, ListItem, ListItemText } from '@mui/material';
+import { AppBar, Toolbar, Typography, Box, Container, useTheme, IconButton, Drawer, List, ListItem, ListItemText } from '@mui/material';
 import { Link, useLocation } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import MenuIcon from '@mui/icons-material/Menu';

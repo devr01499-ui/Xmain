@@ -1,13 +1,11 @@
 import React from 'react';
 import { Box, Container, Typography, IconButton, Grid } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import GlassContainer from './GlassContainer';
 
 const Footer = () => {
-  const theme = useTheme();
   
   const socialIcons = [
     { icon: LinkedInIcon, url: 'https://www.linkedin.com/company/admirerx/', enabled: true },
