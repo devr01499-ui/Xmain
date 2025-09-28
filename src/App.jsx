@@ -18,6 +18,7 @@ import './styles/performance.css';
 import './styles/animations.css';
 import './styles/footer-animations.css';
 import './styles/performance-optimization.css';
+import './styles/header-animations.css';
 
 // Import components
 import ScrollToTop from './components/ScrollToTop';

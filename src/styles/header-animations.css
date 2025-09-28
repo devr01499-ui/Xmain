@@ -1,0 +1,43 @@
+/* Header Animations */
+
+/* Shimmer text effect for header logo */
+.header-shimmer-text {
+  background: linear-gradient(90deg, #ffffff 0%, #8b5cf6 50%, #3b82f6 100%);
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+}
+
+/* Shimmer animation keyframes */
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* Ensure logo text has shimmer effect */
+.logo-text.header-shimmer-text {
+  background: linear-gradient(90deg, #ffffff 0%, #8b5cf6 50%, #3b82f6 100%);
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+}
+
+/* Override any existing color styles for shimmer effect */
+.logo-text.header-shimmer-text,
+.logo-text.header-shimmer-text:hover {
+  color: transparent !important;
+  background: linear-gradient(90deg, #ffffff 0%, #8b5cf6 50%, #3b82f6 100%) !important;
+  background-size: 200% auto !important;
+  background-clip: text !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  animation: shimmer 3s linear infinite !important;
+}

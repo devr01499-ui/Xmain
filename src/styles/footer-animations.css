@@ -1,10 +1,25 @@
 /* Footer Animations */
 
-/* Main footer container with gradient background */
+/* Main footer container with black background */
 .footer-gradient-bg {
+  background: #000000;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated background overlay */
+.footer-gradient-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: linear-gradient(-45deg, #1a1a2e, #16213e, #0f3460, #533483);
   background-size: 400% 400%;
   animation: gradientWave 8s ease infinite;
+  opacity: 0.1;
+  z-index: 1;
 }
 
 /* Floating background container */

@@ -212,15 +212,13 @@ const Header = () => {
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
         <Typography 
           variant="h6" 
-          className="mobile-menu-title logo-text" 
+          className="mobile-menu-title logo-text header-shimmer-text" 
           sx={{ 
-            color: '#1976d2 !important',
             fontWeight: 700,
             textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3), 0 0 10px rgba(25, 118, 210, 0.5)',
             transform: 'perspective(1000px) rotateX(5deg)',
             transition: 'all 0.3s ease',
             '&:hover': {
-              color: '#1565c0 !important',
               transform: 'perspective(1000px) rotateX(0deg) scale(1.05)',
               textShadow: '3px 3px 6px rgba(0, 0, 0, 0.4), 0 0 15px rgba(25, 118, 210, 0.7)',
             },
@@ -274,14 +272,13 @@ const Header = () => {
         >
           <Container maxWidth="lg">
             <Toolbar sx={{ color: '#000000' }}>
-              <Typography 
-                variant="h6" 
+              <Typography
+                variant="h6"
                 component={Link}
                 to="/"
                 onClick={scrollToTop}
-                className="logo-text"
+                className="logo-text header-shimmer-text"
                 sx={{ 
-                  color: '#1976d2 !important',
                   fontWeight: 700,
                   fontSize: '1.5rem',
                   textDecoration: 'none',
@@ -289,7 +286,6 @@ const Header = () => {
                   transform: 'perspective(1000px) rotateX(5deg)',
                   transition: 'all 0.3s ease',
                   '&:hover': {
-                    color: '#1565c0 !important',
                     transform: 'perspective(1000px) rotateX(0deg) scale(1.05)',
                     textShadow: '3px 3px 6px rgba(0, 0, 0, 0.4), 0 0 15px rgba(25, 118, 210, 0.7)',
                   },
@@ -339,9 +335,8 @@ const Header = () => {
                 component={Link}
                 to="/"
                 onClick={scrollToTop}
-                className="logo-text"
+                className="logo-text header-shimmer-text"
                 sx={{ 
-                  color: '#1976d2 !important',
                   fontWeight: 700,
                   fontSize: '1.8rem',
                   textDecoration: 'none',
@@ -349,7 +344,6 @@ const Header = () => {
                   transform: 'perspective(1000px) rotateX(5deg)',
                   transition: 'all 0.3s ease',
                   '&:hover': {
-                    color: '#1565c0 !important',
                     transform: 'perspective(1000px) rotateX(0deg) scale(1.05)',
                     textShadow: '3px 3px 6px rgba(0, 0, 0, 0.4), 0 0 15px rgba(25, 118, 210, 0.7)',
                   },
