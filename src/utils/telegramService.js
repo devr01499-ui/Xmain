@@ -1,6 +1,6 @@
 // Simple and reliable Telegram bot integration
-const TELEGRAM_BOT_TOKEN = '8328726742:AAF9oqzuktH2xQJtdRVAjdYMe0-NUHAilTo';
-const TELEGRAM_CHAT_ID = '8328726742'; // You can change this to your actual chat ID
+const TELEGRAM_BOT_TOKEN = '8366518884:AAHbdC4Kl_UyvLF4UD187ZU7Z2CUVqv3F2A';
+const TELEGRAM_CHAT_ID = '1564118457';
 
 // Send message to Telegram
 export const sendToTelegram = async (formData) => {

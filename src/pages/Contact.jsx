@@ -109,7 +109,7 @@ const ContactPage = () => {
     {
       title: 'Telegram Us',
       description: 'Send us a message on Telegram and we\'ll respond instantly.',
-      value: '@company_contact_bot',
+      value: '@myadmirerxbot',
       icon: '📱'
     }
   ];
