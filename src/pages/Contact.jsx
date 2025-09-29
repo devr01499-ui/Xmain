@@ -3,7 +3,7 @@ import { Box, Typography, Container, Grid, Card, CardContent, TextField, Button,
 import { styled } from '@mui/material/styles';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { sendToTelegram, validateFormData } from '../utils/telegramService';
+// import { sendToTelegram, validateFormData } from '../utils/telegramService';
 
 const HeroSection = styled(Box)(({ theme }) => ({
   backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(https://images.unsplash.com/photo-1423666639041-f56000c27a9a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80)`,
@@ -71,44 +71,66 @@ const ContactPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('🚀 [FRONTEND] Form submission started');
-    console.log('🚀 [FRONTEND] Form data payload:', JSON.stringify(formData, null, 2));
+    console.log('🚨 URGENT: Form submission started');
     setSubmitStatus('loading');
     
     try {
-      // Validate form data first
-      console.log('🔍 [FRONTEND] Validating form data...');
-      const validationErrors = validateFormData(formData);
-      if (validationErrors.length > 0) {
-        console.error('❌ [FRONTEND] Validation errors:', validationErrors);
+      // Simple validation
+      if (!formData.name || !formData.email || !formData.phone || !formData.message) {
         setSubmitStatus('error');
         setTimeout(() => setSubmitStatus(null), 5000);
         return;
       }
-      console.log('✅ [FRONTEND] Form validation passed');
 
-      // Try multiple submission methods
       let success = false;
 
-      // Method 1: Try direct Telegram API
-      console.log('📱 [FRONTEND] Trying direct Telegram API...');
+      // Method 1: Try Telegram API directly
+      console.log('🚨 URGENT: Trying Telegram...');
       try {
-        const telegramResult = await sendToTelegram(formData);
-        console.log('📊 [FRONTEND] Telegram result:', telegramResult);
+        const TELEGRAM_BOT_TOKEN = '8366518884:AAHbdC4Kl_UyvLF4UD187ZU7Z2CUVqv3F2A';
+        const TELEGRAM_CHAT_ID = '1564118457';
         
-        if (telegramResult.success) {
+        const message = `🚨 URGENT: New Contact Form Submission
+
+👤 Name: ${formData.name}
+🏢 Company: ${formData.company || 'Not provided'}
+📧 Email: ${formData.email}
+📞 Phone: ${formData.phone}
+🔧 Service: ${formData.service || 'Not specified'}
+
+💬 Message:
+${formData.message}
+
+---
+📅 Time: ${new Date().toLocaleString()}
+🌐 Source: AdmirerX Website`;
+
+        const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            chat_id: TELEGRAM_CHAT_ID,
+            text: message,
+            parse_mode: 'Markdown',
+            disable_web_page_preview: true
+          })
+        });
+
+        if (response.ok) {
           success = true;
-          console.log('✅ [FRONTEND] Telegram submission successful!');
+          console.log('✅ URGENT: Telegram success!');
         } else {
-          console.log('❌ [FRONTEND] Telegram failed:', telegramResult.message);
+          console.log('❌ URGENT: Telegram failed:', response.status);
         }
       } catch (telegramError) {
-        console.error('❌ [FRONTEND] Telegram error:', telegramError);
+        console.error('❌ URGENT: Telegram error:', telegramError);
       }
 
-      // Method 2: Try Formspree as fallback
+      // Method 2: Try Formspree
       if (!success) {
-        console.log('📧 [FRONTEND] Trying Formspree fallback...');
+        console.log('🚨 URGENT: Trying Formspree...');
         try {
           const formspreeResponse = await fetch('https://formspree.io/f/xpwgkqkp', {
             method: 'POST',
@@ -122,62 +144,52 @@ const ContactPage = () => {
               company: formData.company,
               service: formData.service,
               message: formData.message,
-              _subject: `Contact Form Submission from ${formData.name}`
+              _subject: `URGENT: Contact Form from ${formData.name}`
             })
           });
 
-          console.log('📊 [FRONTEND] Formspree response status:', formspreeResponse.status);
-          
           if (formspreeResponse.ok) {
             success = true;
-            console.log('✅ [FRONTEND] Formspree submission successful!');
-          } else {
-            console.log('❌ [FRONTEND] Formspree failed:', formspreeResponse.status);
+            console.log('✅ URGENT: Formspree success!');
           }
         } catch (formspreeError) {
-          console.error('❌ [FRONTEND] Formspree error:', formspreeError);
+          console.error('❌ URGENT: Formspree error:', formspreeError);
         }
       }
 
-      // Method 3: Final fallback - mailto
+      // Method 3: Mailto fallback
       if (!success) {
-        console.log('📧 [FRONTEND] Using mailto fallback...');
-        const subject = `Contact Form Submission from ${formData.name}`;
-        const body = `
-Name: ${formData.name}
+        console.log('🚨 URGENT: Using mailto...');
+        const subject = `URGENT: Contact Form from ${formData.name}`;
+        const body = `Name: ${formData.name}
 Company: ${formData.company || 'Not provided'}
 Email: ${formData.email}
 Phone: ${formData.phone}
-Service Interest: ${formData.service || 'Not specified'}
+Service: ${formData.service || 'Not specified'}
 
 Message:
 ${formData.message}
 
 ---
-Submitted: ${new Date().toLocaleString()}
-Source: AdmirerX Website
-        `.trim();
-        
+Time: ${new Date().toLocaleString()}
+Source: AdmirerX Website`;
+
         const mailtoLink = `mailto:Management@admirerx.net?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         window.open(mailtoLink, '_blank');
-        success = true; // Consider mailto as success
-        console.log('✅ [FRONTEND] Mailto fallback opened');
+        success = true;
       }
 
       if (success) {
-        console.log('✅ [FRONTEND] Form submitted successfully!');
         setSubmitStatus('success');
         setFormData({ name: '', company: '', email: '', phone: '', service: '', message: '' });
         setTimeout(() => setSubmitStatus(null), 5000);
       } else {
-        console.error('❌ [FRONTEND] All submission methods failed');
         setSubmitStatus('error');
         setTimeout(() => setSubmitStatus(null), 5000);
       }
       
     } catch (error) {
-      console.error('❌ [FRONTEND] Form submission error:', error);
-      console.error('❌ [FRONTEND] Error stack:', error.stack);
+      console.error('❌ URGENT: Form error:', error);
       setSubmitStatus('error');
       setTimeout(() => setSubmitStatus(null), 5000);
     }

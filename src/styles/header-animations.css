@@ -40,4 +40,18 @@
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   animation: shimmer 3s linear infinite !important;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+}
+
+/* Mobile specific fixes for logo clarity */
+@media (max-width: 768px) {
+  .logo-text.header-shimmer-text {
+    text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.5px !important;
+  }
 }
